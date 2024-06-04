@@ -1,0 +1,90 @@
+.navegador {
+    display: flex;
+    background-color: black;
+    width: 30%;
+    user-select: none;
+    height: 1000px;
+    margin-right: 20px;
+}
+
+.navegador ul {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    
+}
+
+.navegador ul li {
+    display: flex;
+    list-style: none;
+    padding: 20px 0px 20px 20px;
+    cursor: pointer;
+    
+}
+
+.navegador ul li:hover {
+    background-color: rgba(66, 66, 66, 0.6);
+}
+
+.navegador ul li a {
+    text-decoration: none;
+    color: #ffff;
+}
+
+.BodyMenu{
+    display: flex;
+    background-color: rgba(255, 69, 0,0.7);
+    justify-content: space-between;
+   
+    
+;
+    
+}
+.formularioCliente{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    width:55%;
+    background-color:rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    padding: 20px;
+    
+    height:fit-content;
+}
+
+#standard-basic{
+    width:90% ;
+}
+
+#standard-basic:focus{
+    background: rgba(250, 73, 73, 0.3)
+}
+
+
+
+
+.partes-formu{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.partes-formu div{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin-bottom: 10px;
+}
+
+.mensajesError{
+    color: red;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top:0px;
+    font-size: small;
+    
+}
+
+.MuiPaper-root{
+    background-color: rgba(255, 255, 255, 0.8);
+}
