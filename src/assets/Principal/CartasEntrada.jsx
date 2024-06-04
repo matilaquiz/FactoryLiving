@@ -7,7 +7,6 @@ import { CardActionArea } from '@mui/material';
 import "../Estilos/Carta.css"
 
 export default function CartasEntrada({titulo="",url=""}) {
-   
 
   return (
     <Card  sx={{ maxWidth: 400 }} class='carta'>
