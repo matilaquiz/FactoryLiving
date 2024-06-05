@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -37,7 +37,7 @@ export const TablaClientes = () => {
     const eliminarCliente= async (id) => {
        
         try{ 
-            const response=await axios.delete(`http://localhost:3000/tareas/${id}`)
+            await axios.delete(`http://localhost:3000/tareas/${id}`)
             window.location.reload()
         }catch(error){
             console.error(error)
@@ -73,12 +73,12 @@ export const TablaClientes = () => {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell component="th" scope="row">{clientes.key}</TableCell>
-                            <TableCell align="right">{clientes.nombre}</TableCell>
-                            <TableCell align="right">{clientes.barrio}</TableCell>
+                            <TableCell align="right">{clientes.nombre} {clientes.apellido}</TableCell>
+                            <TableCell align="right">{clientes.email}</TableCell>
                             <TableCell align="right">
-                                <button>
+                               <a href="">
                                     <ModeEdit />
-                                </button>
+                                </a>
                             </TableCell>
                             <TableCell align="right">
                                 <a href="#" onClick={()=>eliminarCliente(clientes.key)}>

@@ -8,6 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import "../Estilos/Menu.css"
 import axios from "axios";
+import { Email } from '@mui/icons-material';
 
 
 export const DatosInputs = () => {
@@ -25,13 +26,12 @@ export const DatosInputs = () => {
     const [localidad, setLocalidad] = useState('')
     const [telefonoCliente, setTelefono] = useState('')
     const [InstaCliente, setInsta] = useState('')
+    const [emailCliente, setEmail] = useState('')
     let key=5;
 
     const expresiones = {
-        usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
         nombre: /^[a-zA-ZÀ-ÿ\s]{3,40}$/i, // Letras y espacios, pueden llevar acentos.
         apellido:/^[a-zA-ZÀ-ÿ\s]{1,40}$/i,
-        password: /^.{4,12}$/, // 4 a 12 digitos.
         correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
         telefono: /^\d{7,14}$/, // 7 a 14 numeros.
         dni: /^\d{7,8}$/, // 7 a 14 numeros.
@@ -41,7 +41,7 @@ export const DatosInputs = () => {
     
 
     let array;
-    let person;
+    
     array = [
          {
             nombre: "matias",
@@ -127,6 +127,11 @@ export const DatosInputs = () => {
         setInsta(event.target.value);
     }
 
+    const handleEmail= (event)=>{
+        setEmail(event.target.value);
+
+    }
+
     
 
 
@@ -140,17 +145,23 @@ export const DatosInputs = () => {
         validarNombre()
         validarApellido()
         validarCalle()
+        validarTelefono()
+        validarEmail()
         
         let cliente = {
             key:key,
-            //dni:dniCliente,
+            dni:dniCliente,
             nombre:nombreCliente,
-            //apellido:apellidoCliente,
-            //calle: calleCliente,
-            //  fecha:fecha
+            apellido:apellidoCliente,
+            calle: calleCliente,
+            numero: numero,
+            dpto:dpto,
+            // fecha:fecha
             barrio:barrio,
             provincia:provincia,
             localidad:localidad,
+            telefono:telefonoCliente,
+            email:emailCliente
         }
        
        
@@ -171,6 +182,7 @@ export const DatosInputs = () => {
             fetchCliente()
             console.log(clientes)
     }
+
      //---------------------------------Validar DNI-------------------------------------
     
     const [MensajeErrorDNI, setMensajeErrorDNI] = useState("")
@@ -254,8 +266,38 @@ export const DatosInputs = () => {
     function limpiarNumero() {
         setMensajeErrorNumero("");
     }
+    //--------------------------Validar telefono-----------------------
+    const [MensajeErrorTelefono, setMensajeErrorTelefono] = useState("")
 
+    function validarTelefono() {
+        if (expresiones.telefono.test(telefonoCliente)) {
+            console.log("input valido")
+        } else {
 
+            setMensajeErrorTelefono("agregue el telefono")
+        }
+
+    }
+
+    function limpiarTelefono() {
+        setMensajeErrorTelefono("");
+    }
+    //--------------------------Validar telefono-----------------------
+    const [MensajeErrorEmail, setMensajeErrorEmail] = useState("")
+
+    function validarEmail() {
+        if (expresiones.correo.test(emailCliente)) {
+            console.log("input valido")
+        } else {
+
+            setMensajeErrorEmail("el mail tiene que tener @ y .")
+        }
+
+    }
+
+    function limpiarEmail() {
+        setMensajeErrorEmail("");
+    }
 
     return (
         <form action="" onSubmit={onSubmit} className='formularioCliente'>
@@ -349,8 +391,10 @@ export const DatosInputs = () => {
             <div className='partes-formu'>
                 <p>Contacto</p>
                 <div>
-                    <TextField id="standard-basic" label="Telefono" value={telefonoCliente} onChange={handleTelefono} onBlur={validarNombre} onFocus={limpiarNombre} required />
-                    <p className="mensajesError"></p>
+                    <TextField id="standard-basic" label="Telefono" value={telefonoCliente} onChange={handleTelefono} onBlur={validarTelefono} onFocus={limpiarTelefono} required />
+                    <p className="mensajesError">{MensajeErrorTelefono}</p>
+                    <TextField id="standard-basic" label="Email" value={emailCliente} onChange={handleEmail} onBlur={validarEmail} onFocus={limpiarEmail} required />
+                    <p className="mensajesError">{MensajeErrorEmail}</p>
                     <TextField id="standard-basic" label="Instagram" value={InstaCliente} onChange={handleInsta} />
                 </div>
             </div>
