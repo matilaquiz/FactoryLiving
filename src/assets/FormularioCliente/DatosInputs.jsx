@@ -8,7 +8,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import "../Estilos/Menu.css"
 import axios from "axios";
-import { Email } from '@mui/icons-material';
 
 
 export const DatosInputs = () => {
@@ -389,8 +388,8 @@ export const DatosInputs = () => {
                 </div>
             </div>
             <div className='partes-formu'>
-                <p>Contacto</p>
-                <div>
+                <p >Contacto</p>
+                <div className='partes-p'>
                     <TextField id="standard-basic" label="Telefono" value={telefonoCliente} onChange={handleTelefono} onBlur={validarTelefono} onFocus={limpiarTelefono} required />
                     <p className="mensajesError">{MensajeErrorTelefono}</p>
                     <TextField id="standard-basic" label="Email" value={emailCliente} onChange={handleEmail} onBlur={validarEmail} onFocus={limpiarEmail} required />

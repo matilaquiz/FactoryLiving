@@ -5,13 +5,10 @@ html {
     background-position: center; /* Centra la imagen de fondo */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
-
 .cartas-unidas{
     display: flex;
     justify-content:space-around;
     margin-top: 50px;
-    
-    
 }
 body::before {
     content: "";
@@ -23,11 +20,3 @@ body::before {
     background-color: rgba(196, 161, 161, 0.5); /* Color de fondo opacidad */
     z-index: -1; /* Coloca el elemento detrás de todo el contenido */
 }
-
-
-
-
-
-
-
-
