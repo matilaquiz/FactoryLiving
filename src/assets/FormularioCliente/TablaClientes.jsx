@@ -57,13 +57,13 @@ export const TablaClientes = () => {
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>id</TableCell>
-                        <TableCell align="right">Cliente</TableCell>
-                        <TableCell align="right">Contacto</TableCell>
-                        <TableCell align="right">Modificar</TableCell>
-                        <TableCell align="right">Eliminar</TableCell>
+                <TableHead className='Tabla-contenedora'>
+                    <TableRow className='Tabla-contenedora2'>
+                        <TableCell className='Cell'>id</TableCell>
+                        <TableCell align="right" className='Cell'>Cliente</TableCell>
+                        <TableCell align="right" className='Cell'>Contacto</TableCell>
+                        <TableCell align="right" className='Cell'>Modificar</TableCell>
+                        <TableCell align="right" className='Cell'>Eliminar</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
