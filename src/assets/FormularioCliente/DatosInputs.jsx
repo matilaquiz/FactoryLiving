@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { TextField } from '@mui/material'
 //import { DatePicker } from '@mui/x-date-pickers';
 //import  "./styleForm.css"
@@ -303,11 +303,11 @@ export const DatosInputs = () => {
             <div className='partes-formu'>
                 <p>Nombre Completo</p>
                 <div >
-                    <TextField id="standard-basic" label="DNI" value={dniCliente} onChange={handleDNI} onBlur={validarDNI} onFocus={limpiarDNI} required />
+                    <TextField id="standard-basic" label="DNI" value={dniCliente} onChange={handleDNI} onBlur={validarDNI} onFocus={limpiarDNI} required fullWidth />
                     <p className="mensajesError">{MensajeErrorDNI}</p>
-                    <TextField id="standard-basic" label="Nombre" value={nombreCliente} onChange={handlename} onBlur={validarNombre} onFocus={limpiarNombre} required />
+                    <TextField id="standard-basic" label="Nombre" value={nombreCliente} onChange={handlename} onBlur={validarNombre} onFocus={limpiarNombre} required fullWidth />
                     <p className="mensajesError">{MensajeErrorNombre}</p>
-                    <TextField id="standard-basic" label="Apellido" value={apellidoCliente} onChange={handleApellido} onBlur={validarApellido} onFocus={limpiarApellido} required />
+                    <TextField id="standard-basic" label="Apellido" value={apellidoCliente} onChange={handleApellido} onBlur={validarApellido} onFocus={limpiarApellido} required fullWidth />
                     <p className="mensajesError">{MensajeErrorApellido}</p>
                 </div>
             </div>
@@ -315,13 +315,13 @@ export const DatosInputs = () => {
             <div className='partes-formu' >
                 <p>Direccion</p>
                 <div>
-                    <TextField id="standard-basic" label="Calle" value={calleCliente} onChange={handleCalle} onBlur={validarCalle} onFocus={limpiarCalle} required />
+                    <TextField id="standard-basic" label="Calle" value={calleCliente} onChange={handleCalle} onBlur={validarCalle} onFocus={limpiarCalle} required fullWidth />
                     <p className="mensajesError">{MensajeErrorCalle}</p>
-                    <TextField id="standard-basic" label="Numero" value={numero} onChange={handleNumero} onBlur={validarNumero} onFocus={limpiarNumero} required  />
+                    <TextField id="standard-basic" label="Numero" value={numero} onChange={handleNumero} onBlur={validarNumero} onFocus={limpiarNumero} required fullWidth  />
                     <p className="mensajesError">{MensajeErrorNumero}</p>
-                    <TextField id="standard-basic" label="Dpto" value={dpto} onChange={handleDpto} />
+                    <TextField id="standard-basic" label="Dpto" value={dpto} onChange={handleDpto} fullWidth />
 
-                    <FormControl sx={{ m: 1, minWidth: 120 }}>
+                    <FormControl sx={{ my: 1, minWidth: 120 }} fullWidth>
                         <InputLabel id="demo-simple-select-helper-label">Barrio</InputLabel>
                         <Select
                             required
@@ -330,19 +330,20 @@ export const DatosInputs = () => {
                             value={barrio}
                             label="Barrio"
                             onChange={handleBarrio}
+                            fullWidth
                         >
                             <MenuItem value="">
                                 <em>None</em>
                             </MenuItem>
                             {
                                 array.map(person => (
-                                    <MenuItem value={person.barrio}>{person.barrio}</MenuItem>
+                                    <MenuItem key={person.barrio} value={person.barrio}>{person.barrio}</MenuItem>
                                 ))
                             }
 
                         </Select>
                     </FormControl>
-                    <FormControl sx={{ m: 1, minWidth: 120 }}>
+                    <FormControl sx={{ my: 1, minWidth: 120 }} fullWidth>
                         <InputLabel id="demo-simple-select-helper-label">Localidad</InputLabel>
                         <Select
                             required
@@ -351,20 +352,21 @@ export const DatosInputs = () => {
                             value={localidad}
                             label="Localidad"
                             onChange={handleLocalidad}
+                            fullWidth
                         >
                             <MenuItem value="">
                                 <em>None</em>
                             </MenuItem>
                             {
                                 array.map(person => (
-                                    <MenuItem value={person.localidad}>{person.localidad}</MenuItem>
+                                    <MenuItem key={person.localidad} value={person.localidad}>{person.localidad}</MenuItem>
                                 ))
                             }
 
                         </Select>
                     </FormControl>
 
-                    <FormControl sx={{ m: 1, minWidth: 120 }}>
+                    <FormControl sx={{ my: 1, minWidth: 120 }} fullWidth>
                         <InputLabel id="demo-simple-select-helper-label">Provincia</InputLabel>
                         <Select
                             required
@@ -373,13 +375,14 @@ export const DatosInputs = () => {
                             value={provincia}
                             label="Provincia"
                             onChange={handleProvincia}
+                            fullWidth
                         >
                             <MenuItem value="">
                                 <em>None</em>
                             </MenuItem>
                             {
                                 array.map(person => (
-                                    <MenuItem value={person.provincia}>{person.provincia}</MenuItem>
+                                    <MenuItem key={person.provincia} value={person.provincia}>{person.provincia}</MenuItem>
                                 ))
                             }
                         </Select>
@@ -390,11 +393,11 @@ export const DatosInputs = () => {
             <div className='partes-formu'>
                 <p >Contacto</p>
                 <div className='partes-p'>
-                    <TextField id="standard-basic" label="Telefono" value={telefonoCliente} onChange={handleTelefono} onBlur={validarTelefono} onFocus={limpiarTelefono} required />
+                    <TextField id="standard-basic" label="Telefono" value={telefonoCliente} onChange={handleTelefono} onBlur={validarTelefono} onFocus={limpiarTelefono} required fullWidth/>
                     <p className="mensajesError">{MensajeErrorTelefono}</p>
-                    <TextField id="standard-basic" label="Email" value={emailCliente} onChange={handleEmail} onBlur={validarEmail} onFocus={limpiarEmail} required />
+                    <TextField id="standard-basic" label="Email" value={emailCliente} onChange={handleEmail} onBlur={validarEmail} onFocus={limpiarEmail} required fullWidth/>
                     <p className="mensajesError">{MensajeErrorEmail}</p>
-                    <TextField id="standard-basic" label="Instagram" value={InstaCliente} onChange={handleInsta} />
+                    <TextField id="standard-basic" label="Instagram" value={InstaCliente} onChange={handleInsta} fullWidth />
                 </div>
             </div>
 

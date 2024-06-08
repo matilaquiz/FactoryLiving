@@ -176,12 +176,11 @@
     padding: 20px;
 }
 
-.partes-formu div{
+.partes-formu > div{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
     width: 95%;
     
 }
@@ -191,25 +190,13 @@
     margin-bottom: 10px;
 }
 
-#standard-basic{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    width: 50%;
-    
-}
-
-#standard-basic:focus{
-    background-color: rgba(250, 73, 73, 0.3);
-    width: 95%;
-}
-
 .mensajesError{
     color: red;
-    width: 90%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: small;
     font-size: 12px;
+    padding-bottom: 8px;
+    padding-top: 8px;
 }
 
 .MuiPaper-root{
