@@ -60,10 +60,10 @@ export const TablaClientes = () => {
                 <TableHead className='Tabla-contenedora'>
                     <TableRow className='Tabla-contenedora2'>
                         <TableCell className='Cell'>id</TableCell>
-                        <TableCell align="right" className='Cell'>Cliente</TableCell>
-                        <TableCell align="right" className='Cell'>Contacto</TableCell>
-                        <TableCell align="right" className='Cell'>Modificar</TableCell>
-                        <TableCell align="right" className='Cell'>Eliminar</TableCell>
+                        <TableCell align="center" className='Cell'>Cliente</TableCell>
+                        <TableCell align="center" className='Cell'>Contacto</TableCell>
+                        <TableCell align="center" className='Cell'>Modificar</TableCell>
+                        <TableCell align="center" className='Cell'>Eliminar</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -73,14 +73,14 @@ export const TablaClientes = () => {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell component="th" scope="row">{clientes.key}</TableCell>
-                            <TableCell align="right">{clientes.nombre} {clientes.apellido}</TableCell>
-                            <TableCell align="right">{clientes.email}</TableCell>
-                            <TableCell align="right">
+                            <TableCell align="center">{clientes.nombre} {clientes.apellido}</TableCell>
+                            <TableCell align="center">{clientes.email}</TableCell>
+                            <TableCell align="center">
                                <a href="">
                                     <ModeEdit />
                                 </a>
                             </TableCell>
-                            <TableCell align="right">
+                            <TableCell align="center">
                                 <a href="#" onClick={()=>eliminarCliente(clientes.key)}>
                                     <DeleteForever />
                                 </a>
