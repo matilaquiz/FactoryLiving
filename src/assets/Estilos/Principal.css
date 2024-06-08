@@ -1,15 +1,22 @@
-body{
-    background-color: rgb(255, 255, 255);
+html {
+    height: 100%; /* Establece la altura del elemento html al 100% del viewport */
+    background-image: url('/src/images/fondo1.jpg'); /* Ruta de la imagen de fondo */
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el viewport */
+    background-position: center; /* Centra la imagen de fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
-
 .cartas-unidas{
     display: flex;
     justify-content:space-around;
     margin-top: 50px;
-    
 }
-
-
-
-
-
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(196, 161, 161, 0.5); /* Color de fondo opacidad */
+    z-index: -1; /* Coloca el elemento detrás de todo el contenido */
+}
