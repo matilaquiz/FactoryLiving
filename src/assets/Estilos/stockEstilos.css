@@ -1,0 +1,31 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#root{
+    height: 100%;
+}
+body{
+    height: 100%;
+}
+.Body{
+    display: flex;
+    height: auto;
+    height: 100%;
+}
+.Componente{
+    width: 80%;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.H1-Componente{
+    margin: 10px 0px;
+    color: #ffff; 
+    user-select: none;
+}
+
+/*-----------------------------------TABLA DE STOCK---------------------------------------------*/

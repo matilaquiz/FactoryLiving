@@ -16,10 +16,11 @@ export const Principal = () => {
           image="/src/images/admin.png"
           alt="Imagen de administracion"
         />
-        <CartasEntrada
-          titulo="Administrar stock"
-          image="/src/images/stock1.png"
-          alt="Imagen de stock"
+        <CartasEntrada 
+          titulo='Administrar stock' 
+          url='/indexStock/Stock'
+          image="/src/images/stock1.png" 
+          alt="Imagen de stock" 
         />
       </div>
 

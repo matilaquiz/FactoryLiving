@@ -1,142 +1,74 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-.navegador {
-  background-color: rgb(230, 146, 46);
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.nav-logo {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  font-weight: bold;
-  font-size: 24px;
-  margin: 15px;
-  color: white;
-}
-/* .nav-hambur img{
-    width: 40px;
-    height: 40px;
-    margin-left: 10px;
-    cursor: pointer;
-    
-} */
-/* .nav-hambur img:hover{
-    background-color: rgba(83, 46, 0, 0.4);
-    border-radius: 5px;
-} */
-/*---------Naveggador desplegable--------*/
-#Menu {
-  background-color: rgb(230, 146, 46);
-  width: 60%;
-}
-
 /* #Menu.open{
     transform: translate(0%);
 } */
-
-#Menu ul {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  width: 100%;
+*{
+    margin: 0;
+    padding: 0;
 }
-
-#Menu ul li {
-  list-style: none;
-  margin: 10px 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-}
-
-#Menu ul li:hover {
-  background-color: rgb(112, 72, 23);
-  transition: 0.5s;
-}
-
-#Menu ul li a {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  font-size: 22px;
-}
-/* #Menu img{
-    width: 40px;
-    height: 40px;
-    margin-left: 10px;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-} */
-/*Configuro con media querie*/
-/* @media (max-width: 1150px){
-    #Menu{
-        background-color: rgb(230, 146, 46);
-        position: absolute;
-        width: 30%;
-        top: 0px;
-        left: 0px;
-        height: 100%;
-        transform: translate(0%);
-        transition: 0.5s; 
-    }
-} */
-
-/*.navegador {
-    display: flex;
-
+.navegador{
     background-color: #E6922E;
-    width: 40%;
-    user-select: none;
-    height: 1000px;
-    margin-right: 20px;
-}
-
-.navegador ul {
     display: flex;
     flex-direction: column;
-    position: fixed;
+    height: 100%;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 100%;
 }
-
-.navegador ul li {
+.nav-logo{
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    color: #b60000;
+    padding: 20px 10px;
+    user-select: none;
+}
+.Menu{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.ul-Menu{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+}
+.ul-Menu li{
     list-style: none;
-    padding: 20px 0px 20px 20px;
-    cursor: pointer;
-    
+    display: flex;
+    user-select: none;
 }
-
-.navegador ul li:hover {
-    background-color: rgba(66, 66, 66, 0.6);
-}
-
-.navegador ul li a {
+.ul-Menu li a{
     text-decoration: none;
     color: #ffff;
-}*/
-
-.BodyMenu {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  background-color: #ffff;
-  justify-content: space-between;
+    font-size: 18px;
+    padding: 22px 5px;
+    width: 100%;
 }
-.Menu-principal {
-  width: 100%;
+.ul-Menu li a:hover{
+    transform: translate(17px);
+    transition: 0.6s;
+}
+.ul-Menu li:hover{
+    background-color: brown;
+    transition: 0.6s;
+    cursor: pointer;
 }
 
-.Cuerpo {
-  width: 100%;
-  display: flex;
+
+
+
+.BodyMenu{
+    display: flex;
+    background-color: #ffff;
+    justify-content: space-between;
+}
+.Cuerpo{
+    width: 100%;
+    display: flex;
+
 }
 .formularioCliente {
   display: flex;
