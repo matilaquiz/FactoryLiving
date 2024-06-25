@@ -1,0 +1,54 @@
+.BodyVentaGUI {
+  display: flex;
+  flex-direction: column;
+}
+
+.PrincipalVentaGUI {
+  display: flex;
+  flex-direction: row;
+}
+
+.boxProducto {
+  width: 50%;
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.tablaProducto {
+  display: flex;
+  width: 40%;
+  right: 20px;
+  height: 700px;
+  justify-content: center;
+}
+.totalVenta {
+  display: flex;
+  flex-direction: column;
+}
+.tablaVenta {
+  width: 25%;
+}
+
+.productosGUI {
+  display: flex;
+  flex-direction: column;
+}
+.productos {
+  display: flex;
+}
+
+.cantidadProducto {
+  width: 50px;
+  text-align: center;
+  font-size: x-large;
+  font-weight: bolder;
+  border: none;
+  border-radius: 50px;
+}
+
+.cantidadProducto:hover {
+  background-color: rgba(163, 140, 107, 0.5);
+}

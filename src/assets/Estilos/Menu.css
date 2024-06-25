@@ -1,21 +1,22 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.navegador{
-    background-color: rgb(230, 146, 46);
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.navegador {
+  background-color: rgb(230, 146, 46);
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.nav-logo{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: bold;
-    font-size: 24px;
-    margin: 15px;
-    color: white;
+.nav-logo {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 15px;
+  color: white;
 }
 /* .nav-hambur img{
     width: 40px;
@@ -29,41 +30,42 @@
     border-radius: 5px;
 } */
 /*---------Naveggador desplegable--------*/
-#Menu{
-    background-color: rgb(230, 146, 46);
-    width: 60%;
+#Menu {
+  background-color: rgb(230, 146, 46);
+  width: 60%;
 }
 
 /* #Menu.open{
     transform: translate(0%);
 } */
 
-#Menu ul{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    width: 100%;
+#Menu ul {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
 }
 
-#Menu ul li{
-    list-style: none;
-    margin: 10px 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
+#Menu ul li {
+  list-style: none;
+  margin: 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
 }
 
-#Menu ul li:hover{
-    background-color: rgb(112, 72, 23);
-    transition: 0.5s;
+#Menu ul li:hover {
+  background-color: rgb(112, 72, 23);
+  transition: 0.5s;
 }
 
-#Menu ul li a{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    font-size: 22px;
+#Menu ul li a {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-size: 22px;
 }
 /* #Menu img{
     width: 40px;
@@ -121,95 +123,90 @@
     color: #ffff;
 }*/
 
-.BodyMenu{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    background-color: #ffff;
-    justify-content: space-between;
+.BodyMenu {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  background-color: #ffff;
+  justify-content: space-between;
 }
-.Menu-principal{
-    width: 100%;
-}
-
-.Cuerpo{
-    width: 100%;
-    display: flex;
-    
-}
-.formularioCliente{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 80%;
-    height:fit-content;
-    background-color: rgb(250, 191, 142);
-    border-radius: 40px;
-    margin: 10px;
-    padding: 10px;
+.Menu-principal {
+  width: 100%;
 }
 
-.Tabla-contenedora{
-    background-color: rgb(250, 183, 138);
-    font-size: 10px;
-
+.Cuerpo {
+  width: 100%;
+  display: flex;
+}
+.formularioCliente {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 80%;
+  height: fit-content;
+  background-color: rgb(250, 191, 142);
+  border-radius: 40px;
+  margin: 10px;
+  padding: 10px;
 }
 
-.Tabla-contenedora2{
-    display: flex;
-
+.Tabla-contenedora {
+  background-color: rgb(250, 183, 138);
+  font-size: 10px;
 }
 
-.Tabla-contenedora .Cell{
-    font-size: 18px;
-    width: 30px;
-
+.Tabla-contenedora2 {
+  display: flex;
 }
 
-.partes-formu{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 0px;
-    padding: 20px;
+.Tabla-contenedora .Cell {
+  font-size: 18px;
+  width: 30px;
 }
 
-.partes-formu > div{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 95%;
-    
+.partes-formu {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0px;
+  padding: 20px;
 }
 
-.partes-formu .partes-p{
-    font-size: 15x;
-    margin-bottom: 10px;
+.partes-formu > div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 95%;
 }
 
-.mensajesError{
-    color: red;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: small;
-    font-size: 12px;
-    padding-bottom: 8px;
-    padding-top: 8px;
+.partes-formu .partes-p {
+  font-size: 15x;
+  margin-bottom: 10px;
 }
 
-.MuiPaper-root{
-    background-color: rgba(255, 255, 255, 0.8);
+.mensajesError {
+  color: red;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: small;
+  font-size: 12px;
+  padding-bottom: 8px;
+  padding-top: 8px;
 }
-.botonRegistrar{
-    width: 40%;
-    padding: 10px;
-    border: none;
-    margin: auto;
+
+.MuiPaper-root {
+  background-color: rgba(255, 255, 255, 0.8);
 }
-.botonRegistrar:hover{
-    border: 1px solid brown;
-    transition: 0.10s;
-    background-color: chocolate;
+.botonRegistrar {
+  width: 40%;
+  padding: 10px;
+  border: none;
+  margin: auto;
+}
+.botonRegistrar:hover {
+  border: 1px solid brown;
+  transition: 0.1s;
+  background-color: chocolate;
 }
