@@ -21,6 +21,7 @@ export const Principal = () => {
         />
         <CartasEntrada 
           titulo='Administrar stock' 
+          url='/indexStock/Stock'
           image="/src/images/stock1.png" 
           alt="Imagen de stock" 
         />
