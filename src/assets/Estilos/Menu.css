@@ -85,6 +85,7 @@
 .Tabla-contenedora {
   background-color: rgb(250, 183, 138);
   font-size: 10px;
+  
 }
 
 .Tabla-contenedora2 {
@@ -136,9 +137,15 @@
   padding: 10px;
   border: none;
   margin: auto;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px;
+  border: 1px solid;
 }
 .botonRegistrar:hover {
   border: 1px solid brown;
   transition: 0.1s;
-  background-color: chocolate;
+  background-color: rgba(210, 105, 30,0.7);
+  box-shadow: none;
+  transform: translate(5px);
+  transition: 0.1s;
 }

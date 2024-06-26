@@ -392,22 +392,24 @@ export const DatosInputs = () => {
           />
 
           <FormControl sx={{ my: 1, minWidth: 120 }} fullWidth>
-            <InputLabel id="demo-simple-select-helper-label">Barrio</InputLabel>
+            <InputLabel id="demo-simple-select-helper-label">
+              Provincia
+            </InputLabel>
             <Select
               required
               labelId="demo-simple-select-helper-label"
               id="demo-simple-select-helper"
-              value={barrio}
-              label="Barrio"
-              onChange={handleBarrio}
+              value={provincia}
+              label="Provincia"
+              onChange={handleProvincia}
               fullWidth
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              {listaBarrio.map((barrio) => (
-                <MenuItem key={barrio.Id} value={barrio.Id}>
-                  {barrio.Nombre}
+              {listaProvincias.map((provincia) => (
+                <MenuItem key={provincia.Id} value={provincia.Id}>
+                  {provincia.Nombre}
                 </MenuItem>
               ))}
             </Select>
@@ -435,30 +437,28 @@ export const DatosInputs = () => {
               ))}
             </Select>
           </FormControl>
-
           <FormControl sx={{ my: 1, minWidth: 120 }} fullWidth>
-            <InputLabel id="demo-simple-select-helper-label">
-              Provincia
-            </InputLabel>
+            <InputLabel id="demo-simple-select-helper-label">Barrio</InputLabel>
             <Select
               required
               labelId="demo-simple-select-helper-label"
               id="demo-simple-select-helper"
-              value={provincia}
-              label="Provincia"
-              onChange={handleProvincia}
+              value={barrio}
+              label="Barrio"
+              onChange={handleBarrio}
               fullWidth
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              {listaProvincias.map((provincia) => (
-                <MenuItem key={provincia.Id} value={provincia.Id}>
-                  {provincia.Nombre}
+              {listaBarrio.map((barrio) => (
+                <MenuItem key={barrio.Id} value={barrio.Id}>
+                  {barrio.Nombre}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
+
         </div>
       </div>
       <div className="partes-formu">

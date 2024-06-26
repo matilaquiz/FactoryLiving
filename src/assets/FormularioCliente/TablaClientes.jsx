@@ -30,6 +30,7 @@ export const TablaClientes = () => {
     try {
       await axios.delete(`http://localhost:3000/eliminarCliente/${id}`);
       window.location.reload();
+      
     } catch (error) {
       console.error(error);
     }
@@ -49,7 +50,10 @@ export const TablaClientes = () => {
               Cliente
             </TableCell>
             <TableCell align="center" className="Cell">
-              Contacto
+              Telefono
+            </TableCell>
+            <TableCell align="center" className="Cell">
+              Email
             </TableCell>
             <TableCell align="center" className="Cell">
               Modificar
@@ -72,9 +76,11 @@ export const TablaClientes = () => {
                 {clientes.Nombre} {clientes.Apellido}
               </TableCell>
               <TableCell align="center">
-                {clientes.Email}
-                <br></br>
                 {clientes.Telefono}
+              </TableCell>
+               
+              <TableCell align="center">
+                {clientes.Email}
               </TableCell>
               <TableCell align="center">
                 <a href="#" onClick={() => modificarCliente(clientes.Id)}>

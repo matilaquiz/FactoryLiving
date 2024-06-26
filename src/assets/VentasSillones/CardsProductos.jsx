@@ -9,7 +9,7 @@ import { useContext } from 'react';
 import { ProductosContext } from '../Context/ProductosContext';
 
 
-export default function CardsProductos({ id, nombre , precio, descripcion}) {
+export default function CardsProductos({ id, nombre , precio, descripcion, img}) {
   const {setProductoElegido}=useContext(ProductosContext)
 
   
@@ -20,20 +20,20 @@ export default function CardsProductos({ id, nombre , precio, descripcion}) {
  
 
   return (
-    <Card sx={{ width: 0.4 , minWidth: 0.3}} className='carta'  onClick={handleProducto} >
+    <Card sx={{ width: 0.8 , minWidth: 0.4, maxWidth:0.4}} className='carta'  onClick={handleProducto} >
       <CardActionArea>
         <CardMedia className='carta-media'
           component="img"
           height="140"
-          image="/public/images/juego-de-sillones.jpg"
+          image="/public/images/imagen4.png"
           alt={id}
-          sx={{ objectFit: 'contain', width: '100%', height: '120px' }}
-          
+          sx={{ objectFit: 'contain', width: '100%', height: '120px'}}
+      
         />
         <CardContent className='titulo-componente'>
           <Typography  gutterBottom variant="h5" component="div" >
-            <div className=''>{nombre}</div>
-            <div>$ {precio}</div>
+            <div className='nombreProducto'>{nombre}</div>
+            <div className='precioProducto'>$ {precio}</div>
           </Typography>
         </CardContent>
       </CardActionArea>

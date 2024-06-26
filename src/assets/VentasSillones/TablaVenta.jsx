@@ -20,7 +20,10 @@ export const TablaVenta = () => {
   const { productoElegido } = useContext(ProductosContext);
   const [cantidadProd, setCantidadProd] = useState(0);
   const [msjError, setMsjError] = useState("");
+  const [msjErrorCliente, setMsjErrorCliente] = useState("");
+  
 
+  console.log(clienteElegido)
   const cantidadP = (event) => {
     setCantidadProd(event.target.value);
   };
@@ -30,7 +33,7 @@ export const TablaVenta = () => {
   }
   const validarCantidad = (cantidad) => {
     if (cantidad < 1) {
-      setMsjError( "se tiene que agregar un numero")
+      setMsjError( "Introducir cantidad")
       return false
     } else {
       setMsjError("");
@@ -38,17 +41,38 @@ export const TablaVenta = () => {
     }
   };
 
+  const validarCliente = (id) => {
+    if (id==0) {
+      setMsjErrorCliente( "Elegir cliente")
+      return false
+    } else {
+      setMsjErrorCliente("");
+      return true
+    }
+  };
+
+
+  // const limpiar=()=>{
+  //   setClienteElegido([]);
+  //   setCantidadProd(0)
+
+  // }
+
   const onSubmit = async (event) => {
     event.preventDefault();
-    const valido=validarCantidad(cantidadProd);
-    if (valido) {
+    const cantidadValida=validarCantidad(cantidadProd);
+    const clienteValido=validarCliente(clienteElegido);
+
+    if (cantidadValida && clienteValido) {
       const body = {
         idProducto: productoElegido.id,
         cantidad: cantidadProd,
         idCliente: clienteElegido,
       };
 
-      await axios.post("http://localhost:3000/cargarVenta", body);
+      const resp=await axios.post("http://localhost:3000/cargarVenta", body);
+      confirm(resp.data)
+      window.location.reload();
     }
   };
 
@@ -69,10 +93,11 @@ export const TablaVenta = () => {
     return null
   }
   return (
+    <>
     <form action="" onSubmit={onSubmit}>
       <TableContainer component={Paper}>
-        <Table sx={{}} aria-label="caption table">
-          <TableHead>
+        <Table sx={{}} aria-label="caption table" >
+          <TableHead className="Tabla-contenedora">
             <TableRow>
               <TableCell>cantidad</TableCell>
               <TableCell align="right">Producto</TableCell>
@@ -90,17 +115,18 @@ export const TablaVenta = () => {
                   onChange={cantidadP}
                   min={0}
                 />
-                <p>{msjError}</p>
+                <p className="Error">{msjError}</p>
               </TableCell>
-              <TableCell align="right">{productoElegido.nombre}</TableCell>
+              <TableCell align="right" >{productoElegido.nombre}</TableCell>
               <TableCell align="right">{productoElegido.descripcion}</TableCell>
               <TableCell align="right">{productoElegido.precio}</TableCell>
             </TableRow>
           </TableBody>
+         
           <div className="elegirCliente">
             <Box sx={{ minWidth: 120 }}>
               <FormControl fullWidth>
-                <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                <InputLabel variant="standard" htmlFor="uncontrolled-native" >
                   Cliente
                 </InputLabel>
                 <NativeSelect
@@ -112,28 +138,36 @@ export const TablaVenta = () => {
                   }}
                   onChange={(e) => setClienteElegido(e.target.value)}
                 >
-                  <option value>Eelgi el Cliente...</option>
+                  <option value={0}>Eelgi el Cliente...</option>
                   {clientes.map((cliente) => (
                     <option key={cliente.Id} value={cliente.Id}>
                       {" "}
                       {cliente.Apellido} {cliente.Nombre}{" "}
                     </option>
                   ))}
+
                 </NativeSelect>
+                <p className="Error">{msjErrorCliente}</p>
               </FormControl>
             </Box>
           </div>
           <div className="totalVenta">
             <h2>Total:</h2>
 
-            <input
+            <input  className="total"
               type="text"
               value={costo(cantidadProd, productoElegido.precio)}
             />
-            <button className="btnRegistrarVenta">Registrar Venta</button>
           </div>
+            
+          
+          <button className="btnRegistrarVenta">Registrar Venta</button>
         </Table>
       </TableContainer>
     </form>
+    
+        
+    
+    </>
   );
 };
