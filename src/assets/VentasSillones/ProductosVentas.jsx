@@ -16,6 +16,7 @@ export const ProductosVentas = () => {
       precio={producto.Precio}
       descripcion={producto.Descripcion}
       img={producto.Imagen}
+     
     ></CardsProductos>
   ));
 };
