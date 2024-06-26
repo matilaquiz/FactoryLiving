@@ -5,8 +5,9 @@ import "../Estilos/Principal.css";
 export const Principal = () => {
   return (
     <> 
-    
-
+      <div className='Logo-Principal'>
+        <img src="/src/Images/logo-principal-factory.jpg"/>
+      </div>
       <div className='cartas-unidas'>
         <CartasEntrada 
           titulo='Administrar Cliente' 

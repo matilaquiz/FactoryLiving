@@ -1,3 +1,7 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
 html {
     height: 100%; /* Establece la altura del elemento html al 100% del viewport */
     background-image: url('/src/images/fondo1.jpg'); /* Ruta de la imagen de fondo */
@@ -5,10 +9,20 @@ html {
     background-position: center; /* Centra la imagen de fondo */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
+.Logo-Principal{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+.Logo-Principal img{
+    width: 600px;
+    height: 190px;
+    border-radius: 40px;
+}
 .cartas-unidas{
     display: flex;
     justify-content:space-around;
-    margin-top: 50px;
+    padding-top: 5px;
 }
 body::before {
     content: "";

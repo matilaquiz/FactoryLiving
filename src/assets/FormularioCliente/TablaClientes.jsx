@@ -46,13 +46,6 @@ export const TablaClientes = () => {
      
     }
 
-    
-  
-  
-
-
-
- 
 
     return (
         <TableContainer component={Paper}>
