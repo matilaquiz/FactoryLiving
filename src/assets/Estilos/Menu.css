@@ -70,79 +70,82 @@
     display: flex;
 
 }
-.formularioCliente{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 80%;
-    height:fit-content;
-    background-color: rgb(250, 191, 142);
-    border-radius: 40px;
-    margin: 10px;
-    padding: 10px;
+.formularioCliente {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 80%;
+  height: fit-content;
+  background-color: rgb(250, 191, 142);
+  border-radius: 40px;
+  margin: 10px;
+  padding: 10px;
 }
 
-.Tabla-contenedora{
-    background-color: rgb(250, 183, 138);
-    font-size: 10px;
-
+.Tabla-contenedora {
+  background-color: rgb(250, 183, 138);
+  font-size: 10px;
+  
 }
 
-.Tabla-contenedora2{
-    display: flex;
-
+.Tabla-contenedora2 {
+  display: flex;
 }
 
-.Tabla-contenedora .Cell{
-    font-size: 18px;
-    width: 30px;
-
+.Tabla-contenedora .Cell {
+  font-size: 18px;
+  width: 30px;
 }
 
-.partes-formu{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 0px;
-    padding: 20px;
+.partes-formu {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0px;
+  padding: 20px;
 }
 
-.partes-formu > div{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 95%;
-    
+.partes-formu > div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 95%;
 }
 
-.partes-formu .partes-p{
-    font-size: 15x;
-    margin-bottom: 10px;
+.partes-formu .partes-p {
+  font-size: 15x;
+  margin-bottom: 10px;
 }
 
-.mensajesError{
-    color: red;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: small;
-    font-size: 12px;
-    padding-bottom: 8px;
-    padding-top: 8px;
+.mensajesError {
+  color: red;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: small;
+  font-size: 12px;
+  padding-bottom: 8px;
+  padding-top: 8px;
 }
 
-.MuiPaper-root{
-    background-color: rgba(255, 255, 255, 0.8);
+.MuiPaper-root {
+  background-color: rgba(255, 255, 255, 0.8);
 }
-.botonRegistrar{
-    width: 40%;
-    padding: 10px;
-    border: none;
-    margin: auto;
+.botonRegistrar {
+  width: 40%;
+  padding: 10px;
+  border: none;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px;
+  border: 1px solid;
 }
-.botonRegistrar:hover{
-    border: 1px solid brown;
-    transition: 0.10s;
-    background-color: chocolate;
+.botonRegistrar:hover {
+  border: 1px solid brown;
+  transition: 0.1s;
+  background-color: rgba(210, 105, 30,0.7);
+  box-shadow: none;
+  transform: translate(5px);
+  transition: 0.1s;
 }

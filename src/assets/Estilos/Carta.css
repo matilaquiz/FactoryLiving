@@ -1,16 +1,17 @@
-.carta{
-    width: 25%;
-    background: rgb(219, 158, 73);
-   /* margin-top: 50px;*/
-    margin-top: 30px; /* Reduce la distancia superior */
-    margin-left: 10px; /* Agrega margen a la izquierda */
-    margin-right: 10px;
+.carta {
+  width: 25%;
+  background: rgb(219, 158, 73);
+  /* margin-top: 50px;*/
+  margin-top: 30px; /* Reduce la distancia superior */
+  margin-left: 10px; /* Agrega margen a la izquierda */
+  margin-right: 10px;
+ 
 }
 
-.carta-media{
-    background: rgb(236, 149, 67);
+.carta-media {
+  background: rgb(236, 149, 67);
 }
 
-.titulo-componente{
-    background: rgb(227, 126, 32);
+.titulo-componente {
+  background: rgb(227, 126, 32);
 }

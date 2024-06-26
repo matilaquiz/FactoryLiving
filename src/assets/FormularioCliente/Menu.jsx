@@ -1,4 +1,4 @@
-import "../Estilos/Menu.css"
+import "../Estilos/Menu.css";
 // import menu from "../imagenes/menu.png"
 // import equiz from "../imagenes/borrar.png"
 // import {useState} from "react";
@@ -12,7 +12,7 @@ export const Menu = () => {
         <div className="Menu">
           <img src="/src/Images/admin.png"/>
           <ul className="ul-Menu">
-            <li><a href="#">Inicio</a></li>
+            <li><a href="/">Inicio</a></li>
             <li><a href="#">Nosotros</a></li>
             <li><a href="#">Servicios</a></li>
             <li><a href="#">Productos</a></li>
@@ -23,4 +23,3 @@ export const Menu = () => {
       </nav>
   )
 }
-
