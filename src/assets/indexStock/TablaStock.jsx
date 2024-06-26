@@ -6,23 +6,26 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { ModeEdit, DeleteForever } from '@mui/icons-material';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-// const MateriaPrima = () => {
-//     return{
-//         id: 1,
-//         nombre: 'tornillos',
-//         proveedor: 'Distribuidora SSCC',
-//         cantidad: 50
-//     }
-// }
-const MateriaPrima = [
-    {id: 1, nombre: 'tornillo', proveedor: 'Distribuidora SSCC', cantidad: 50},
-    {id: 2, nombre: 'grampas', proveedor: 'Distri Hnos', cantidad: 150},
-    {id: 3, nombre: 'madera', proveedor: 'Carpinteria HyH', cantidad: 40},
-    {id: 4, nombre: 'tela', proveedor: 'Distribuidora SSCC', cantidad: 200},
-];
+
+
 export const TablaStock = () => {
+    const[stock, setStock]=useState([])
 
+    useEffect(() => {
+        const fetchStock = async () => {
+          try {
+            const response = await axios.get("http://localhost:3000/traerStock");
+            setStock(response.data);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        fetchStock();
+      }, []);
+      console.log(stock)
     return (
         <TableContainer component={Paper}>
             <Table>
@@ -38,12 +41,12 @@ export const TablaStock = () => {
                 </TableHead>
                 <TableBody>
                     
-                        {MateriaPrima.map((item) => (
-                            <TableRow key={item.id}>
-                            <TableCell component="th" scope="row">{item.id}</TableCell>
-                            <TableCell align="center">{item.nombre}</TableCell>
-                            <TableCell align="center">{item.proveedor}</TableCell>
-                            <TableCell align="center">{item.cantidad}</TableCell>
+                        {stock.map((item) => (
+                            <TableRow key={item.IdStock}>
+                            <TableCell component="th" scope="row">{item.IdStock}</TableCell>
+                            <TableCell align="center">{item.Nombre}</TableCell>
+                            <TableCell align="center">mansuti srl</TableCell>
+                            <TableCell align="center">{item.CantPorMP}</TableCell>
                             <TableCell align="center">
                                <a href="">
                                     <ModeEdit />
