@@ -3,13 +3,16 @@ import "../Estilos/Principal.css";
 
 export const Principal = () => {
   return (
-    <>
-      <div className="cartas-unidas">
-        <CartasEntrada
-          titulo="Administrar Cliente"
-          url="/FormularioCliente/RegistroCliente"
-          image="/src/images/cliente.png"
-          alt="Imagen de cliente"
+    <> 
+      <div className='Logo-Principal'>
+        <img src="/src/Images/logo-principal-factory.jpg"/>
+      </div>
+      <div className='cartas-unidas'>
+        <CartasEntrada 
+          titulo='Administrar Cliente' 
+          url='/FormularioCliente/RegistroCliente' 
+          image="/src/images/cliente.png" 
+          alt="Imagen de cliente" 
         />
         <CartasEntrada
           titulo="Administracion "

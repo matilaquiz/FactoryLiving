@@ -9,11 +9,16 @@ import Paper from "@mui/material/Paper";
 import { ModeEdit, DeleteForever } from "@mui/icons-material";
 import axios from "axios";
 import { ClienteContext } from "../Context/ClienteContext";
+import Modal from '../../assets/Context/componentes.jsx';
+//import Modal from 'bootstrap/js/dist/modal';
+import"../Estilos/modal.css";
+
 
 export const TablaClientes = () => {
   const { setIdCliente } = useContext(ClienteContext);
   const [clientes, setClientes] = useState([]);
-
+  const [idEliminar, setIdEliminar] = useState(null); 
+  const [mostrarModal, setMostrarModal] = useState(false);
   useEffect(() => {
     const fetchCliente = async () => {
       try {
@@ -26,6 +31,25 @@ export const TablaClientes = () => {
     fetchCliente();
   }, []);
 
+
+  const confirmarEliminarCliente = (id) => {
+    setIdEliminar(id); // Establecer el ID del cliente a eliminar
+    setMostrarModal(true);
+    //snew Modal(document.getElementById('confirmDeleteModal')).show();
+    // Mostrar modal de confirmación aquí si se desea
+    // Puedes usar Bootstrap modal o cualquier modal personalizado aquí
+    // Por ejemplo, podrías usar un estado booleano para mostrar/ocultar un modal de confirmación
+  };
+
+  const cancelarEliminarCliente = () => {
+    setIdEliminar(null); // Limpiar el ID del cliente a eliminar
+    setMostrarModal(false);
+   // new Modal(document.getElementById('confirmDeleteModal')).hide();
+    // Ocultar el modal de confirmación aquí si se desea
+  };
+
+
+
   const eliminarCliente = async (id) => {
     try {
       await axios.delete(`http://localhost:3000/eliminarCliente/${id}`);
@@ -33,6 +57,10 @@ export const TablaClientes = () => {
       
     } catch (error) {
       console.error(error);
+    }finally {
+      setIdEliminar(null); // Limpiar el ID del cliente a eliminar después de eliminar
+      setMostrarModal(false);
+      //new Modal(document.getElementById('confirmDeleteModal')).hide();
     }
   };
 
@@ -88,7 +116,7 @@ export const TablaClientes = () => {
                 </a>
               </TableCell>
               <TableCell align="center">
-                <a href="#" onClick={() => eliminarCliente(clientes.Id)}>
+                <a href="#" onClick={() => confirmarEliminarCliente(clientes.Id)}>
                   <DeleteForever />
                 </a>
               </TableCell>
@@ -96,6 +124,27 @@ export const TablaClientes = () => {
           ))}
         </TableBody>
       </Table>
+     
+{mostrarModal && (
+        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title fs-5" id="exampleModalLabel">Confirmar Eliminación</h4>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={cancelarEliminarCliente}></button>
+              </div>
+              <div className="modal-body">
+                ¿Está seguro que desea eliminar este cliente?
+              </div><br />
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary"id="botonaceptar" data-bs-dismiss="modal" onClick={cancelarEliminarCliente}>Cancelar</button>
+                <button type="button" className="btn btn-primary" id="botoncancelar" onClick={() => eliminarCliente(idEliminar)}>Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </TableContainer>
   );
 };

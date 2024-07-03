@@ -21,6 +21,10 @@
     padding: 20px 10px;
     user-select: none;
 }
+.nav-logo img{
+    width: 130px;
+    height: 50px;
+}
 .Menu{
     display: flex;
     flex-wrap: wrap;
@@ -39,8 +43,18 @@
     list-style: none;
     display: flex;
     user-select: none;
+    justify-content: center;
+    align-items: center;
+}
+.ul-Menu li img{
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
 }
 .ul-Menu li a{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     text-decoration: none;
     color: #ffff;
     font-size: 18px;
@@ -51,6 +65,7 @@
     transform: translate(17px);
     transition: 0.6s;
 }
+
 .ul-Menu li:hover{
     background-color: brown;
     transition: 0.6s;
@@ -61,20 +76,20 @@
 
 
 .BodyMenu{
-    display: flex;
-    background-color: #ffff;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 .Cuerpo{
-    width: 100%;
-    display: flex;
+  width: 100%;
+  display: flex;
+  padding: 10px;
 
 }
 .formularioCliente {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 80%;
+  width: 65%;
   height: fit-content;
   background-color: rgb(250, 191, 142);
   border-radius: 40px;
@@ -85,11 +100,13 @@
 .Tabla-contenedora {
   background-color: rgb(250, 183, 138);
   font-size: 10px;
-  
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .Tabla-contenedora2 {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .Tabla-contenedora .Cell {

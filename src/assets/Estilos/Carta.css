@@ -1,11 +1,9 @@
-.carta {
-  width: 25%;
-  background: rgb(219, 158, 73);
-  /* margin-top: 50px;*/
-  margin-top: 30px; /* Reduce la distancia superior */
-  margin-left: 10px; /* Agrega margen a la izquierda */
-  margin-right: 10px;
- 
+.carta{
+    width: 25%;
+    background: rgb(219, 158, 73);
+   /* margin-top: 50px;*/
+    margin: 10px 0px;
+
 }
 
 .carta-media {
