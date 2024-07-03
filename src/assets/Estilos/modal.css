@@ -1,0 +1,36 @@
+.modal-content{
+    background: rgba(220, 64, 21, 0.8);
+    width: 300px;
+    border-radius: 10px;
+    margin-left: 50%;
+    padding: 10px;
+
+}
+.modal-body{
+    font-size: 15px;
+}
+
+#botonaceptar{
+    margin-left: 130px;
+    background-color: rgba(82, 81, 79,0.5);
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+}
+
+#botoncancelar{
+    background-color: rgba(82, 81, 79,0.5);
+    border-radius: 5px;
+    margin-left: 20px;
+    padding: 5px;
+    color: white;
+
+}
+#botonaceptar:hover{
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+#botoncancelar:hover{
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}

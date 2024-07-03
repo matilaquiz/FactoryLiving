@@ -76,19 +76,20 @@
 
 
 .BodyMenu{
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 .Cuerpo{
-    width: 100%;
-    display: flex;
+  width: 100%;
+  display: flex;
+  padding: 10px;
 
 }
 .formularioCliente {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 80%;
+  width: 65%;
   height: fit-content;
   background-color: rgb(250, 191, 142);
   border-radius: 40px;
@@ -99,11 +100,13 @@
 .Tabla-contenedora {
   background-color: rgb(250, 183, 138);
   font-size: 10px;
-  
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .Tabla-contenedora2 {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .Tabla-contenedora .Cell {
