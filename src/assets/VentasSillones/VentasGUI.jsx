@@ -11,19 +11,25 @@ export const VentasGUI = () => {
  
   return (
     <div className="BodyVentaGUI">
-      <div className="">
-        <Menu />
+      <div className="header2">
+        <h3>VENTAS</h3>
       </div>
-      <ProductosProvider>
-        <div className="PrincipalVentaGUI">
+      <div className="contenedor-central">
+        <ProductosProvider>
+          <div className="menuventas">
+            <Menu />
+          </div>
           <div className="boxProducto">
             <ProductosVentas />
           </div>
           <div className="tablaProducto">
             <TablaVenta />
           </div>
-        </div>
-      </ProductosProvider>
+        </ProductosProvider>
+      </div>
+      <div className="footer2">
+        @copyrigth
+      </div>
     </div>
   );
 };

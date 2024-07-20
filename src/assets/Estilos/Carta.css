@@ -1,15 +1,16 @@
 .carta{
     width: 25%;
-    background: rgb(219, 158, 73);
+    background:#c2b09c;
    /* margin-top: 50px;*/
-    margin: 10px 0px;
+    margin:10px 0px;
 
 }
 
 .carta-media {
-  background: rgb(236, 149, 67);
+  background:#d3c6b9;
 }
 
 .titulo-componente {
-  background: rgb(227, 126, 32);
+  background:#bea88f;
+  
 }

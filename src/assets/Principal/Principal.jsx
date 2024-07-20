@@ -4,9 +4,7 @@ import "../Estilos/Principal.css";
 export const Principal = () => {
   return (
     <> 
-      <div className='Logo-Principal'>
-        <img src="/src/Images/logo-principal-factory.jpg"/>
-      </div>
+    <div className="principalcarta">
       <div className='cartas-unidas'>
         <CartasEntrada 
           titulo='Administrar Cliente' 
@@ -15,7 +13,7 @@ export const Principal = () => {
           alt="Imagen de cliente" 
         />
         <CartasEntrada
-          titulo="Administracion "
+          titulo="Administración "
           image="/src/images/admin.png"
           alt="Imagen de administracion"
         />
@@ -29,7 +27,7 @@ export const Principal = () => {
 
       <div className="cartas-unidas">
         <CartasEntrada
-          titulo=" Venta"
+          titulo=" Ventas"
           url="/VentasSillones/VentasGUI"
           image="/src/images/ventas.png"
           alt="Imagen de venta"
@@ -44,6 +42,7 @@ export const Principal = () => {
           image="/src/images/rrhh.png"
           alt="Imagen de rr.hh"
         />
+      </div>
       </div>
     </>
   );

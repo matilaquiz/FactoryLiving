@@ -69,8 +69,8 @@ export const TablaClientes = () => {
   };
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer  className="tabla-hijo" component={Paper}>
+      <Table className="tabla-hijo1" sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead className="Tabla-contenedora">
           <TableRow className="Tabla-contenedora2">
             <TableCell className="Cell">id</TableCell>
@@ -91,7 +91,7 @@ export const TablaClientes = () => {
             </TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody className="tablacuerpo">
           {clientes.map((clientes) => (
             <TableRow
               key={clientes.Id}

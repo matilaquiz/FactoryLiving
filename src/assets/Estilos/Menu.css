@@ -5,8 +5,9 @@
     margin: 0;
     padding: 0;
 }
+
 .navegador{
-    background-color: #E6922E;
+   background-color: #bea88f;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -23,7 +24,7 @@
 }
 .nav-logo img{
     width: 130px;
-    height: 50px;
+    height: 120px;
 }
 .Menu{
     display: flex;
@@ -67,40 +68,66 @@
 }
 
 .ul-Menu li:hover{
-    background-color: brown;
+    background-color: rgb(214, 193, 162);
     transition: 0.6s;
     cursor: pointer;
 }
 
 
+.header1{padding: 10px;
+  display: flex; 
+  width: 100%; 
+  background-color: #d3c6b9; 
+  padding: 15px;
+  box-sizing: border-box; 
+  margin-bottom: 10px;
+  
+}
 
+.footer1{padding: 10px;
+  display: flex; 
+  width: 100%; 
+  background-color:#d3c6b9; 
+  padding: 15px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
 
+.formulario{ 
+   width: 400px;
+   }
+   
 .BodyMenu{
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content:space-between;
+ 
 }
-.Cuerpo{
-  width: 100%;
-  display: flex;
-  padding: 10px;
 
-}
+.tabla-hijo{display: flex; 
+  flex-wrap: wrap;
+  justify-content: space-between;}
+
+.tabla-hijo1{display: flex;}
+.tablacuerpo{display: flex;}
+
 .formularioCliente {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 65%;
-  height: fit-content;
-  background-color: rgb(250, 191, 142);
-  border-radius: 40px;
-  margin: 10px;
-  padding: 10px;
+  width: 100%;
+  height:fit-content;
+  background-color:#f4f2f1;
+  border-radius: 20px;
+
+  
 }
 
 .Tabla-contenedora {
-  background-color: rgb(250, 183, 138);
+  background-color: #d3c6b9;
   font-size: 10px;
-  display: flex;
+ display: flex;
   flex-wrap: wrap;
 }
 
@@ -112,6 +139,7 @@
 .Tabla-contenedora .Cell {
   font-size: 18px;
   width: 30px;
+
 }
 
 .partes-formu {
@@ -122,14 +150,17 @@
   align-items: center;
   margin: 10px 0px;
   padding: 20px;
+
 }
 
 .partes-formu > div {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
-  width: 95%;
+  justify-content:left;
+  width: 85%;
+  margin-top: 15px;
+  
 }
 
 .partes-formu .partes-p {
@@ -151,18 +182,40 @@
 }
 .botonRegistrar {
   width: 40%;
-  padding: 10px;
+  padding: 5px;
   border: none;
-  margin: auto;
+  margin:15px;
+  margin-left: 100px;
   border-radius: 10px;
   box-shadow: 2px 2px 2px;
   border: 1px solid;
 }
 .botonRegistrar:hover {
-  border: 1px solid brown;
+  border: 1px solid rgb(200, 188, 170);
   transition: 0.1s;
-  background-color: rgba(210, 105, 30,0.7);
+  background-color: rgba(182, 164, 151, 0.7);
   box-shadow: none;
   transform: translate(5px);
   transition: 0.1s;
 }
+
+@media (max-width: 800px) {
+  .Menu-principal{
+    width: 100%; 
+  }
+.nav-logo{margin-left: 150px;}
+.ul-Menu{margin-left: 150px;}
+
+  .tablaclientes{width: 100%;margin-top: 10px;}
+
+  .formulario{width: 100%;margin-top: 10px;}
+
+  .tabla-hijo1{width: 100%;}
+
+  .tabla-hijo{width: 100%}
+.tablacuerpo{width: 100%;}
+.header1{width: 100%;}
+  
+}
+
+

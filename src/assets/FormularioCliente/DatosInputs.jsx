@@ -320,7 +320,7 @@ export const DatosInputs = () => {
   return (
     <form action="" onSubmit={onSubmit} className="formularioCliente">
       <div className="partes-formu">
-        <p>Nombre Completo</p>
+        <p>Datos personales</p>
         <div>
           <TextField
             id="standard-basic"

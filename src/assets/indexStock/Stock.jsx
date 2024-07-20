@@ -2,9 +2,16 @@ import { Menu } from '../FormularioCliente/Menu'
 import { TablaStock } from './TablaStock'
 import "../Estilos/stockEstilos.css"
 
+
 export const Stock = () => {
   return (
-   <div className='Body'>
+    <div className='bodystock'>
+      <div className="header3"> 
+      <h3>STOCK</h3>
+      
+      </div>
+    
+    <div className='Bodycentral'>  
       <div>
         <Menu/>
       </div>
@@ -13,6 +20,13 @@ export const Stock = () => {
         <TablaStock/>
       </div>
     </div> 
+    <div className="footer3"> 
+      
+       @copyright 
+      
+      </div>
+    </div>
+    
   )
 }
 

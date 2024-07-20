@@ -23,7 +23,7 @@ export default function CardsProductos({ id, nombre , precio, descripcion, img }
   
   return (
     <Card sx={{ width: 0.8 , minWidth: 0.4, maxWidth:0.4}} className='carta'  onClick={handleProducto} >
-      <CardActionArea>
+      <CardActionArea >
         <CardMedia className='carta-media'
           component="img"
           height="140"
@@ -33,7 +33,7 @@ export default function CardsProductos({ id, nombre , precio, descripcion, img }
       
         />
         <CardContent className='titulo-componente'>
-          <Typography  gutterBottom variant="h5" component="div" >
+          <Typography  gutterBottom variant="h6" component="div" >
             <div className='nombreProducto'>{nombre}</div>
             <div className='precioProducto'>$ {precio}</div>
           </Typography>
