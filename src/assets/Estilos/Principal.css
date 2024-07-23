@@ -1,29 +1,10 @@
-*{
-    margin: 0px;
-    padding: 0px;
-}
 html {
-  height: 100%; /* Establece la altura del elemento html al 100% del viewport */
-  background-image: url("/src/images/fondo1.jpg"); /* Ruta de la imagen de fondo */
-  background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el viewport */
-  background-position: center; /* Centra la imagen de fondo */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
+ height: 110%;
+  background-image: url("/src/images/fondo1.jpg");
+  background-size: cover;
+  background-position: center;
 }
-.Logo-Principal{
-    display: flex;
-    justify-content: center;
-    padding-top: 10px;
-}
-.Logo-Principal img{
-    width: 600px;
-    height: 190px;
-    border-radius: 40px;
-}
-.cartas-unidas{
-    display: flex;
-    justify-content:space-around;
-    padding-top: 5px;
-}
+
 body::before {
   content: "";
   position: fixed;
@@ -31,6 +12,47 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(196, 161, 161, 0.5); /* Color de fondo opacidad */
-  z-index: -1; /* Coloca el elemento detrás de todo el contenido */
+  background-color: rgba(196, 161, 161, 0.5);
+  z-index: -1;
+}
+
+.principalcarta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  margin-top: 40px;
+
+}
+
+.cartas-unidas {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.cartas-unidas > div {
+  flex: 1 1 30%;
+  margin: 10px;
+  max-width: 300px;
+}
+
+@media (max-width: 768px) {
+  .cartas-unidas {
+    justify-content: center;
+  }
+
+  .cartas-unidas > div {
+    flex: 1 1 45%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .cartas-unidas > div {
+    flex: 1 1 100%;
+  }
 }

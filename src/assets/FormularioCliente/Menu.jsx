@@ -1,10 +1,11 @@
+import { Padding } from "@mui/icons-material"
 import "../Estilos/Menu.css"
 
 export const Menu = () => {
   return (
-      <nav className="navegador">
+      <nav className="navegador" >
         <div className="nav-logo">
-          <img src="/src/Images/logo-factory2.jpg"/>
+          <img src="/src/Images/logonuevo.png"/>
         </div>
         <div className="Menu">
           <ul className="ul-Menu">
