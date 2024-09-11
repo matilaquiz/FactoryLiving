@@ -1,4 +1,4 @@
-import { Menu } from "./Menu";
+import { Menu } from "../ComponentesAnclados/Menu";
 import { DatosInputs } from "./DatosInputs";
 import "../Estilos/Menu.css";
 import { TablaClientes } from "./TablaClientes";

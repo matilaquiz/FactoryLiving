@@ -34,6 +34,7 @@ export const Principal = () => {
         />
         <CartasEntrada
           titulo="Administrar Proveedor"
+          url='/Proveedores/RegistroProveedor' 
           image="/src/images/proveedor.png"
           alt="Imagen de proveedor"
         />
