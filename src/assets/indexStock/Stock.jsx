@@ -1,4 +1,4 @@
-import { Menu } from '../FormularioCliente/Menu'
+import { Menu } from "../ComponentesAnclados/Menu";
 import { TablaStock } from './TablaStock'
 import "../Estilos/stockEstilos.css"
 

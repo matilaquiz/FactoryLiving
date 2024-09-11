@@ -32,7 +32,7 @@ export const DatosInputs = () => {
     nombre: /^[a-zA-ZÀ-ÿ\s]{3,40}$/i, // Letras y espacios, pueden llevar acentos.
     apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/i,
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    telefono: /^\d{7,14}$/, // 7 a 14 numeros.
+    telefono: /^\d{5,14}$/, // 7 a 14 numeros.
     dni: /^\d{7,8}$/, // 7 a 14 numeros.
     domicilio: /^\d{1,5}$/,
   };
@@ -140,18 +140,18 @@ export const DatosInputs = () => {
       Instagram: InstaCliente,
     };
 
-    console.log(cliente);
+  
 
     const saveClient = async () => {
       const axiosData = idCliente.id
         ? {
-            method: axios.put,
-            endpoint: "http://localhost:3000/cargarCliente/" + idCliente.id,
-          }
+          method: axios.put,
+          endpoint: "http://localhost:3000/cargarCliente/" + idCliente.id,
+        }
         : {
-            method: axios.post,
-            endpoint: "http://localhost:3000/cargarCliente",
-          };
+          method: axios.post,
+          endpoint: "http://localhost:3000/cargarCliente",
+        };
 
       try {
         const response = await axiosData.method(axiosData.endpoint, cliente);
@@ -302,6 +302,7 @@ export const DatosInputs = () => {
         setDpto(response.data.Dpto);
         setTelefono(response.data.Telefono);
         setEmail(response.data.Email);
+        setInsta(response.data.Instagram)
 
         setProvincia(response.data.IdProvincia);
         await traerLocalidad(response.data.IdProvincia);

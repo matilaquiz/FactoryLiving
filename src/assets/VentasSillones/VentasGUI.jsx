@@ -1,4 +1,4 @@
-import { Menu } from "../FormularioCliente/Menu";
+import { Menu } from "../ComponentesAnclados/Menu";
 import "../Estilos/Menu.css";
 import { TablaVenta } from "../VentasSillones/TablaVenta";
 import { ProductosVentas } from "./ProductosVentas";
