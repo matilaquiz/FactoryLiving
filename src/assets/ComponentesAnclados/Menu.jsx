@@ -1,4 +1,3 @@
-import { Padding } from "@mui/icons-material"
 import "../Estilos/Menu.css"
 
 export const Menu = () => {

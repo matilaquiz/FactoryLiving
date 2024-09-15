@@ -32,7 +32,7 @@ export const DatosInputs = () => {
     nombre: /^[a-zA-ZÀ-ÿ\s]{3,40}$/i, // Letras y espacios, pueden llevar acentos.
     apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/i,
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    telefono: /^\d{5,14}$/, // 7 a 14 numeros.
+    telefono: /^\d{2,14}$/, // 7 a 14 numeros.
     dni: /^\d{7,8}$/, // 7 a 14 numeros.
     domicilio: /^\d{1,5}$/,
   };
@@ -143,7 +143,8 @@ export const DatosInputs = () => {
   
 
     const saveClient = async () => {
-      const axiosData = idCliente.id
+      const axiosData = idCliente.modificar
+       
         ? {
           method: axios.put,
           endpoint: "http://localhost:3000/cargarCliente/" + idCliente.id,
