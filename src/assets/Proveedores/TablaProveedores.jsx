@@ -8,42 +8,45 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { ModeEdit, DeleteForever } from "@mui/icons-material";
 import axios from "axios";
-import { ClienteContext } from "../Context/ClienteContext";
+import { ProveedorContext } from "../Context/ProveedorContext.jsx";
 import Modal from '../../assets/Context/componentes.jsx';
 //import Modal from 'bootstrap/js/dist/modal';
 import"../Estilos/modal.css";
 
 
-export const TablaClientes = () => {
-  const { setIdCliente } = useContext(ClienteContext);
-  const [clientes, setClientes] = useState([]);
+
+
+export const TablaProveedores = () => {
+ 
+  const {setIdProveedor}=useContext(ProveedorContext)
+  const [proveedores, setProveedores] = useState([]);
   const [idEliminar, setIdEliminar] = useState(null); 
   const [mostrarModal, setMostrarModal] = useState(false);
   const [nombreElegido,setElegirNombre]=useState("")
   useEffect(() => {
-    const fetchCliente = async () => {
+    const fetchProveedor = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/traerClientes");
-        setClientes(response.data);
+        const response = await axios.get("http://localhost:3000/traerProveedores");
+        setProveedores(response.data);
       } catch (error) {
         console.error(error);
       }
     };
-    fetchCliente();
+    fetchProveedor();
   }, []);
 
 
-  const confirmarEliminarCliente = (id,nombre,apellido) => {
-    setElegirNombre(`${nombre}  ${apellido}`)
+  const confirmarEliminarProveedor= (id,nombre) => {
+    setElegirNombre(nombre)
     setIdEliminar(id); // Establecer el ID del cliente a eliminar
     setMostrarModal(true);
     //snew Modal(document.getElementById('confirmDeleteModal')).show();
     // Mostrar modal de confirmación aquí si se desea
-    // Puedes usar Bootstrap modal o cualquier modal personaliza do aquí
+    // Puedes usar Bootstrap modal o cualquier modal personalizado aquí
     // Por ejemplo, podrías usar un estado booleano para mostrar/ocultar un modal de confirmación
   };
 
-  const cancelarEliminarCliente = () => {
+  const cancelarEliminarProveedor = () => {
     setIdEliminar(null); // Limpiar el ID del cliente a eliminar
     setMostrarModal(false);
    // new Modal(document.getElementById('confirmDeleteModal')).hide();
@@ -52,9 +55,9 @@ export const TablaClientes = () => {
 
 
 
-  const eliminarCliente = async (id) => {
+  const eliminarProveedor = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/eliminarCliente/${id}`);
+      await axios.delete(`http://localhost:3000/eliminarProveedor/${id}`);
       window.location.reload();
       
     } catch (error) {
@@ -66,8 +69,8 @@ export const TablaClientes = () => {
     }
   };
 
-  const modificarCliente = (idMod) => {
-    setIdCliente({ id: idMod, modificar: true });
+  const modificarProveedor = (idMod) => {
+    setIdProveedor({ id: idMod, modificar: true });
   };
 
   return (
@@ -75,9 +78,9 @@ export const TablaClientes = () => {
       <Table className="tabla-hijo1" sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead className="Tabla-contenedora">
           <TableRow className="Tabla-contenedora2">
-            <TableCell className="Cell">id</TableCell>
+            <TableCell className="Cell"> Empresa</TableCell>
             <TableCell align="center" className="Cell">
-              Cliente
+              Tipo de Proveedor
             </TableCell>
             <TableCell align="center" className="Cell">
               Telefono
@@ -94,31 +97,32 @@ export const TablaClientes = () => {
           </TableRow>
         </TableHead>
         <TableBody className="tablacuerpo">
-          {clientes.map((clientes) => (
+          {proveedores.map((proveedor) => (
             <TableRow
-              key={clientes.Id}
+              key={proveedor.IdProveedor}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {clientes.Id}
+                {proveedor.NombreProveedor}
+               
               </TableCell>
               <TableCell align="center">
-                {clientes.Nombre} {clientes.Apellido}
+                {proveedor.TipoProveedor} 
               </TableCell>
               <TableCell align="center">
-                {clientes.Telefono}
+                {proveedor.TelefonoProveedor}
               </TableCell>
                
               <TableCell align="center">
-                {clientes.Email}
+                {proveedor.MailProveedor}
               </TableCell>
               <TableCell align="center">
-                <a href="#" onClick={() => modificarCliente(clientes.Id)}>
+                <a href="#" onClick={() => modificarProveedor(proveedor.IdProveedor)}>
                   <ModeEdit />
                 </a>
               </TableCell>
               <TableCell align="center">
-                <a href="#" onClick={() => confirmarEliminarCliente(clientes.Id,clientes.Nombre,clientes.Apellido)}>
+                <a href="#" onClick={() => confirmarEliminarProveedor(proveedor.IdProveedor,proveedor.NombreProveedor)}>
                   <DeleteForever />
                 </a>
               </TableCell>
@@ -133,14 +137,14 @@ export const TablaClientes = () => {
             <div className="modal-content">
               <div className="modal-header">
                 <h4 className="modal-title fs-5" id="exampleModalLabel">Confirmar Eliminación</h4>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={cancelarEliminarCliente}></button>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={cancelarEliminarProveedor}></button>
               </div>
               <div className="modal-body">
-              <p>{`¿Está seguro que desea eliminar ${nombreElegido}?`}</p>
+                <p>{`¿Está seguro que desea eliminar ${nombreElegido}?`}</p>
               </div><br />
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary"id="botonaceptar" data-bs-dismiss="modal" onClick={cancelarEliminarCliente}>Cancelar</button>
-                <button type="button" className="btn btn-primary" id="botoncancelar" onClick={() => eliminarCliente(idEliminar)}>Eliminar</button>
+                <button type="button" className="btn btn-secondary"id="botonaceptar" data-bs-dismiss="modal" onClick={cancelarEliminarProveedor}>Cancelar</button>
+                <button type="button" className="btn btn-primary" id="botoncancelar" onClick={() => eliminarProveedor(idEliminar)}>Eliminar</button>
               </div>
             </div>
           </div>
@@ -149,4 +153,6 @@ export const TablaClientes = () => {
 
     </TableContainer>
   );
-};
+}
+
+
