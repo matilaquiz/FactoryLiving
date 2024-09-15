@@ -1,6 +1,8 @@
 import React from 'react'
 import { Menu } from "../ComponentesAnclados/Menu";
-import { FormlarioProveedores } from './FormlarioProveedores';
+import { FormlarioProveedores } from './FormlarioProveedores.jsx';
+import {TablaProveedores} from './TablaProveedores.jsx'
+import {ProveedorProvider} from '../Context/ProveedorProvider.jsx'
 
 export const RegistroProveedor = () => {
   return (
@@ -14,10 +16,10 @@ export const RegistroProveedor = () => {
         <Menu />
       </div>
     
-        
-         <div className="tablaclientes"></div> 
+   <ProveedorProvider>     
+         <div className="tablaclientes"><TablaProveedores></TablaProveedores></div> 
           <div className="formulario"><FormlarioProveedores></FormlarioProveedores></div>
-        
+   </ProveedorProvider>    
     
       <div className="footer1"> 
       
