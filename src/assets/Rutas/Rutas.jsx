@@ -5,6 +5,8 @@ import { RegistroCliente } from '../FormularioCliente/RegistroCliente'
 import { Stock } from '../indexStock/Stock'
 import { VentasGUI } from '../VentasSillones/VentasGUI'
 import { RegistroProveedor } from '../Proveedores/RegistroProveedor'
+import { FormularioProductos } from '../Productos/FormularioProductos'
+
 
 
 export const Rutas = () => {
@@ -16,6 +18,7 @@ export const Rutas = () => {
                 <Route path="/VentasSillones/VentasGUI" element={<VentasGUI />}></Route>
                 <Route path="/Proveedores/RegistroProveedor" element={<RegistroProveedor/>}></Route>
                 <Route path="/indexStock/Stock" element={<Stock/>}></Route>
+                <Route path="/Productos/FormularioProductos" element={<FormularioProductos />}></Route>
             </Routes>
         </BrowserRouter>
     )

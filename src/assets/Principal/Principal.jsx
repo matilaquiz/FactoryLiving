@@ -39,7 +39,8 @@ export const Principal = () => {
           alt="Imagen de proveedor"
         />
         <CartasEntrada
-          titulo="RR.HH"
+          titulo="Producto"
+          url="/Productos/FormularioProductos"
           image="/src/images/rrhh.png"
           alt="Imagen de rr.hh"
         />
