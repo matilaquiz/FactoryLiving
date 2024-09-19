@@ -25,6 +25,16 @@ export const FormlarioProveedores = () => {
   const [instagramProveedor, setInstagramProveedor] = useState("");
   //es un hook para saber la respuesta de la api al cargar o modificar cliente
   const[proveedores,setProveedores]=useState()
+
+  const expresiones = {
+    nombre: /^[a-zA-ZÀ-ÿ\s]{3,40}$/i, // Letras y espacios, pueden llevar acentos.
+    tipo: /^[a-zA-ZÀ-ÿ\s]{5,60}$/i,
+    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+    telefono: /^\d{7,14}$/, // 7 a 14 numeros.
+    Identificador: /^\d{1,2}-?\d{1,10}-?\d{1}$/, 
+    instagram:/^@[a-zA-Z0-9_.-]+$/,
+    domicilio: /^\d{1,5}$/,
+  };
   
   console.log(idProveedor)
   // funciones para cambiar input  
@@ -73,6 +83,129 @@ export const FormlarioProveedores = () => {
     setBarrioProveedor(id)
 
   }
+
+
+
+
+  const [MensajeErrorIdentificador, setMensajeErrorIdentificador] = useState("");
+
+  function validarIdentificador() {
+    if (expresiones.Identificador.test(identificadorProveedor)) {
+      console.log("input valido");
+    } else {
+      setMensajeErrorIdentificador(
+        "El CUIT/CUIL debe ingresarse: xx-xxxxxxxx-x ",
+      );
+    }
+  }
+
+  function limpiarIdentificador() {
+    setMensajeErrorIdentificador("");
+  }
+
+  //---------------------------------Validar nombre-------------------------------------
+  const [MensajeErrorNombre, setMensajeErrorNombre] = useState("");
+
+  function validarNombre() {
+    if (expresiones.nombre.test(nombreProveedor)) {
+      console.log("input valido");
+    } else {
+      setMensajeErrorNombre(
+        "El Nombre tiene que tener mas de tres letras y  solo puede contener letras y espacio entre palabras.",
+      );
+    }
+  }
+
+  function limpiarNombre() {
+    setMensajeErrorNombre("");
+  }
+  //------------------------------Validar tipo de proveedor-------------------------------------------------------------------
+  const [MensajeErrorTipo, setMensajeErrorTipo] = useState("");
+
+  function validarTipo() {
+    if (expresiones.tipo.test(tipoProveedor)) {
+      console.log("input valido");
+    } else {
+      setMensajeErrorTipo(
+        "solo puede contener letras y espacio entre palabras.",
+      );
+    }
+  }
+
+  function limpiarTipo() {
+    setMensajeErrorTipo("");
+  }
+
+  //---------------------------------Validar Calle-------------------------------------
+  const [MensajeErrorCalle, setMensajeErrorCalle] = useState("");
+
+  function validarCalle() {
+    if (expresiones.nombre.test(calleProveedor)) {
+      console.log("input valido");
+    } else {
+      setMensajeErrorCalle("Escribir el nombre de la calle");
+    }
+  }
+
+  function limpiarCalle() {
+    setMensajeErrorCalle("");
+  }
+  //---------------------------------Validar Numero-------------------------------------
+  const [MensajeErrorNumero, setMensajeErrorNumero] = useState("");
+
+  function validarNumero() {
+    if (expresiones.domicilio.test(numeroProveedor)) {
+      console.log("input valido");
+    } else {
+      setMensajeErrorNumero("Escribir la numeracion del domicilio");
+    }
+  }
+
+  function limpiarNumero() {
+    setMensajeErrorNumero("");
+  }
+  //--------------------------Validar telefono-----------------------
+  const [MensajeErrorTelefono, setMensajeErrorTelefono] = useState("");
+
+  function validarTelefono() {
+    if (expresiones.telefono.test(telefonoProveedor)) {
+      console.log("input valido");
+    } else {
+      setMensajeErrorTelefono("agregue el telefono");
+    }
+  }
+
+  function limpiarTelefono() {
+    setMensajeErrorTelefono("");
+  }
+  //--------------------------Validar telefono-----------------------
+  const [MensajeErrorEmail, setMensajeErrorEmail] = useState("");
+
+  function validarEmail() {
+    if (expresiones.correo.test(emailProveedor)) {
+      console.log("input valido");
+    } else {
+      setMensajeErrorEmail("el mail tiene que tener @ y .");
+    }
+  }
+
+  function limpiarEmail() {
+    setMensajeErrorEmail("");
+  }
+  const [MensajeErrorInsta, setMensajeErrorInsta] = useState("");
+
+  function validarInsta() {
+    if (expresiones.instagram.test(instagramProveedor)) {
+      console.log("input valido");
+    } else {
+      setMensajeErrorInsta("el instagram tiene que tener @ ");
+    }
+  }
+
+  function limpiarInsta() {
+    setMensajeErrorInsta("");
+  }
+
 
   // buscar en BD provincias , localidad y barrio
   const [listaProvinciasProveedor, setListaProvinciasProveedor] = useState([]);
@@ -214,34 +347,34 @@ export const FormlarioProveedores = () => {
             label="CUIT/CUIL"
             value={identificadorProveedor}
             onChange={cambiarIdentificador}
-            onBlur=""
-            onFocus=""
+            onBlur={validarIdentificador}
+            onFocus={limpiarIdentificador}
             required
             fullWidth
           />
-          <p className="mensajesError"></p>
+          <p className="mensajesError">{MensajeErrorIdentificador}</p>
           <TextField
             id="standard-basic"
             label="Empresa Proveedora"
             value={nombreProveedor}
             onChange={cambiarNombre}
-            onBlur=""
-            onFocus=""
+            onBlur={validarNombre}
+            onFocus={limpiarNombre}
             required
             fullWidth
           />
-          <p className="mensajesError"></p>
+          <p className="mensajesError">{MensajeErrorNombre}</p>
           <TextField
             id="standard-basic"
             label="Proveedor de ..."
             value={tipoProveedor}
             onChange={cambiarTipoProveedor}
-            onBlur=""
-            onFocus=""
+            onBlur={validarTipo}
+            onFocus={limpiarTipo}
             required
             fullWidth
           />
-          <p className="mensajesError"></p>
+          <p className="mensajesError">{MensajeErrorTipo}</p>
         </div>
       </div>
 
@@ -253,23 +386,23 @@ export const FormlarioProveedores = () => {
             label="Calle"
             value={calleProveedor}
             onChange={cambiarCalle}
-            onBlur=""
-            onFocus=""
+            onBlur={validarCalle}
+            onFocus={limpiarCalle}
             required
             fullWidth
           />
-          <p className="mensajesError"></p>
+          <p className="mensajesError">{MensajeErrorCalle}</p>
           <TextField
             id="standard-basic"
             label="Numero"
             value={numeroProveedor}
             onChange={cambiarNumero}
-            onBlur=""
-            onFocus=""
+            onBlur={validarNumero}
+            onFocus={limpiarNumero}
             required
             fullWidth
           />
-          <p className="mensajesError"></p>
+          <p className="mensajesError">{MensajeErrorNumero}</p>
           <TextField
             id="standard-basic"
             label="Dpto"
@@ -367,30 +500,33 @@ export const FormlarioProveedores = () => {
             label="Telefono"
             value={telefonoProveedor}
             onChange={cambiarTelefono}
-            onBlur=""
-            onFocus=""
+            onBlur={validarTelefono}
+            onFocus={limpiarTelefono}
             required
             fullWidth
           />
-          <p className="mensajesError"></p>
+          <p className="mensajesError">{MensajeErrorTelefono}</p>
           <TextField
             id="standard-basic"
             label="Email"
             value={emailProveedor}
             onChange={cambiarEmail}
-            onBlur=""
-            onFocus=""
+            onBlur={validarEmail}
+            onFocus={limpiarEmail}
             required
             fullWidth
           />
-          <p className="mensajesError"></p>
+          <p className="mensajesError">{MensajeErrorEmail}</p>
           <TextField
             id="standard-basic"
             label="Instagram"
             value={instagramProveedor}
             onChange={cambiarInstagram}
+            onBlur={validarInsta}
+            onFocus={limpiarInsta}
             fullWidth
           />
+          <p className="mensajesError">{MensajeErrorInsta}</p>
         </div>
       </div>
       { idProveedor.modificar
