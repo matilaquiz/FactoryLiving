@@ -35,6 +35,7 @@ export const DatosInputs = () => {
     telefono: /^\d{2,14}$/, // 7 a 14 numeros.
     dni: /^\d{7,8}$/, // 7 a 14 numeros.
     domicilio: /^\d{1,5}$/,
+    instagram:/^@[a-zA-Z0-9_.-]+$/
   };
 
   function handleDNI(event) {
@@ -275,6 +276,21 @@ export const DatosInputs = () => {
     setMensajeErrorEmail("");
   }
 
+  //------------------------validar instagram---------------//
+  const [MensajeErroInstagaram, setMensajeErrorInstagram] = useState("");
+
+  function validarInstagaram() {
+    if (expresiones.instagram.test(InstaCliente)) {
+      console.log("input valido");
+    } else {
+      setMensajeErrorInstagram("el instagram tiene que tener @ ");
+    }
+  }
+
+  function limpiarInstagram() {
+    setMensajeErrorInstagram("");
+  }
+
   const [listaProvincias, setListaProvincias] = useState([]);
 
   useEffect(() => {
@@ -493,8 +509,11 @@ export const DatosInputs = () => {
             label="Instagram"
             value={InstaCliente}
             onChange={handleInsta}
+            onBlur={validarInstagaram}
+            onFocus={limpiarInstagram}
             fullWidth
           />
+           <p className="mensajesError">{MensajeErroInstagaram}</p>
         </div>
       </div>
 

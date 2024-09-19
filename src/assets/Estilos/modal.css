@@ -1,11 +1,13 @@
 #exampleModal{
     position:fixed;
-    left: 5px;
+    left:auto;
+    
+
 }
 
 .modal-content{
 
-    background: rgba(235, 98, 121, 0.9);
+    background: rgba(185, 157, 125);
     width: 300px;
     border-radius: 10px;
     margin-left: 50%;
@@ -18,18 +20,22 @@
 .modal-body{
     font-size: 15px;
 }
+.modal-header{
+    font-size: larger;
+    
+}
 
 #botonaceptar{
     margin-left: 130px;
     background-color: rgba(82, 81, 79,0.5);
-    border-radius: 5px;
+    border-radius: 20px;
     padding: 5px;
     color: white;
 }
 
 #botoncancelar{
     background-color: rgba(82, 81, 79,0.5);
-    border-radius: 5px;
+    border-radius: 20px;
     margin-left: 20px;
     padding: 5px;
     color: white;
