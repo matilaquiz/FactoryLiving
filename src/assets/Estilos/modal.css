@@ -4,6 +4,16 @@
     
 
 }
+.buscador{
+    display: flex;
+    background:#f4f2f1;
+    border-radius: 10px;
+    width: 70%;
+}
+.MuiSvgIcon-root{
+    padding-top: 10px;
+}
+
 
 .modal-content{
 

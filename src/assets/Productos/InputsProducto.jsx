@@ -37,7 +37,7 @@ export const InputsProducto = () => {
 
  const expresiones = {
   nombre: /^[a-zA-ZÀ-ÿ0-9\s]{3,40}$/i, // Letras , numeros y espacios, pueden llevar acentos.
-  descripcion:/^[a-zA-ZÀ-ÿ0-9_.+-:]$/i,
+  descripcion:/^.{1,}$/s,
   precio: /^[0-9]+$/, 
   dni: /^\d{7,8}$/, // 7 a 14 numeros.
 };

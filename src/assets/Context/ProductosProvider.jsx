@@ -20,7 +20,7 @@ export const ProductosProvider = ({ children }) => {
     fetchProductos();
   }, []);
 
-  const [productoElegido, setProductoElegido] = useState({});
+  const [productoElegido, setProductoElegido] = useState([]);
 
   return (
     <ProductosContext.Provider

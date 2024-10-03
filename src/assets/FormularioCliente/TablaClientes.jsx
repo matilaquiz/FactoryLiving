@@ -12,6 +12,9 @@ import { ClienteContext } from "../Context/ClienteContext";
 import Modal from '../../assets/Context/componentes.jsx';
 //import Modal from 'bootstrap/js/dist/modal';
 import"../Estilos/modal.css";
+import { TextField } from "@mui/material";
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+
 
 
 export const TablaClientes = () => {
@@ -70,7 +73,43 @@ export const TablaClientes = () => {
     setIdCliente({ id: idMod, modificar: true });
   };
 
+  const [filtrarClientes, setFiltrarClientes] = useState("");
+  const filtrar=(event)=>{
+    setFiltrarClientes(event.target.value)
+  }
+
+ const clie=clientes.filter((cliente)=>cliente.Apellido.toLowerCase().includes(filtrarClientes.toLowerCase()))
+ 
+let lista=[]
+
+
+if(clie.length>0){
+  lista=clie
+}else{
+  if(filtrarClientes!=""){
+    lista=[]
+  }else{
+    lista=clientes
+  }
+}
+
+ 
+
   return (
+    <>
+      <div className="buscador">
+        <SearchOutlinedIcon fontSize="large" ></SearchOutlinedIcon>
+      <TextField
+            id="standard-basic"
+            label="Ingrese el Apellido completo" 
+            value={filtrarClientes}
+            onChange={filtrar}
+            onBlur=""
+            onFocus=""
+            fullWidth
+          />
+
+    </div>
     <TableContainer  className="tabla-hijo" component={Paper}>
       <Table className="tabla-hijo1" sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead className="Tabla-contenedora">
@@ -94,7 +133,8 @@ export const TablaClientes = () => {
           </TableRow>
         </TableHead>
         <TableBody className="tablacuerpo">
-          {clientes.map((clientes) => (
+          {
+          lista.map((clientes) => (
             <TableRow
               key={clientes.Id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -148,5 +188,6 @@ export const TablaClientes = () => {
       )}
 
     </TableContainer>
+    </>
   );
 };
