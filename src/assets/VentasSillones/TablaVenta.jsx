@@ -188,15 +188,23 @@ import { ProductosContext } from "../Context/ProductosContext";
 export const TablaVenta = () => {
   const [clientes, setClientes] = useState([]);
   const [clienteElegido, setClienteElegido] = useState("");
-  const { productoElegido } = useContext(ProductosContext);
-  const [cantidadProd, setCantidadProd] = useState(0);
+  const { productoElegido, setProductoElegido } = useContext(ProductosContext);
   const [msjError, setMsjError] = useState("");
   const [msjErrorCliente, setMsjErrorCliente] = useState("");
 
   console.log(clienteElegido);
 
-  const cantidadP = (event) => {
-    setCantidadProd(event.target.value);
+  const cantidadP = (event, idProducto) => {
+    const productos = productoElegido.map((producto) => {
+      if(producto.id === idProducto) {
+        producto.cantidad = event.target.value;
+      }
+
+      return producto;
+    });
+
+
+    setProductoElegido(productos)
   };
 
   function costo(cantidad, costo = 0) {
@@ -225,13 +233,13 @@ export const TablaVenta = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    const cantidadValida = validarCantidad(cantidadProd);
+//    const cantidadValida = validarCantidad(productoElegido);
     const clienteValido = validarCliente(clienteElegido);
 
     if (cantidadValida && clienteValido) {
       const body = {
         idProducto: productoElegido.id,
-        cantidad: cantidadProd,
+        cantidad: productoElegido.cantidad,
         idCliente: clienteElegido,
       };
 
@@ -267,23 +275,25 @@ export const TablaVenta = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {productoElegido ? (
-                <TableRow key={productoElegido.id}>
+              {productoElegido ?  (productoElegido.map((product)=>(
+                <TableRow key={product.id}>
                   <TableCell component="th" scope="row">
                     <input
                       type="number"
                       className="cantidadProducto"
-                      value={cantidadProd}
-                      onChange={cantidadP}
+                      value={product.cantidad}
+                      onChange={(e) => cantidadP(e, product.id)}
                       min={0}
                     />
                     <p className="Error">{msjError}</p>
                   </TableCell>
-                  <TableCell align="right">{productoElegido.nombre}</TableCell>
-                  <TableCell align="right">{productoElegido.descripcion}</TableCell>
-                  <TableCell align="right">{productoElegido.precio}</TableCell>
+                  <TableCell align="right">{product.nombre}</TableCell>
+                  <TableCell align="right">{product.descripcion}</TableCell>
+                  <TableCell align="right">{product.precio}</TableCell>
                 </TableRow>
-              ) : (
+              )
+              ))
+              : (
                 <TableRow>
                   <TableCell colSpan={4} align="center">
                     Selecciona un producto para comenzar
@@ -323,12 +333,12 @@ export const TablaVenta = () => {
 
         <div className="totalVenta">
           <h2>Total:</h2>
-          <input
+          { /*<input
             className="total"
             type="text"
             value={productoElegido ? costo(cantidadProd, productoElegido.precio) : 0}
             readOnly
-          />
+          />*/}
         </div>
 
         <button className="btnRegistrarVenta">Registrar Venta</button>

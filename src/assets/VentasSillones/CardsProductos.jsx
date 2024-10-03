@@ -12,9 +12,8 @@ import { ProductosContext } from '../Context/ProductosContext';
 export default function CardsProductos({ id, nombre , precio, descripcion, img }) {
   const {setProductoElegido}=useContext(ProductosContext)
   
-  
   const handleProducto=()=>{
-    setProductoElegido({id,nombre,precio,descripcion})
+    setProductoElegido((productoElegido)=>[...productoElegido.filter((producto) => id !== producto.id ),{id,nombre,precio,descripcion, cantidad: 1}])
     
  }
  
