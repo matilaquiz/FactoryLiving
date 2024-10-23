@@ -8,6 +8,7 @@ import { RegistroProveedor } from '../Proveedores/RegistroProveedor'
 import { FormularioProductos } from '../Productos/FormularioProductos'
 import {IndexCompras} from '../Compras/IndexCompras'
 
+
 export const Rutas = () => {
     return (
         <BrowserRouter>
@@ -19,6 +20,7 @@ export const Rutas = () => {
                 <Route path="/indexStock/Stock" element={<Stock/>}></Route>
                 <Route path="/Productos/FormularioProductos" element={<FormularioProductos />}></Route>
                 <Route path="/Compras/IndexCompras" element={<IndexCompras/>}></Route>
+                
            
              
             </Routes>
