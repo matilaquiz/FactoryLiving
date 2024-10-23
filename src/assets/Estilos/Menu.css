@@ -5,7 +5,7 @@
     margin: 0;
     padding: 0;
 }
-
+/*--------------------------Menu-------------------------------------*/
 .navegador{
    background-color: #bea88f;
     display: flex;
@@ -32,7 +32,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    
 }
 .ul-Menu{
     display: flex;
@@ -73,41 +73,76 @@
     cursor: pointer;
 }
 
-
-.header1{padding: 10px;
-  display: flex; 
-  width: 100%; 
-  background-color: #d3c6b9; 
-  padding: 15px;
-  box-sizing: border-box; 
-  margin-bottom: 10px;
-  
+/*-------------------------Hamburguesa-------------------------------*/
+.menu-hambur{
+  padding: 3px;
+  margin-right: 20px;
+}
+.menu-hambur img{
+  width: 30px;
+}
+.menu-hambur:hover{
+  cursor: pointer;
+  transition: 1s;
+  background-color: rgba(38, 38, 38, 0.3);
 }
 
-.footer1{padding: 10px;
+.Menu-principal{
+  display: none;
+  overflow: hidden;
+  transition: display 3s ease;
+}
+.Menu-principal.open{
+  display: flex;
+}
+/*-----------------------------Header----------------------------------*/
+.header1{
+  display: flex;
+  width: 100%; 
+  align-items: center;
+  background-color: #d3c6b9;
+  box-sizing: border-box; 
+  padding: 5px;
+}
+/*-----------------------------Footer----------------------------------*/
+
+.footer1{
+  padding: 10px;
   display: flex; 
   width: 100%; 
   background-color:#d3c6b9; 
-  padding: 15px;
   box-sizing: border-box;
   margin-bottom: 10px;
   margin-top: 10px;
 }
-
-.formulario{ 
-   width: 400px;
-   }
-   
-.BodyMenu{
+/*-----------------------------TablaClientes----------------------------------*/
+.tablaclientes{
+  width: 55%;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  justify-content:space-between;
- 
+  margin-top: 5px;
 }
 
-.tabla-hijo{display: flex; 
+.BodyMenu{
+  display: flex;
+  justify-content:space-between;
   flex-wrap: wrap;
-  justify-content: space-between;}
+}
+
+.formulario{ 
+  width: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+   
+
+.tabla-hijo{
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 
 .tabla-hijo1{display: flex;}
 .tablacuerpo{display: flex;}
@@ -120,14 +155,12 @@
   height:fit-content;
   background-color:#f4f2f1;
   border-radius: 20px;
-
-  
 }
 
 .Tabla-contenedora {
   background-color: #d3c6b9;
   font-size: 10px;
- display: flex;
+  display: flex;
   flex-wrap: wrap;
 }
 
@@ -138,7 +171,7 @@
 
 .Tabla-contenedora .Cell {
   font-size: 18px;
-  width: 30px;
+  
 
 }
 
@@ -180,6 +213,7 @@
 .MuiPaper-root {
   background-color: rgba(255, 255, 255, 0.8);
 }
+/*-------------------------Boton--------------------------------------*/
 .botonRegistrar {
   width: 40%;
   padding: 5px;
@@ -203,16 +237,25 @@
   .Menu-principal{
     width: 100%; 
   }
-.nav-logo{margin-left: 150px;}
-.ul-Menu{margin-left: 150px;}
+.nav-logo{
+  margin-left: 150px;
+}
+.ul-Menu{
+  margin-left: 150px;
+}
 
-  .tablaclientes{width: 100%;margin-top: 10px;}
+.tablaclientes{
+  width: 100%;margin-top: 10px;
+}
 
-  .formulario{width: 100%;margin-top: 10px;}
+.formulario{
+  width: 100%;margin-top: 10px;
+}
+.tabla-hijo1{
+  width: 100%;
+}
 
-  .tabla-hijo1{width: 100%;}
-
-  .tabla-hijo{width: 100%}
+.tabla-hijo{width: 100%}
 .tablacuerpo{width: 100%;}
 .header1{width: 100%;}
   
