@@ -6,7 +6,7 @@ import { Stock } from '../indexStock/Stock'
 import { VentasGUI } from '../VentasSillones/VentasGUI'
 import { RegistroProveedor } from '../Proveedores/RegistroProveedor'
 import { FormularioProductos } from '../Productos/FormularioProductos'
-import { GraficoTarta } from '../Grafico/GraficoTarta'
+
 import {IndexCompras} from '../Compras/IndexCompras'
 
 
