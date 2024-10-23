@@ -19,7 +19,7 @@ import "../Estilos/EstiloCompra.css"
 import CancelIcon from '@mui/icons-material/Cancel';
 import Button from '@mui/material/Button';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-
+import { Consulta2 } from './Consulta2';
 
 export function FormularioPresupuesto2() {
   const [listaProveedores, setListaProveedores] = useState([]);
@@ -112,6 +112,7 @@ export function FormularioPresupuesto2() {
 
   const copyFecha = { ...fecha }
   let stringFecha = `${copyFecha.$D}/${copyFecha.$M + 1}/${copyFecha.$y}`
+   let fechaMail=`${copyFecha.$D}-${copyFecha.$M + 1}-${copyFecha.$y}`
   console.log(stringFecha)
 
   const enviarSi=()=>{
@@ -135,7 +136,8 @@ export function FormularioPresupuesto2() {
         nombre: proveedor.NombreProveedor,
         to_email: proveedor.MailProveedor,
         materiales: stringMP,
-        fecha: stringFecha
+        fecha: fechaMail,
+        cuerpo:"Nos comunicamos de la empresa FactoryLving para consultar \n el presupuesto de los siguientes materiales:"
   
       }
       
@@ -310,6 +312,7 @@ export function FormularioPresupuesto2() {
         </div>
 
       )}
+
     </>
   )
 }

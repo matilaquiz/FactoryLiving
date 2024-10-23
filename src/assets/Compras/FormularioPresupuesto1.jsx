@@ -17,6 +17,7 @@ import Button from '@mui/material/Button';
 import emailjs from 'emailjs-com';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import "../Estilos/EstiloCompra.css"
+import { Consulta } from './Consulta';
 
 
 
@@ -118,6 +119,7 @@ export function FormularioPresupuesto1() {
 
   const copyFecha = { ...fecha }
   let stringFecha = `${copyFecha.$y}-${copyFecha.$M + 1}-${copyFecha.$D}`
+  let fechaMail=`${copyFecha.$D}-${copyFecha.$M + 1}-${copyFecha.$y}`
   console.log(stringFecha)
   const fe=new Date(stringFecha)
   console.log(fe)
@@ -140,7 +142,8 @@ export function FormularioPresupuesto1() {
       nombre: proveedor.NombreProveedor,
       to_email: proveedor.MailProveedor,
       materiales: stringMP,
-      fecha: stringFecha
+      fecha: fechaMail,
+      cuerpo:"Nos comunicamos de la empresa FactoryLving enviando \n la orden de compra, detallando los siguientes materiales y sus respectivas cantidades:"
     }
 
     emailjs.send(
@@ -319,6 +322,8 @@ export function FormularioPresupuesto1() {
       {
         mailEnviado ? <BotonNotificacion texto="el mail se envio exitosamente" ></BotonNotificacion>:""
       }
+
+      <Consulta></Consulta>
    
      
     </>
