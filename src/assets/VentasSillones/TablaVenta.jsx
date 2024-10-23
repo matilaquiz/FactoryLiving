@@ -180,6 +180,7 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
+import { DeleteForever } from "@mui/icons-material";
 import "../Estilos/EstiloVenta.css";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
@@ -199,16 +200,24 @@ export const TablaVenta = () => {
       if(producto.id === idProducto) {
         producto.cantidad = event.target.value;
       }
-
       return producto;
     });
-
-
     setProductoElegido(productos)
   };
 
-  function costo(cantidad, costo = 0) {
-    return cantidad * costo;
+  const eliminar=(id)=>{
+    const productos=productoElegido.filter((prod)=>(
+      id !=prod.id
+    ))
+   setProductoElegido(productos)
+  }
+
+  function costo(productoElegido) {
+      let precioTotal=0;
+      productoElegido.map((producto)=>{
+        precioTotal+=producto.precio*producto.cantidad
+      })
+      return precioTotal;
   }
 
   const validarCantidad = (cantidad) => {
@@ -290,6 +299,11 @@ export const TablaVenta = () => {
                   <TableCell align="right">{product.nombre}</TableCell>
                   <TableCell align="right">{product.descripcion}</TableCell>
                   <TableCell align="right">{product.precio}</TableCell>
+                  <TableCell align="center">
+                <a href="#" onClick={()=>eliminar(product.id)}>
+                  <DeleteForever />
+                </a>
+              </TableCell>
                 </TableRow>
               )
               ))
@@ -333,12 +347,12 @@ export const TablaVenta = () => {
 
         <div className="totalVenta">
           <h2>Total:</h2>
-          { /*<input
+          { <input
             className="total"
             type="text"
-            value={productoElegido ? costo(cantidadProd, productoElegido.precio) : 0}
+            value={productoElegido ? costo(productoElegido) : 0}
             readOnly
-          />*/}
+          />}
         </div>
 
         <button className="btnRegistrarVenta">Registrar Venta</button>
