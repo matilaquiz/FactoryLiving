@@ -341,6 +341,7 @@ export const FormlarioProveedores = () => {
       <div className="partes-formu">
         <p>Datos de Proveedor</p>
         <div>
+         
 
           <TextField
             id="standard-basic"
