@@ -1,0 +1,22 @@
+.botonera{
+    display: flex;
+
+}
+
+.Formulario{
+    width: 80%;
+    justify-content: center;
+    justify-items: center;
+
+}
+
+.SemiBody{
+    display:flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.botones{
+    display:flex;
+    width: 80%;
+}

@@ -5,7 +5,7 @@ export const ClienteProvider = ({ children }) => {
   const [idCliente, setIdCliente] = useState({ id: null, modificar: false });
 
   return (
-    <ClienteContext.Provider value={{ idCliente, setIdCliente }}>
+    <ClienteContext.Provider value={{ idCliente, setIdCliente}}>
       {children}
     </ClienteContext.Provider>
   );
