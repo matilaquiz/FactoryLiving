@@ -28,11 +28,11 @@ export const GraficoTarta = () => {
     </div>
     
     <div className="Componente">
-      <h1 className='H1-Componente'>GRÁFICO LINEAL (COMPRAS POR MES)</h1>
+      <h1 className='H1-Componente'>GRÁFICO LINEAL (Compras de materiales por mes )</h1>
       <div className="Grafico">
         <LineasBasicas/>
       </div>
-      <h1 className='H1-Componente'>GRÁFICO BARRAS (COMPRAS POR MES)</h1>
+      <h1 className='H1-Componente'>GRÁFICO BARRAS (Stock de materia prima)</h1>
       <div className="Grafico">
         <GraficoBarras />
       </div>

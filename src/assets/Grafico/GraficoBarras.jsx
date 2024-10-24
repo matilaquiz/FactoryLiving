@@ -1,7 +1,8 @@
 import { Bar } from "react-chartjs-2";
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
-
-import{
+import {
     Chart as chartjs,
     CategoryScale,
     LinearScale,
@@ -11,7 +12,7 @@ import{
     Tooltip,
     Legend,
     Filler,
-}from 'chart.js'
+} from 'chart.js'
 
 chartjs.register(
     CategoryScale,
@@ -22,44 +23,93 @@ chartjs.register(
     Tooltip,
     Legend,
     Filler,
-    
+
 );
+const GraficoBarras = () => {
+   
+    const [materiales, setMateriales] = useState([])
+    const [cantidades, setCantidades] = useState([])
+    const [mes, setMes] = useState([])
+    
 
-let beneficios = [0, 56, -20, 36, 80, 40, 30, -30, 25, 30, 12, 60];
-let meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
-
-let misoptions ={
-    responsive: true,
-    animation: true,
-    plugins: {
-        legend:{
-            display: false
-        }
-    },
-    scales: {
-        y: {
-            min: -25,
-            max: 100
-        },
-        x: {
-            ticks: {color: 'rgba(0, 220, 195)'}
-        }
+    const cambiarMes=(e)=>{
+        setMes(e.target.value)
     }
 
-};
-
-let midata = {
-    labels: meses,
-    datasets: [
-        {
-            label: 'compras',
-            data: beneficios,
-            backgroundColor: 'rgba(0, 220, 195, 0.5)'
+   
+    useEffect(() => {
+        const traerGraficos = async () => {
+            try {
+                const resp = await axios.get("http://localhost:3000/buscarDate")
+               
+                const mat = resp.data.map(mp => mp.Nombre)
+                const cant = resp.data.map(mp => mp.CantPorMP)
+                setMateriales(mat)
+                setCantidades(cant)
+            } catch (e) {
+                console.warn(e)
+            }
         }
-    ]
-};
+        traerGraficos()
+    
+    
+    }, [])
+    
 
-const GraficoBarras = () => {
-    return <Bar data={midata} options={misoptions}/>
+    const getRandomColor = () => {
+        const letters = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    };
+
+
+
+    let misoptions = {
+        responsive: true,
+        animation: true,
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        scales: {
+            y: {
+                min: 0,
+                max: 4000
+            },
+            x: {
+                ticks: { color: 'rgba(0, 220, 195)' }
+            }
+        }
+
+    };
+
+    const colores = cantidades.map(() => getRandomColor())
+
+    let midata = {
+        labels: materiales,
+        datasets: [
+            {
+                label: 'cantidades',
+                data: cantidades,
+                backgroundColor:colores
+            },
+       
+        ]
+    };
+
+
+
+
+    return (
+        
+            <Bar data={midata} options={misoptions} />
+          
+      
+    )
+
 }
-export {GraficoBarras};
+export { GraficoBarras };
