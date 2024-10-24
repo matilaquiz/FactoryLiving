@@ -100,7 +100,7 @@ export default function DocumnetoPresupuesto({ nombre, mail, MP,tel, fecha}) {
                         {"\n"}
 
 
-                        Buenas tardes  nos comunicamos de FactoryLving para pedirle{"\n"}
+                        Buenas tardes  nos comunicamos de FactoryLiving para pedirle{"\n"}
                         el presupuesto de los siguientes materiales:
 
 

@@ -6,7 +6,7 @@ import { Stock } from '../indexStock/Stock'
 import { VentasGUI } from '../VentasSillones/VentasGUI'
 import { RegistroProveedor } from '../Proveedores/RegistroProveedor'
 import { FormularioProductos } from '../Productos/FormularioProductos'
-
+import { GraficoTarta } from "../Grafico/GraficoTarta"
 import {IndexCompras} from '../Compras/IndexCompras'
 
 
@@ -21,6 +21,7 @@ export const Rutas = () => {
                 <Route path="/indexStock/Stock" element={<Stock/>}></Route>
                 <Route path="/Productos/FormularioProductos" element={<FormularioProductos />}></Route>
                 <Route path="/Compras/IndexCompras" element={<IndexCompras/>}></Route>
+                <Route path="/Grafico/GraficoTarta" element={<GraficoTarta/>}></Route>
                 
            
              

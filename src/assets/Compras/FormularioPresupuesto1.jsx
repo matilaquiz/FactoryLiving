@@ -200,7 +200,7 @@ export function FormularioPresupuesto1() {
 
   return (
     <>
-      <form action="" onSubmit={cargarPresupuesto}>
+      <form action="" style={{ width: "90%" }}  onSubmit={cargarPresupuesto}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={['DatePicker']}>
             <DatePicker label="Fecha" value={fecha} onChange={hanldeFecha} format='DD/MM/YYYY' />
