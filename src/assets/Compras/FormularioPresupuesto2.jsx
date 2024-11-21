@@ -74,7 +74,7 @@ export function FormularioPresupuesto2() {
   const tocar = () => {
     setMaterialesSeleccionados([...materialesSeleccionados, nuevoMaterial])
   }
-  console.log(listaMateriasPrimas, materialesSeleccionados)
+
   const cambiarMP = (e, index) => {
     let id = e.target.value
     const materia = listaMateriasPrimas.find(materia => materia.IdMateriaPrima === id);
@@ -113,7 +113,7 @@ export function FormularioPresupuesto2() {
   const copyFecha = { ...fecha }
   let stringFecha = `${copyFecha.$D}/${copyFecha.$M + 1}/${copyFecha.$y}`
    let fechaMail=`${copyFecha.$D}-${copyFecha.$M + 1}-${copyFecha.$y}`
-  console.log(stringFecha)
+
 
   const enviarSi=()=>{
     
@@ -147,7 +147,6 @@ export function FormularioPresupuesto2() {
       emailjs.send(
         'service_ymmd5cc', 'template_nym8nvj', paramsEmail, 'l9uUpJ93K2YlnJGgb'
       ).then((response) => {
-        console.log("correo enviado", response.status)
         window.location.reload()
       }).catch((error) => {
         console.warn(error)
@@ -217,8 +216,8 @@ export function FormularioPresupuesto2() {
             onChange={handleProveedorTotal}
             fullWidth
           >
-            <MenuItem value="">
-              <em>seleccione una provincia..</em>
+            <MenuItem  value={proveedor.IdProveedor} >
+              <em>seleccione un proveedor..</em>
             </MenuItem>
             {listaProveedores.map((proveedor) => (
               <MenuItem key={proveedor.IdProveedor} value={proveedor.IdProveedor}>

@@ -10,10 +10,37 @@
     align-items: center;
     z-index: 1000; /* Para que esté encima de todo */
   }
+  .confirmacion {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: fit-content;
+    margin: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+   
+    overflow: auto;
+  }
+  .confirmacion h3{
+    margin: 5px;
+    font-weight: bold;
+  }
+
+  .confirmacion p{
+    margin: 10px;
+   
+  }
+  .botones{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
 
  
   
-  .modal-content {
+  .modal-content4 {
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -47,3 +74,5 @@
     width:30%;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
+
+ 

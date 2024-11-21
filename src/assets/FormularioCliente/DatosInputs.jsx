@@ -32,7 +32,8 @@ export const DatosInputs = () => {
     nombre: /^[a-zA-ZÀ-ÿ\s]{3,40}$/i, // Letras y espacios, pueden llevar acentos.
     apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/i,
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    telefono: /^\d{2,14}$/, // 7 a 14 numeros.
+    telefono: /^\d{5,12}$/,
+
     dni: /^\d{7,8}$/, // 7 a 14 numeros.
     domicilio: /^\d{1,5}$/,
     instagram:/^@[a-zA-Z0-9_.-]+$/
@@ -125,6 +126,7 @@ export const DatosInputs = () => {
     validarCalle();
     validarTelefono();
     validarEmail();
+    validarInstagaram()
 
     let cliente = {
       Dni: dniCliente,

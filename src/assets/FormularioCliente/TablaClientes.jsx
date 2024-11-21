@@ -10,7 +10,7 @@ import { ModeEdit, DeleteForever } from "@mui/icons-material";
 import axios from "axios";
 import { ClienteContext } from "../Context/ClienteContext";
 import Modal from '../../assets/Context/componentes.jsx';
-//import Modal from 'bootstrap/js/dist/modal';
+
 import"../Estilos/modal.css";
 import { TextField } from "@mui/material";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';

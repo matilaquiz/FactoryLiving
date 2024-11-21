@@ -97,7 +97,7 @@ let misoptions = {
     <>
     <Line data={midata} options={misoptions}/>
     <select style={{height:"30px", width:"80px"}} onChange={cambiarMes} value={mes}>
-                <option value=""> mes</option>
+                <option value={0}> mes</option>
                 <option value={1}>Enero</option>
                 <option value={2}>Febrero</option>
                 <option value={3}>Marzo</option>
