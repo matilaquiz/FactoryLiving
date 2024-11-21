@@ -101,7 +101,7 @@ align-items:self-start;
 .Error {
   color: red;
   display: flex;
-  max-width: 30px;
+  max-width: 150px;
 }
 
 .elegirCliente {
@@ -155,4 +155,6 @@ align-items:self-start;
   .tablaProducto{
     width: 95%;
   }
+
+ 
 }

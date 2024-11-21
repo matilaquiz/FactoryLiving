@@ -18,6 +18,8 @@ import emailjs from 'emailjs-com';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import "../Estilos/EstiloCompra.css"
 import { Consulta } from './Consulta';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 
 
@@ -70,10 +72,9 @@ export function FormularioPresupuesto1() {
   const [materialesSeleccionados, setMaterialesSeleccionados] = useState([{ id: "", nombre: "", cantidad: "",precio:"" }])
   const [nuevoMaterial, SetNuevoMaterial] = useState({ id: "", nombre: "", cantidad: "",precio:"" })
   const tocar = () => {
+    if(materialesSeleccionados[materialesSeleccionados.length-1].id && materialesSeleccionados[materialesSeleccionados.length-1].cantidad && materialesSeleccionados[materialesSeleccionados.length-1].precio) 
     setMaterialesSeleccionados([...materialesSeleccionados, nuevoMaterial])
   }
-  console.log(proveedor)
-  //console.log(listaMateriasPrimas, materialesSeleccionados)
   
   const cambiarMP = (e, index) => {
     let id = e.target.value
@@ -120,11 +121,53 @@ export function FormularioPresupuesto1() {
   const copyFecha = { ...fecha }
   let stringFecha = `${copyFecha.$y}-${copyFecha.$M + 1}-${copyFecha.$D}`
   let fechaMail=`${copyFecha.$D}-${copyFecha.$M + 1}-${copyFecha.$y}`
-  console.log(stringFecha)
-  const fe=new Date(stringFecha)
-  console.log(fe)
+  const [errorFecha, setErrorFecha] = useState(true);
+  
+  const handleErrorFecha=(fecha)=>{
+    if(!fecha){
+      setErrorFecha(false)
+      return false;
+    }else{
+      setErrorFecha(true)
+      return true;
+    }
+  }
 
+  const [errorProveedor, setErrorProveedor] = useState(true);
+  const handleErrorProveedor=(proveedor)=>{
+    if(Object.keys(proveedor).length === 0){
+      setErrorProveedor(false)
+      return false;
+    }else{
+      setErrorProveedor(true)
+      return true;
+    }
+  }
+  const [errorCantidad, setErrorCantidad] = useState(true);
+  
+  const handleErrorCantidad=(cantidad)=>{
+    if(!cantidad){
+      setErrorCantidad(false)
+      return false;
+    }else{
+      setErrorCantidad(true)
+      return true;
+    }
+  }
 
+  
+  const [errorPrecio, setErrorPrecio] = useState(true);
+  const handleErrorPrecio=(precio)=>{
+    if(!precio){
+      setErrorPrecio(false)
+      return false;
+    }else{
+      setErrorPrecio(true)
+      return true;
+    }
+  }
+ 
+  
   const enviarMail=()=>{
 
     let stringMP = "";
@@ -152,49 +195,53 @@ export function FormularioPresupuesto1() {
       if(response.status==200){
         setMailEnviado(true)
       }
-      console.log("correo enviado",response.status)
     }).catch((error)=>{
       console.warn(error)
     })
 
-
-
   }
+   
+  
 
   const cargarPresupuesto = (e) => {
-    e.preventDefault()
-
-
-
-    const  pedido = {
-      id: proveedor.IdProveedor,
-      mail: proveedor.MailProveedor,
-      MP:materialesSeleccionados,
-      fecha:stringFecha,
-      estado:"pendiente",
-      
-
-    }
-
-
-    const saveCompra=async()=>{
-      try{
-        const respuesta=await axios.post("http://localhost:3000/cargarCompras",pedido)
-        console.log(respuesta.status)
-        if(respuesta.status===200){
-            setModalOK(true)
-        }
-      }catch(e){
-          console.warn(e)
+    e.preventDefault();
+    const errorFecha = handleErrorFecha(fecha);
+    const errorProveedor = handleErrorProveedor(proveedor);
+    const errorCantidad = handleErrorCantidad(materialesSeleccionados[materialesSeleccionados.length-1].cantidad);
+    const errorPrecio = handleErrorPrecio(materialesSeleccionados[materialesSeleccionados.length-1].precio);
+    if(
+      errorCantidad && errorFecha && errorPrecio && errorProveedor
+    ){
+      const  pedido = {
+        id: proveedor.IdProveedor,
+        mail: proveedor.MailProveedor,
+        MP:materialesSeleccionados,
+        fecha:stringFecha,
+        estado:"pendiente",
       }
+
+
+      const saveCompra=async()=>{
+        try{
+          const respuesta=await axios.post("http://localhost:3000/cargarCompras",pedido)
+
+          if(respuesta.status===200){
+              setModalOK(true)
+          }
+        }catch(e){
+            console.warn(e)
+        }
+      }
+      saveCompra()
+
+      
+      enviarMail()
     }
-    saveCompra()
-
-    
-    enviarMail()
-
   }
 
+
+  //alertas errores
+ 
 
 
 
@@ -203,27 +250,30 @@ export function FormularioPresupuesto1() {
       <form action="" style={{ width: "90%" }}  onSubmit={cargarPresupuesto}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={['DatePicker']}>
-            <DatePicker label="Fecha" value={fecha} onChange={hanldeFecha} format='DD/MM/YYYY' />
+            <DatePicker label="Fecha" value={fecha} onChange={hanldeFecha} format='DD/MM/YYYY' onOpen={() =>setErrorFecha(true)}  />
           </DemoContainer>
         </LocalizationProvider>
-
+        {!errorFecha ? 
+          <Alert severity="error" sx={{textAlign:"end", height: "40px", width:"fit-content" }}>CARGAR FECHA DE VENTA</Alert> 
+       : null}
         <FormControl sx={{ my: 1, minWidth: 120, background: 'rgba(255, 0, 0, 0.1)', width: "70%" }} fullWidth>
 
           <InputLabel id="demo-simple-select-helper-label">
             Proveedor
           </InputLabel>
           <Select
-            required
+            
             name='proveedor'
             labelId="demo-simple-select-helper-label"
             id="demo-simple-select-helper"
             value={proveedor.IdProveedor}
             label="Localidad"
             onChange={handleProveedorTotal}
+            onFocus={() =>setErrorProveedor(true)}
             fullWidth
           >
-            <MenuItem value="">
-              <em>seleccione una provincia..</em>
+            <MenuItem  value={proveedor.IdProveedor}>
+              <em>seleccione un proveedor..</em>
             </MenuItem>
             {listaProveedores.map((proveedor) => (
               <MenuItem key={proveedor.IdProveedor} value={proveedor.IdProveedor}>
@@ -232,18 +282,21 @@ export function FormularioPresupuesto1() {
             ))}
           </Select>
         </FormControl>
+      
         <TextField
           sx={{ background: 'rgba(254, 253, 253, 0.4)', width: "70%" }}
           id="standard-basic"
           label=""
           name='email'
           value={proveedor.MailProveedor}
-
           onBlur=""
           onFocus=""
-          required
+         
           fullWidth
         />
+          {!errorProveedor ? 
+          <Alert severity="error" sx={{textAlign:"end", height: "40px", width:"fit-content" }}>SELECCIONE EL PROVEEDOR</Alert> 
+          : null}
         <br />
         <h4>Materia Prima</h4>
         <br />
@@ -279,20 +332,19 @@ export function FormularioPresupuesto1() {
               label="cantidad"
               value={material.cantidad}
               onChange={(e) => cambiarcantidad(e, index)}
-              onBlur=""
-              onFocus=""
-              required
+              onFocus={() =>setErrorCantidad(true)}
+              onBlur=""    
               fullWidth
             />
+
             <TextField
               sx={{ background: 'rgba(254, 253, 253, 0.5)', width: "70%" , marginTop:"10px"}}
               id="standard-basic"
               label="precio unitario"
               value={material.precio}
               onChange={(e) => cambiarprecio(e, index)}
+              onFocus={() =>setErrorPrecio(true)}
               onBlur=""
-              onFocus=""
-              required
               fullWidth
             />
 
@@ -301,6 +353,12 @@ export function FormularioPresupuesto1() {
           </div>
         )
         }
+        {!errorCantidad ? 
+          <Alert severity="error" sx={{textAlign:"end", height: "40px", width:"fit-content" }}>CARGAR CANTIDAD A COMPRAR</Alert> 
+        : null}
+        {!errorPrecio ? 
+          <Alert severity="error" sx={{textAlign:"end", height: "40px", width:"fit-content" }}>CARGAR PRECIO ACORDADO CON EL PROVEEDOR</Alert> 
+       : null}
 
         <div className="botones">
           <RemoveCircleIcon onClick={remover} sx={{ cursor: "pointer", fontSize: "40px", marginLeft: "70%", display: "block", color: "rgb(100, 30, 22)" }}></RemoveCircleIcon>

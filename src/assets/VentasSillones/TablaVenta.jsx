@@ -180,11 +180,16 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
-import { DeleteForever } from "@mui/icons-material";
+import { DeleteForever, Margin } from "@mui/icons-material";
 import "../Estilos/EstiloVenta.css";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { ProductosContext } from "../Context/ProductosContext";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 
 export const TablaVenta = () => {
   const [clientes, setClientes] = useState([]);
@@ -192,12 +197,32 @@ export const TablaVenta = () => {
   const { productoElegido, setProductoElegido } = useContext(ProductosContext);
   const [msjError, setMsjError] = useState("");
   const [msjErrorCliente, setMsjErrorCliente] = useState("");
-
+  const [fechaVenta,setFechaVenta]=useState(null)
+  const [msjErrorFecha,setMsjErrorFecha ] = useState("");
   console.log(clienteElegido);
 
+  const hanldeFecha=(e)=>{
+    setFechaVenta(e)
+    
+  }
+
+  const getFecha=()=>{
+    if (fechaVenta){
+      const fe={...fechaVenta}
+      let stringFecha = `${fe.$y}-${fe.$M + 1}-${fe.$D}`
+      setMsjErrorFecha("")
+      return stringFecha
+    }else{
+      setMsjErrorFecha("Elegir fecha de la venta")
+    }
+  }
+
+
+
+  console.log(productoElegido)
   const cantidadP = (event, idProducto) => {
     const productos = productoElegido.map((producto) => {
-      if(producto.id === idProducto) {
+      if (producto.id === idProducto) {
         producto.cantidad = event.target.value;
       }
       return producto;
@@ -205,33 +230,36 @@ export const TablaVenta = () => {
     setProductoElegido(productos)
   };
 
-  const eliminar=(id)=>{
-    const productos=productoElegido.filter((prod)=>(
-      id !=prod.id
+  const eliminar = (id) => {
+    const productos = productoElegido.filter((prod) => (
+      id != prod.id
     ))
-   setProductoElegido(productos)
+    setProductoElegido(productos)
   }
+
+
 
   function costo(productoElegido) {
-      let precioTotal=0;
-      productoElegido.map((producto)=>{
-        precioTotal+=producto.precio*producto.cantidad
-      })
-      return precioTotal;
+    let precioTotal = 0;
+    productoElegido.map((producto) => {
+      precioTotal += producto.precio * producto.cantidad
+    })
+    return precioTotal;
   }
 
-  const validarCantidad = (cantidad) => {
-    if (cantidad < 1) {
-      setMsjError("Introducir cantidad");
+  const validarCantidad = (productoElegido) => {
+    if (productoElegido.length < 1) {
+      setMsjError("Tenes que elegir algun producto");
       return false;
     } else {
       setMsjError("");
       return true;
     }
   };
+  console.log (productoElegido)
 
   const validarCliente = (id) => {
-    if (id === 0) {
+    if (id == 0) {
       setMsjErrorCliente("Elegir cliente");
       return false;
     } else {
@@ -240,16 +268,21 @@ export const TablaVenta = () => {
     }
   };
 
+  
+
   const onSubmit = async (event) => {
     event.preventDefault();
-//    const cantidadValida = validarCantidad(productoElegido);
+    //    const cantidadValida = validarCantidad(productoElegido);
     const clienteValido = validarCliente(clienteElegido);
-
-    if (cantidadValida && clienteValido) {
+    const productoTrue =validarCantidad([...productoElegido])
+    const fechaSold=getFecha()
+   
+    if (clienteValido && productoTrue && fechaSold) {
       const body = {
-        idProducto: productoElegido.id,
-        cantidad: productoElegido.cantidad,
+        productos: productoElegido,
         idCliente: clienteElegido,
+        fechaVenta:fechaSold,
+        estado:"inicializada"
       };
 
       const resp = await axios.post("http://localhost:3000/cargarVenta", body);
@@ -273,6 +306,13 @@ export const TablaVenta = () => {
   return (
     <>
       <form className="formularioventas" action="" onSubmit={onSubmit}>
+      <LocalizationProvider dateAdapter={AdapterDayjs} >
+          <DemoContainer components={['DatePicker']}>
+            <DatePicker required label="Fecha" value={fechaVenta} onChange={hanldeFecha} format='DD/MM/YYYY' sx={{ background: 'rgba(254, 253, 253, 0.4)' }} disablePast />
+          </DemoContainer>
+        </LocalizationProvider>
+        <p className="Error">{msjErrorFecha}</p>
+
         <TableContainer component={Paper} className="tablacontenedoraprincipal">
           <Table>
             <TableHead className="Tabla-contenedora">
@@ -284,7 +324,7 @@ export const TablaVenta = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {productoElegido ?  (productoElegido.map((product)=>(
+              {productoElegido ? (productoElegido.map((product) => (
                 <TableRow key={product.id}>
                   <TableCell component="th" scope="row">
                     <input
@@ -292,31 +332,33 @@ export const TablaVenta = () => {
                       className="cantidadProducto"
                       value={product.cantidad}
                       onChange={(e) => cantidadP(e, product.id)}
-                      min={0}
+                      min={1}
                     />
-                    <p className="Error">{msjError}</p>
+                   
                   </TableCell>
                   <TableCell align="right">{product.nombre}</TableCell>
                   <TableCell align="right">{product.descripcion}</TableCell>
                   <TableCell align="right">{product.precio}</TableCell>
                   <TableCell align="center">
-                <a href="#" onClick={()=>eliminar(product.id)}>
-                  <DeleteForever />
-                </a>
-              </TableCell>
-                </TableRow>
-              )
-              ))
-              : (
-                <TableRow>
-                  <TableCell colSpan={4} align="center">
-                    Selecciona un producto para comenzar
+                    <a href="#" onClick={() => eliminar(product.id)}>
+                      <DeleteForever />
+                    </a>
                   </TableCell>
                 </TableRow>
-              )}
+                
+              )
+              ))
+                : (
+                  <TableRow>
+                    <TableCell colSpan={4} align="center">
+                      Selecciona un producto para comenzar
+                    </TableCell>
+                  </TableRow>
+                )}
             </TableBody>
           </Table>
         </TableContainer>
+        <p className="Error">{msjError}</p>
 
         <div className="elegirCliente">
           <Box sx={{ minWidth: 120 }}>
@@ -347,7 +389,7 @@ export const TablaVenta = () => {
 
         <div className="totalVenta">
           <h2>Total:</h2>
-          { <input
+          {<input
             className="total"
             type="text"
             value={productoElegido ? costo(productoElegido) : 0}

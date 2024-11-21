@@ -15,13 +15,16 @@ import "../Estilos/ModalCompra.css"
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { ModalDetalle } from './ModalDetalle';
+import { ModalCambioEstado } from './ModalCambioEstado';
+import { ModalEstadoCancelar } from './ModalEstadoCancelar';
+import Tooltip from '@mui/material/Tooltip';
 
 
 export function ModalCompras() {
     const [listaCompras, setListaCompras] = useState([])
-    const { setAbrirModal,modalDetalle,setModalDetalle } = useContext(ComprasContext)
-    
-    
+    const { setAbrirModal, modalDetalle, setModalDetalle, abrirModalEstado, setAbrirModalEstado } = useContext(ComprasContext)
+
+
 
 
 
@@ -40,148 +43,129 @@ export function ModalCompras() {
         []
     )
 
+    const modalCambioEstado = (estado, id) => {
+        setAbrirModalEstado({ abrir: true, estado: estado, id: id })
+    }
+
     const cerrarCompras = () => {
         setAbrirModal(false)
     }
 
-    const confirmarCompra=async(id)=>{
-       
-        try{
-            const resp=await axios.put(`http://localhost:3000/confirmarCompra/${id}`)
-            console.log(resp.status)
-           
 
-            const resp2=await axios.get(`http://localhost:3000/traerComprasConDetalle/${id}`)
-            console.log(resp2.status)
 
-            window.location.reload()
+    
 
-        }catch(e){
-            console.warn(e)
 
-        }
-        
-       
-    }
-
-    // recibo id de compra (params)
-    // update compras con el estado confirmado
-    // busco todas las materias primas que se compraron ahi ( tabla detalleCompra)
-    // recorro las materias primas traidas de detalleCompra, busco stock, calculo nueva cantidad, y actualizo stock de esa mat prima
-    const cancelarCompra=async(id)=>{
-       
-        try{
-            const resp=await axios.put(`http://localhost:3000/cancelarCompra/${id}`)
-            console.log(resp.data)
-            window.location.reload() 
-        }catch(e){
-            console.warn(e)
-
-        }
-       
-    }
-
-    const verDetalle=(id)=>{
-        setModalDetalle({id:id, estado:true})
+    const verDetalle = (id) => {
+        setModalDetalle({ id: id, estado: true })
 
     }
 
-    const cambiarFecha=(fecha)=>{
-        const objFecha=new Date(fecha)
-        console.log(typeof(objFecha))
-        let verdaderaFecha=objFecha.getDate() + "-" + (objFecha.getMonth()+1) + "-" + objFecha.getFullYear()
+    const cambiarFecha = (fecha) => {
+        const objFecha = new Date(fecha)
+        console.log(typeof (objFecha))
+        let verdaderaFecha = objFecha.getDate() + "-" + (objFecha.getMonth() + 1) + "-" + objFecha.getFullYear()
         return verdaderaFecha
 
     }
-    
-   
+
+
 
 
     return (
         <>
-        <div className='modal-overlay'>
-            <div className='modal-content'>
-                <TableContainer className="tabla-hijo" component={Paper} >
-                    <Table className="tabla-hijo1" sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead className="Tabla-contenedora">
-                            <TableRow className="Tabla-contenedora2">
+            <div className='modal-overlay'>
+                <div className='modal-content4'>
+                    <TableContainer className="tabla-hijo" component={Paper} >
+                        <Table className="tabla-hijo1" sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead className="Tabla-contenedora">
+                                <TableRow className="Tabla-contenedora2">
 
-                                <TableCell align="center" className="Cell">
-                                    N° de Compra
-                                </TableCell>
-                                <TableCell align="center" className="Cell">
-                                    Fecha
-                                </TableCell>
-                                <TableCell align="center" className="Cell">
-                                    Proveedor
-                                </TableCell>
-                                <TableCell align="center" className="Cell">
-                                    Estado de Compra
-                                </TableCell>
-                                <TableCell align="center" className="Cell">
-                                    Consultar Compra
-                                </TableCell>
-                                <TableCell align="center" className="Cell">
-                                    Compra Recibido
-                                </TableCell>
-                                <TableCell align="center" className="Cell">
-                                    Compra Cancelada
-                                </TableCell>
-                                <Button onClick={cerrarCompras} >
-                                    <CancelIcon sx={{ color: "brown" }} fontSize="large"></CancelIcon>
-                                </Button>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody className="tablacuerpo">
-                            {listaCompras.map((compra) => (
-                                <TableRow
-                                    key={compra.IdCompra}
-                                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                                >
-                                    <TableCell component="th" scope="row">
-
-                                        {compra.IdCompra}
+                                    <TableCell align="center" className="Cell">
+                                        N° de Compra
                                     </TableCell>
-                                    <TableCell align="center" sx={{width:"80px"}}>
-
-                                        {cambiarFecha(compra.Fecha)}
-                                        
+                                    <TableCell align="center" className="Cell">
+                                        Fecha
                                     </TableCell>
-                                    <TableCell align="center">
-                                        {compra.NombreProveedor}
-
+                                    <TableCell align="center" className="Cell">
+                                        Proveedor
                                     </TableCell>
-
-                                    <TableCell align="center">
-                                        {compra.Estado}
-
+                                    <TableCell align="center" className="Cell">
+                                        Estado de Compra
                                     </TableCell>
-                                    <TableCell align="center">
-                                        <Button onClick={() => verDetalle(compra.IdCompra)}>
-                                            <RemoveRedEyeIcon/>
-                                        </Button>
+                                    <TableCell align="center" className="Cell">
+                                        Consultar Compra
                                     </TableCell>
-                                    
-                                    <TableCell align="center">
-                                        <Button disabled={compra.Estado=="pendiente"? false :true } onClick={() => confirmarCompra(compra.IdCompra)} >
-                                        <CheckCircleOutlineIcon ></CheckCircleOutlineIcon>
-                                        </Button>
+                                    <TableCell align="center" className="Cell">
+                                        Completar Compra
                                     </TableCell>
-                                    <TableCell align="center">
-                                        <Button disabled={compra.Estado=="pendiente"? false :true }  onClick={() => cancelarCompra(compra.IdCompra)} >
-                                            <DeleteForever/>
-                                        </Button>
+                                    <TableCell align="center" className="Cell">
+                                        Cancelar Compra
                                     </TableCell>
-                                    
-                                    
+                                    <Button onClick={cerrarCompras} >
+                                        <CancelIcon sx={{ color: "brown" }} fontSize="large"></CancelIcon>
+                                    </Button>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </div >
-        </div>
-        {modalDetalle.estado && (<ModalDetalle id={modalDetalle.id}></ModalDetalle>)}
+                            </TableHead>
+                            <TableBody className="tablacuerpo">
+                                {listaCompras.map((compra) => (
+                                    <TableRow
+                                        key={compra.IdCompra}
+                                        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                                    >
+                                        <TableCell component="th" scope="row">
+
+                                            {compra.IdCompra}
+                                        </TableCell>
+                                        <TableCell align="center" sx={{ width: "80px" }}>
+
+                                            {cambiarFecha(compra.Fecha)}
+
+                                        </TableCell>
+                                        <TableCell align="center">
+                                            {compra.NombreProveedor}
+
+                                        </TableCell>
+
+                                        <TableCell align="center">
+                                            {compra.Estado}
+
+                                        </TableCell>
+                                        <TableCell align="center">
+                                            <Tooltip title="Ver Detalle de Compra" arrow  >
+                                            <Button onClick={() => verDetalle(compra.IdCompra)}>
+                                                <RemoveRedEyeIcon />
+                                            </Button>
+                                            </Tooltip>
+                                        </TableCell>
+
+                                        <TableCell align="center">
+                                            <Tooltip title="Completar Compra" arrow >
+                                                <Button disabled={compra.Estado == "pendiente" ? false : true} onClick={() => modalCambioEstado("completar", compra.IdCompra)} >
+                                                    <CheckCircleOutlineIcon ></CheckCircleOutlineIcon>
+                                                </Button>
+                                            </Tooltip>
+                                        </TableCell>
+                                        <TableCell align="center">
+                                            <Tooltip title="Cancelar Compra" arrow >
+                                                <Button disabled={compra.Estado == "pendiente" ? false : true} onClick={() => modalCambioEstado("cancelar", compra.IdCompra)} >
+                                                    <DeleteForever />
+                                                </Button>
+                                            </Tooltip>
+                                        </TableCell>
+
+
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </div >
+            </div>
+            {abrirModalEstado.abrir && abrirModalEstado.estado == "completar" && (<ModalCambioEstado texto="Deseas confirmar la venta " id={abrirModalEstado.id} ></ModalCambioEstado>)}
+            {abrirModalEstado.abrir && abrirModalEstado.estado == "cancelar" && (<ModalEstadoCancelar texto="Deseas cancelar la venta " id={abrirModalEstado.id}></ModalEstadoCancelar>)
+            }
+            {modalDetalle.estado && (<ModalDetalle id={modalDetalle.id}></ModalDetalle>)}
         </>
     )
 }
