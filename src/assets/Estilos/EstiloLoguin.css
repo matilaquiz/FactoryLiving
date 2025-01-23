@@ -1,0 +1,33 @@
+.pantallaCompleta {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.loginEstructura {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(209, 209, 235);
+  border-radius: 20px;
+  height: 500px;
+}
+
+.botones {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.loginEstructura form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+}
+
+h2 {
+  text-align: center;
+}

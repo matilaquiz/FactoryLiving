@@ -8,12 +8,12 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-export function SelectorMesVentas() {
-  const { setMes, setAnio } = useContext(GaficoVentasContext);
+export function SelectorDateCompra() {
+  const { setMesCompras, setAnioCompras } = useContext(GaficoVentasContext);
 
   const changeDate = (d) => {
-    setMes(d.$M + 1);
-    setAnio(d.$y);
+    setMesCompras(d.$M + 1);
+    setAnioCompras(d.$y);
   };
   return (
     <div>
@@ -23,7 +23,6 @@ export function SelectorMesVentas() {
           minWidth: 200,
           background: "rgba(255, 0, 0, 0.1)",
           width: "90%",
-          marginLeft: "-200px",
         }}
       >
         <LocalizationProvider dateAdapter={AdapterDayjs}>

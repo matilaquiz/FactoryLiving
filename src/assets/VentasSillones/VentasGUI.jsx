@@ -4,40 +4,83 @@ import { TablaVenta } from "../VentasSillones/TablaVenta";
 import { ProductosVentas } from "./ProductosVentas";
 import "../Estilos/EstiloVenta.css";
 import { ProductosProvider } from "../Context/ProductosProvider";
-import { useState } from "react";
-
+import { useContext, useState } from "react";
+import { VentasProvider } from "../Context/VentasProvider";
+import { Box } from "@mui/material";
+import Button from "@mui/material/Button";
+import { ModalVentas } from "./ModalVentas";
+import { VentasContext } from "../Context/VentasContext";
 
 export const VentasGUI = () => {
-  const [isOpen, setIsOPen] = useState();
+  const { venta, setVenta } = useContext(VentasContext);
 
-  const toggleMenu = () => {
-    setIsOPen(!isOpen)
-  }
+  const vender = () => {
+    setVenta("vender");
+  };
+
+  const cambiarEstado = () => {
+    setVenta("cambiarEstado");
+  };
   return (
-    <div className="BodyVentaGUI">
-      <div className="header1">
-      <div className="menu-hambur" onClick={toggleMenu}>
-          <img src="/src/Images/menu.png"/>
-         
-        </div>
-        <h3>VENTAS</h3>
-      </div>
-      <div className="contenedor-central">
-        <ProductosProvider>
-          <div className={`Menu-principal${isOpen ? "open" : ""}`}>
-            <Menu />
+    <div className="subCuerpo">
+      <div className="botonera">
+        <Box
+          sx={{
+            "& button": { m: 1 },
+            background: "#bea88f",
+            borderRadius: "10px",
+            marginRight: "10px",
+            boxShadow: "gray 5px 5px",
+            ":hover": { boxShadow: "0px 0px" },
+            transition: "1s",
+          }}
+        >
+          <div>
+            <Button
+              size="large"
+              onClick={vender}
+              sx={{ color: "rgb(80,80,80)", fontWeight: "bold" }}
+            >
+              Formulario para Presupuesto
+            </Button>
           </div>
+        </Box>
+
+        <Box
+          sx={{
+            "& button": { m: 1 },
+            background: "#bea88f",
+            borderRadius: "10px",
+            marginRight: "10px",
+            boxShadow: "gray 5px 5px",
+            ":hover": { boxShadow: "0px 0px" },
+            transition: "1s",
+          }}
+        >
+          <div>
+            <Button
+              size="large"
+              onClick={cambiarEstado}
+              sx={{ color: "rgb(80,80,80)", fontWeight: "bold" }}
+            >
+              Formulario Orden de Compra
+            </Button>
+          </div>
+        </Box>
+      </div>
+
+      {venta === "vender" ? (
+        <div className="contenedor-central">
           <div className="boxProducto">
             <ProductosVentas />
           </div>
           <div className="tablaProducto">
             <TablaVenta />
           </div>
-        </ProductosProvider>
-      </div>
-      <div className="footer1">
-        @copyrigth
-      </div>
+        </div>
+      ) : (
+        <ModalVentas></ModalVentas>
+      )}
     </div>
   );
 };
