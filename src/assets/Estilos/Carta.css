@@ -1,16 +1,14 @@
-.carta{
-    width: 25%;
-    background:#c2b09c;
-   /* margin-top: 50px;*/
-    margin:10px 0px;
-
+.carta {
+  width: 25%;
+  background: #c2b09c;
+  /* margin-top: 50px;*/
+  margin: 10px 0px;
 }
 
 .carta-media {
-  background:#d3c6b9;
+  background: #d3c6b9;
 }
 
 .titulo-componente {
-  background:#bea88f;
-  
+  background: #bea88f;
 }

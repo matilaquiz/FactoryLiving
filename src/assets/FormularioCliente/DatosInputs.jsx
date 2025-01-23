@@ -36,7 +36,7 @@ export const DatosInputs = () => {
 
     dni: /^\d{7,8}$/, // 7 a 14 numeros.
     domicilio: /^\d{1,5}$/,
-    instagram:/^@[a-zA-Z0-9_.-]+$/
+    instagram: /^@[a-zA-Z0-9_.-]+$/,
   };
 
   function handleDNI(event) {
@@ -72,7 +72,7 @@ export const DatosInputs = () => {
   const traerLocalidad = async (id) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/localidadxprovincia/${id}`,
+        `http://localhost:3000/localidadxprovincia/${id}`
       );
       setListaLocalidad(response.data);
     } catch (error) {
@@ -89,7 +89,7 @@ export const DatosInputs = () => {
   const traerBarrio = async (id) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/barrioxlocalidad/${id}`,
+        `http://localhost:3000/barrioxlocalidad/${id}`
       );
       setListaBarrio(response.data);
     } catch (error) {
@@ -126,7 +126,7 @@ export const DatosInputs = () => {
     validarCalle();
     validarTelefono();
     validarEmail();
-    validarInstagaram()
+    validarInstagaram();
 
     let cliente = {
       Dni: dniCliente,
@@ -143,19 +143,16 @@ export const DatosInputs = () => {
       Instagram: InstaCliente,
     };
 
-  
-
     const saveClient = async () => {
       const axiosData = idCliente.modificar
-       
         ? {
-          method: axios.put,
-          endpoint: "http://localhost:3000/cargarCliente/" + idCliente.id,
-        }
+            method: axios.put,
+            endpoint: "http://localhost:3000/cargarCliente/" + idCliente.id,
+          }
         : {
-          method: axios.post,
-          endpoint: "http://localhost:3000/cargarCliente",
-        };
+            method: axios.post,
+            endpoint: "http://localhost:3000/cargarCliente",
+          };
 
       try {
         const response = await axiosData.method(axiosData.endpoint, cliente);
@@ -179,7 +176,7 @@ export const DatosInputs = () => {
       console.log("input valido");
     } else {
       setMensajeErrorDNI(
-        "El dni no lleva ni puntos mi letras y son 6 o 7 numeros ",
+        "El dni no lleva ni puntos mi letras y son 6 o 7 numeros "
       );
     }
   }
@@ -196,7 +193,7 @@ export const DatosInputs = () => {
       console.log("input valido");
     } else {
       setMensajeErrorNombre(
-        "El Nombre tiene que tener mas de tres letras y  solo puede contener letras y espacio entre palabras.",
+        "El Nombre tiene que tener mas de tres letras y  solo puede contener letras y espacio entre palabras."
       );
     }
   }
@@ -212,7 +209,7 @@ export const DatosInputs = () => {
       console.log("input valido");
     } else {
       setMensajeErrorApellido(
-        "solo puede contener letras y espacio entre palabras.",
+        "solo puede contener letras y espacio entre palabras."
       );
     }
   }
@@ -282,10 +279,14 @@ export const DatosInputs = () => {
   const [MensajeErroInstagaram, setMensajeErrorInstagram] = useState("");
 
   function validarInstagaram() {
-    if (expresiones.instagram.test(InstaCliente)) {
-      console.log("input valido");
+    if (!InstaCliente) {
+      return;
     } else {
-      setMensajeErrorInstagram("el instagram tiene que tener @ ");
+      if (expresiones.instagram.test(InstaCliente)) {
+        console.log("input valido");
+      } else {
+        setMensajeErrorInstagram("el instagram tiene que tener @ ");
+      }
     }
   }
 
@@ -311,7 +312,7 @@ export const DatosInputs = () => {
     const fetchCliente = async (id) => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/clienteMod/${id}`,
+          `http://localhost:3000/clienteMod/${id}`
         );
         setDniCliente(response.data.Dni);
         setnombreCliente(response.data.Nombre);
@@ -321,7 +322,7 @@ export const DatosInputs = () => {
         setDpto(response.data.Dpto);
         setTelefono(response.data.Telefono);
         setEmail(response.data.Email);
-        setInsta(response.data.Instagram)
+        setInsta(response.data.Instagram);
 
         setProvincia(response.data.IdProvincia);
         await traerLocalidad(response.data.IdProvincia);
@@ -478,7 +479,6 @@ export const DatosInputs = () => {
               ))}
             </Select>
           </FormControl>
-
         </div>
       </div>
       <div className="partes-formu">
@@ -515,7 +515,7 @@ export const DatosInputs = () => {
             onFocus={limpiarInstagram}
             fullWidth
           />
-           <p className="mensajesError">{MensajeErroInstagaram}</p>
+          <p className="mensajesError">{MensajeErroInstagaram}</p>
         </div>
       </div>
 

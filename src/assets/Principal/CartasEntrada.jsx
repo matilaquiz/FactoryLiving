@@ -1,8 +1,8 @@
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
 import "../Estilos/Carta.css";
 
 export default function CartasEntrada({
@@ -12,7 +12,16 @@ export default function CartasEntrada({
   alt = "",
 }) {
   return (
-    <Card sx={{ maxWidth: 300 }} className="carta">
+    <Card
+      sx={{
+        maxWidth: 300,
+        borderRadius: "15px",
+        "&:hover": {
+          filter: "brightness(1.2)", // Incrementa el brillo
+        },
+      }}
+      className="carta"
+    >
       <CardActionArea href={url}>
         <CardMedia
           className="carta-media"
