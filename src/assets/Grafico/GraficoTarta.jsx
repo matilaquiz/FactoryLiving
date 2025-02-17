@@ -12,6 +12,7 @@ import { GraficoTartaVentas } from "./GraficoTartaVentas";
 import { SelectorMesVentas } from "./SelectorMesVentas";
 import { GraficoVentasProvaider } from "../Context/GraficoVentasProvider";
 import { SelectorDateCompra } from "./SelectorDateCompra";
+import { GraficoLinealVentas } from "./GaficoLinealVentas";
 
 export const GraficoTarta = () => {
   const [isOpen, setIsOPen] = useState();
@@ -69,6 +70,12 @@ export const GraficoTarta = () => {
             <div className="Grafico">
               <GraficoTartaVentas />
               <SelectorMesVentas></SelectorMesVentas>
+            </div>
+            <h1 className="H1-Componente">
+              GRÁFICO LINEAL (Productos mas vendidos por mes )
+            </h1>
+            <div className="Grafico">
+              <GraficoLinealVentas></GraficoLinealVentas>
             </div>
           </div>
         </GraficoVentasProvaider>

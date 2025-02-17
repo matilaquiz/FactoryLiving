@@ -192,6 +192,7 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import RadioButton from "./RadioButton";
 import ModalAviso from "./ModalAviso";
+import { ModalConfirmacion } from "./ModalConfirmacion";
 
 export const TablaVenta = () => {
   const [clientes, setClientes] = useState([]);
@@ -203,7 +204,8 @@ export const TablaVenta = () => {
   const [msjErrorFecha, setMsjErrorFecha] = useState("");
   const { estadoVenta } = useContext(VentasContext);
   const [modalAviso, setModalAviso] = useState(false);
-  console.log(clienteElegido);
+  const [modalConfirmacion, setModalConfirmacion] = useState(false);
+  const [body, setBody] = useState(false);
 
   const hanldeFecha = (e) => {
     setFechaVenta(e);
@@ -264,8 +266,40 @@ export const TablaVenta = () => {
       return true;
     }
   };
+  const cerrar = () => {
+    setModalConfirmacion(false);
+  };
 
-  const onSubmit = async (event) => {
+  const okCargarVenta = () => {
+    const cargar = async () => {
+      const resp = await axios.post("http://localhost:3000/cargarVenta", body);
+      // confirm(resp.data);
+      if (body.estado === "completado" && resp.status === 200) {
+        const lista = await axios.get(
+          `http://localhost:3000/getMaterialesVentas/${resp.data.idVenta}`
+        );
+        const res = await axios.put(
+          `http://localhost:3000/actualizarStock/`,
+          lista.data
+        );
+        console.log(res);
+      }
+      setModalConfirmacion(false);
+      if (resp.status === 200) {
+        setModalAviso(true);
+      }
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    };
+    cargar();
+  };
+
+  const confirmarModalVenta = () => {
+    setModalConfirmacion(true);
+  };
+
+  const onSubmit = (event) => {
     event.preventDefault();
     //    const cantidadValida = validarCantidad(productoElegido);
     const clienteValido = validarCliente(clienteElegido);
@@ -273,21 +307,13 @@ export const TablaVenta = () => {
     const fechaSold = getFecha();
 
     if (clienteValido && productoTrue && fechaSold) {
-      const body = {
+      setBody({
         productos: productoElegido,
         idCliente: clienteElegido,
         fechaVenta: fechaSold,
         estado: estadoVenta,
-      };
-
-      const resp = await axios.post("http://localhost:3000/cargarVenta", body);
-      // confirm(resp.data);
-      if (resp.status === 200) {
-        setModalAviso(true);
-      }
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
+      });
+      confirmarModalVenta();
     }
   };
 
@@ -307,10 +333,7 @@ export const TablaVenta = () => {
     <>
       <form className="formularioventas" action="" onSubmit={onSubmit}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DemoContainer
-            components={["DatePicker"]}
-            sx={{ alignSelf: "end", marginBottom: "15px" }}
-          >
+          <DemoContainer components={["DatePicker"]} sx={{ alignSelf: "end" }}>
             <DatePicker
               required
               label="Fecha"
@@ -322,7 +345,9 @@ export const TablaVenta = () => {
             />
           </DemoContainer>
         </LocalizationProvider>
-        <p className="Error">{msjErrorFecha}</p>
+        <p className="Error" style={{ alignSelf: "end", marginBottom: "20px" }}>
+          {msjErrorFecha}
+        </p>
 
         <TableContainer component={Paper} className="tablacontenedoraprincipal">
           <Table>
@@ -332,10 +357,13 @@ export const TablaVenta = () => {
                 <TableCell align="right">Producto</TableCell>
                 <TableCell align="right">Descripción</TableCell>
                 <TableCell align="right">Precio</TableCell>
+                {productoElegido.length > 0 ? (
+                  <TableCell align="right">cancelar</TableCell>
+                ) : null}
               </TableRow>
             </TableHead>
             <TableBody>
-              {productoElegido ? (
+              {productoElegido.length > 0 ? (
                 productoElegido.map((product) => (
                   <TableRow key={product.id}>
                     <TableCell component="th" scope="row">
@@ -414,6 +442,15 @@ export const TablaVenta = () => {
 
       {modalAviso ? (
         <ModalAviso texto={"La venta se cargo correctamente"}></ModalAviso>
+      ) : (
+        ""
+      )}
+
+      {modalConfirmacion ? (
+        <ModalConfirmacion
+          cerrar={cerrar}
+          okCargarVenta={okCargarVenta}
+        ></ModalConfirmacion>
       ) : (
         ""
       )}

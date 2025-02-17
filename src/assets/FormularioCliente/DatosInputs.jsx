@@ -19,7 +19,7 @@ export const DatosInputs = () => {
   const [apellidoCliente, setApellidoCliente] = useState("");
   const [calleCliente, setcalleCliente] = useState("");
   const [numero, setNumero] = useState("");
-  const [dpto, setDpto] = useState("");
+  const [dpto, setDpto] = useState();
   // const [fecha, setFecha] = useState({})
   const [barrio, setBarrio] = useState("");
   const [provincia, setProvincia] = useState("");
@@ -72,9 +72,9 @@ export const DatosInputs = () => {
   const traerLocalidad = async (id) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/localidadxprovincia/${id}`
+        `https://apis.datos.gob.ar/georef/api/municipios?provincia=${id}&max=5000`
       );
-      setListaLocalidad(response.data);
+      setListaLocalidad(response.data.municipios);
     } catch (error) {
       console.error(error);
     }
@@ -89,9 +89,9 @@ export const DatosInputs = () => {
   const traerBarrio = async (id) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/barrioxlocalidad/${id}`
+        `https://apis.datos.gob.ar/georef/api/localidades?municipio=${id}&max=5000`
       );
-      setListaBarrio(response.data);
+      setListaBarrio(response.data.localidades);
     } catch (error) {
       console.error(error);
     }
@@ -142,6 +142,8 @@ export const DatosInputs = () => {
       Email: emailCliente,
       Instagram: InstaCliente,
     };
+
+    console.log(cliente);
 
     const saveClient = async () => {
       const axiosData = idCliente.modificar
@@ -299,14 +301,17 @@ export const DatosInputs = () => {
   useEffect(() => {
     const fetchProvincia = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/provincias");
-        setListaProvincias(response.data);
+        const response = await axios.get(
+          "https://apis.datos.gob.ar/georef/api/provincias"
+        );
+        setListaProvincias(response.data.provincias);
       } catch (error) {
         console.error(error);
       }
     };
     fetchProvincia();
   }, []);
+  console.log(listaProvincias);
 
   useEffect(() => {
     const fetchCliente = async (id) => {
@@ -429,8 +434,8 @@ export const DatosInputs = () => {
                 <em>None</em>
               </MenuItem>
               {listaProvincias.map((provincia) => (
-                <MenuItem key={provincia.Id} value={provincia.Id}>
-                  {provincia.Nombre}
+                <MenuItem key={provincia.id} value={provincia.id}>
+                  {provincia.nombre}
                 </MenuItem>
               ))}
             </Select>
@@ -452,8 +457,8 @@ export const DatosInputs = () => {
                 <em>seleccione una provincia..</em>
               </MenuItem>
               {listaLocalidad.map((localidad) => (
-                <MenuItem key={localidad.Id} value={localidad.Id}>
-                  {localidad.Nombre}
+                <MenuItem key={localidad.id} value={localidad.id}>
+                  {localidad.nombre}
                 </MenuItem>
               ))}
             </Select>
@@ -473,8 +478,8 @@ export const DatosInputs = () => {
                 <em>None</em>
               </MenuItem>
               {listaBarrio.map((barrio) => (
-                <MenuItem key={barrio.Id} value={barrio.Id}>
-                  {barrio.Nombre}
+                <MenuItem key={barrio.id} value={barrio.id}>
+                  {barrio.nombre}
                 </MenuItem>
               ))}
             </Select>

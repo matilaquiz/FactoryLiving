@@ -1,5 +1,5 @@
 html {
- height: 110%;
+  height: 110%;
   background-image: url("/src/images/fondo1.jpg");
   background-size: cover;
   background-position: center;
@@ -22,7 +22,6 @@ body::before {
   align-items: center;
   padding: 40px;
   margin-top: 40px;
-
 }
 
 .cartas-unidas {
@@ -55,4 +54,18 @@ body::before {
   .cartas-unidas > div {
     flex: 1 1 100%;
   }
+}
+
+.usuario {
+  display: flex;
+  justify-content: space-between;
+}
+
+.usuario h1 {
+  margin-right: 20px;
+  margin-top: 24px;
+  font-size: 30px;
+  letter-spacing: 3px;
+  color: white;
+  text-shadow: 5px 5px 15px black;
 }

@@ -23,7 +23,7 @@ export default function CardsProductos({
     ]);
   };
 
-  let imag = `/public/images/${img}`;
+  let imag = `/src/images/${img}`;
 
   return (
     <Card

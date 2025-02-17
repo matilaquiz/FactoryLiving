@@ -41,7 +41,7 @@ export const VentasGUI = () => {
               onClick={vender}
               sx={{ color: "rgb(80,80,80)", fontWeight: "bold" }}
             >
-              Formulario para Presupuesto
+              Crear Nueva Venta
             </Button>
           </div>
         </Box>
@@ -63,7 +63,7 @@ export const VentasGUI = () => {
               onClick={cambiarEstado}
               sx={{ color: "rgb(80,80,80)", fontWeight: "bold" }}
             >
-              Formulario Orden de Compra
+              Listado de Ventas
             </Button>
           </div>
         </Box>

@@ -36,7 +36,7 @@ const GraficoTarta2 = () => {
   useEffect(() => {
     const traerGraficos2 = async () => {
       try {
-        const resp = await axios.get(`http://localhost:3000/graficoTortaMP/1`);
+        const resp = await axios.get(`http://localhost:3000/graficoTortaMP/10`);
         console.log(resp.data);
         procesarDatos(resp.data);
       } catch (e) {
@@ -65,8 +65,8 @@ const GraficoTarta2 = () => {
     // Calculamos el aumento para cada material
     Object.keys(preciosPorMaterial).forEach((material) => {
       const precios = preciosPorMaterial[material];
-      const precioAñoPasado = precios[new Date().getFullYear() - 1];
-      const precioAñoActual = precios[new Date().getFullYear()];
+      const precioAñoPasado = precios[new Date().getFullYear() - 2];
+      const precioAñoActual = precios[new Date().getFullYear() - 1];
 
       if (precioAñoPasado && precioAñoActual) {
         const aumento =

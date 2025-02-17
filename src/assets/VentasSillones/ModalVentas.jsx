@@ -15,6 +15,7 @@ import "../Estilos/ModalCompra.css";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Tooltip from "@mui/material/Tooltip";
+import { ModalDetalles } from "./ModalDetalles";
 
 export function ModalVentas() {
   const [listaVentas, setListaVentas] = useState([]);
@@ -23,13 +24,12 @@ export function ModalVentas() {
     id: null,
     estado: null,
   });
-  //   const {
-  //     setAbrirModal,
-  //     modalDetalle,
-  //     setModalDetalle,
-  //     abrirModalEstado,
-  //     setAbrirModalEstado,
-  //   } = useContext(ComprasContext);
+
+  const [modalDetalle, setModalDetalle] = useState({
+    id: null,
+    estado: false,
+    estado: null,
+  });
 
   const fetchVentas = async () => {
     try {
@@ -50,10 +50,6 @@ export function ModalVentas() {
 
   const modalCancelarEstado = (estado, id) => {
     setHookModal({ abrir: true, estado: estado, id: id });
-  };
-
-  const verDetalle = (id) => {
-    setModalDetalle({ id: id, estado: true });
   };
 
   const cambiarFecha = (fecha) => {
@@ -89,6 +85,13 @@ export function ModalVentas() {
     });
   };
 
+  const verDetalles = (id, estado) => {
+    setModalDetalle({ id: id, estado: true, estado: estado });
+  };
+
+  const cerrarModalDet = () => {
+    setModalDetalle({ id: null, estado: false });
+  };
   return (
     <>
       <TableContainer
@@ -165,7 +168,9 @@ export function ModalVentas() {
                 </TableCell>
                 <TableCell align="center">
                   <Tooltip title="Ver Detalle de Compra" arrow>
-                    <Button onClick>
+                    <Button
+                      onClick={() => verDetalles(venta.IdVentas, venta.estado)}
+                    >
                       <RemoveRedEyeIcon />
                     </Button>
                   </Tooltip>
@@ -233,9 +238,13 @@ export function ModalVentas() {
           actualizarVenta={fetchVentas}
         ></ModalEstadoVenta>
       )}
-      {/* {modalDetalle.estado && (
-        <ModalDetalle id={modalDetalle.id}></ModalDetalle>
-      )} */}
+      {modalDetalle.estado && (
+        <ModalDetalles
+          id={modalDetalle.id}
+          estado={modalDetalle.estado}
+          cerrarModalDet={cerrarModalDet}
+        ></ModalDetalles>
+      )}
     </>
   );
 }

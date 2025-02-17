@@ -1,22 +1,21 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from "react";
 import "../Estilos/Menu.css";
 import { TextField } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import axios from 'axios';
-import { ProveedorContext } from '../Context/ProveedorContext';
-
+import axios from "axios";
+import { ProveedorContext } from "../Context/ProveedorContext";
 
 export const FormlarioProveedores = () => {
-  const { idProveedor } = useContext(ProveedorContext)
+  const { idProveedor } = useContext(ProveedorContext);
   const [identificadorProveedor, setIdentificadorProveedor] = useState("");
   const [nombreProveedor, setNombreProveedor] = useState("");
   const [tipoProveedor, setTipoProveedor] = useState("");
   const [calleProveedor, setCalleProveedor] = useState("");
   const [numeroProveedor, setNumeroProveedor] = useState("");
-  const [dptoProveedor, setDptoProveedor] = useState("");
+  const [dptoProveedor, setDptoProveedor] = useState();
   const [provinciaProveedor, setProvinciaProveedor] = useState("");
   const [localidadProveedor, setLocalidadProveedor] = useState("");
   const [barrioProveedor, setBarrioProveedor] = useState("");
@@ -24,77 +23,74 @@ export const FormlarioProveedores = () => {
   const [emailProveedor, setEmailProveedor] = useState("");
   const [instagramProveedor, setInstagramProveedor] = useState("");
   //es un hook para saber la respuesta de la api al cargar o modificar cliente
-  const[proveedores,setProveedores]=useState()
+  const [proveedores, setProveedores] = useState();
 
   const expresiones = {
     nombre: /^[a-zA-ZÀ-ÿ\s]{3,40}$/i, // Letras y espacios, pueden llevar acentos.
     tipo: /^[a-zA-ZÀ-ÿ\s]{5,60}$/i,
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     telefono: /^\d{7,14}$/, // 7 a 14 numeros.
-    Identificador: /^\d{1,2}-?\d{1,10}-?\d{1}$/, 
-    instagram:/^@[a-zA-Z0-9_.-]+$/,
+    Identificador: /^\d{1,2}-?\d{1,10}-?\d{1}$/,
+    instagram: /^@[a-zA-Z0-9_.-]+$/,
     domicilio: /^\d{1,5}$/,
   };
-  
-  console.log(idProveedor)
-  // funciones para cambiar input  
+
+  console.log(idProveedor);
+  // funciones para cambiar input
   const cambiarIdentificador = (event) => {
-    setIdentificadorProveedor(event.target.value)
-  }
+    setIdentificadorProveedor(event.target.value);
+  };
   const cambiarNombre = (event) => {
-    setNombreProveedor(event.target.value)
-  }
+    setNombreProveedor(event.target.value);
+  };
   const cambiarTipoProveedor = (event) => {
-    setTipoProveedor(event.target.value)
-  }
+    setTipoProveedor(event.target.value);
+  };
   const cambiarCalle = (event) => {
-    setCalleProveedor(event.target.value)
-  }
+    setCalleProveedor(event.target.value);
+  };
   const cambiarNumero = (event) => {
-    setNumeroProveedor(event.target.value)
-  }
+    setNumeroProveedor(event.target.value);
+  };
   const cambiarDpto = (event) => {
-    setDptoProveedor(event.target.value)
-  }
+    setDptoProveedor(event.target.value);
+  };
   const cambiarTelefono = (event) => {
-    setTelefonoProveedor(event.target.value)
-  }
+    setTelefonoProveedor(event.target.value);
+  };
   const cambiarEmail = (event) => {
-    setEmailProveedor(event.target.value)
-  }
+    setEmailProveedor(event.target.value);
+  };
   const cambiarInstagram = (event) => {
-    setInstagramProveedor(event.target.value)
-  }
+    setInstagramProveedor(event.target.value);
+  };
 
   const cambiarProvincia = (event) => {
-    const id = event.target.value
-    setProvinciaProveedor(id)
-    fetchLocalidadProveedor(id)
-  }
+    const id = event.target.value;
+    setProvinciaProveedor(id);
+    fetchLocalidadProveedor(id);
+  };
 
   const cambiarLocalidad = (event) => {
-    const id = event.target.value
-    setLocalidadProveedor(id)
-    fetchBarrioProveedor(id)
-  }
+    const id = event.target.value;
+    setLocalidadProveedor(id);
+    fetchBarrioProveedor(id);
+  };
 
   const cambiarBarrio = (event) => {
-    const id = event.target.value
-    setBarrioProveedor(id)
+    const id = event.target.value;
+    setBarrioProveedor(id);
+  };
 
-  }
-
-
-
-
-  const [MensajeErrorIdentificador, setMensajeErrorIdentificador] = useState("");
+  const [MensajeErrorIdentificador, setMensajeErrorIdentificador] =
+    useState("");
 
   function validarIdentificador() {
     if (expresiones.Identificador.test(identificadorProveedor)) {
       console.log("input valido");
     } else {
       setMensajeErrorIdentificador(
-        "El CUIT/CUIL debe ingresarse: xx-xxxxxxxx-x ",
+        "El CUIT/CUIL debe ingresarse: xx-xxxxxxxx-x "
       );
     }
   }
@@ -111,7 +107,7 @@ export const FormlarioProveedores = () => {
       console.log("input valido");
     } else {
       setMensajeErrorNombre(
-        "El Nombre tiene que tener mas de tres letras y  solo puede contener letras y espacio entre palabras.",
+        "El Nombre tiene que tener mas de tres letras y  solo puede contener letras y espacio entre palabras."
       );
     }
   }
@@ -127,7 +123,7 @@ export const FormlarioProveedores = () => {
       console.log("input valido");
     } else {
       setMensajeErrorTipo(
-        "solo puede contener letras y espacio entre palabras.",
+        "solo puede contener letras y espacio entre palabras."
       );
     }
   }
@@ -195,10 +191,14 @@ export const FormlarioProveedores = () => {
   const [MensajeErrorInsta, setMensajeErrorInsta] = useState("");
 
   function validarInsta() {
-    if (expresiones.instagram.test(instagramProveedor)) {
-      console.log("input valido");
+    if (!instagramProveedor) {
+      return;
     } else {
-      setMensajeErrorInsta("el instagram tiene que tener @ ");
+      if (expresiones.instagram.test(instagramProveedor)) {
+        console.log("input valido");
+      } else {
+        setMensajeErrorInsta("el instagram tiene que tener @ ");
+      }
     }
   }
 
@@ -206,15 +206,16 @@ export const FormlarioProveedores = () => {
     setMensajeErrorInsta("");
   }
 
-
   // buscar en BD provincias , localidad y barrio
   const [listaProvinciasProveedor, setListaProvinciasProveedor] = useState([]);
 
   useEffect(() => {
     const fetchProvinciaProveedor = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/provincias");
-        setListaProvinciasProveedor(response.data);
+        const response = await axios.get(
+          "https://apis.datos.gob.ar/georef/api/provincias"
+        );
+        setListaProvinciasProveedor(response.data.provincias);
       } catch (error) {
         console.error(error);
       }
@@ -222,43 +223,35 @@ export const FormlarioProveedores = () => {
     fetchProvinciaProveedor();
   }, []);
 
-
-  const [listaLocalidadProveedor, setListaLocalidadProveedor] = useState([])
+  const [listaLocalidadProveedor, setListaLocalidadProveedor] = useState([]);
   const fetchLocalidadProveedor = async (id) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/localidadxprovincia/${id}`,
+        `https://apis.datos.gob.ar/georef/api/municipios?provincia=${id}&max=5000`
       );
-      setListaLocalidadProveedor(response.data);
-
+      setListaLocalidadProveedor(response.data.municipios);
     } catch (error) {
       console.error(error);
     }
   };
 
-
-  const [listaBarrioProveedor, setListaBarrioProveedor] = useState([])
+  const [listaBarrioProveedor, setListaBarrioProveedor] = useState([]);
   const fetchBarrioProveedor = async (id) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/barrioxlocalidad/${id}`,
+        `https://apis.datos.gob.ar/georef/api/localidades?municipio=${id}&max=5000`
       );
-      setListaBarrioProveedor(response.data);
-
+      setListaBarrioProveedor(response.data.localidades);
     } catch (error) {
       console.error(error);
     }
   };
 
-
   //funcion limpiar input
-
-
 
   //ACA se carga el proveedor y se llama al ednpoitn de crear o cambiar el proveedor
   const onSubmit = (event) => {
-    event.preventDefault()
-
+    event.preventDefault();
 
     // crear objeto Proveedor con sus atributos
     const proveedor = {
@@ -274,22 +267,19 @@ export const FormlarioProveedores = () => {
       TelefonoProveedor: telefonoProveedor,
       MailProveedor: emailProveedor,
       InstagramProveedor: instagramProveedor,
-    }
-
-
-    
+    };
 
     //cargar y modificar a BD proveedor
     const saveProveedor = async () => {
       const axiosData = idProveedor.modificar
         ? {
-          metodo: axios.put,
-          endpoint: "http://localhost:3000/cargarProveedor/" + idProveedor.id,
-        }
+            metodo: axios.put,
+            endpoint: "http://localhost:3000/cargarProveedor/" + idProveedor.id,
+          }
         : {
-          metodo: axios.post,
-          endpoint: "http://localhost:3000/cargarProveedor/"
-        }
+            metodo: axios.post,
+            endpoint: "http://localhost:3000/cargarProveedor/",
+          };
 
       try {
         const response = await axiosData.metodo(axiosData.endpoint, proveedor);
@@ -298,22 +288,17 @@ export const FormlarioProveedores = () => {
       } catch (error) {
         console.error(error);
       }
-     
     };
     saveProveedor();
-   
-  }
-  console.log(proveedores)
-  
+  };
+  console.log(proveedores);
 
   useEffect(() => {
-    
     const fetchProveedor = async (id) => {
-      
       const response = await axios.get(
-        `http://localhost:3000/ProveedorMod/${id}`,
+        `http://localhost:3000/ProveedorMod/${id}`
       );
-      
+
       setIdentificadorProveedor(response.data.Identificador);
       setNombreProveedor(response.data.NombreProveedor);
       setTipoProveedor(response.data.TipoProveedor);
@@ -336,13 +321,10 @@ export const FormlarioProveedores = () => {
   }, [idProveedor.id]);
 
   return (
-
     <form action="" onSubmit={onSubmit} className="formularioCliente">
       <div className="partes-formu">
         <p>Datos de Proveedor</p>
         <div>
-         
-
           <TextField
             id="standard-basic"
             label="CUIT/CUIL"
@@ -429,12 +411,10 @@ export const FormlarioProveedores = () => {
                 <em>Seleccione una provincia</em>
               </MenuItem>
               {listaProvinciasProveedor.map((provincia) => (
-                <MenuItem key={provincia.Id} value={provincia.Id}>
-                  {provincia.Nombre}
+                <MenuItem key={provincia.id} value={provincia.id}>
+                  {provincia.nombre}
                 </MenuItem>
-              ))
-              }
-
+              ))}
             </Select>
           </FormControl>
           <FormControl sx={{ my: 1, minWidth: 120 }} fullWidth>
@@ -455,14 +435,10 @@ export const FormlarioProveedores = () => {
               </MenuItem>
 
               {listaLocalidadProveedor.map((localidad) => (
-                <MenuItem key={localidad.Id} value={localidad.Id}>
-                  {localidad.Nombre}
+                <MenuItem key={localidad.id} value={localidad.id}>
+                  {localidad.nombre}
                 </MenuItem>
-              ))
-              }
-
-
-
+              ))}
             </Select>
           </FormControl>
           <FormControl sx={{ my: 1, minWidth: 120 }} fullWidth>
@@ -481,20 +457,16 @@ export const FormlarioProveedores = () => {
               </MenuItem>
 
               {listaBarrioProveedor.map((barrio) => (
-                <MenuItem key={barrio.Id} value={barrio.Id}>
-                  {barrio.Nombre}
+                <MenuItem key={barrio.id} value={barrio.id}>
+                  {barrio.nombre}
                 </MenuItem>
-              ))
-              }
-
-
+              ))}
             </Select>
           </FormControl>
-
         </div>
       </div>
       <div className="partes-formu">
-        <p >Contacto</p>
+        <p>Contacto</p>
         <div className="partes-p">
           <TextField
             id="standard-basic"
@@ -530,14 +502,11 @@ export const FormlarioProveedores = () => {
           <p className="mensajesError">{MensajeErrorInsta}</p>
         </div>
       </div>
-      { idProveedor.modificar
-      ?
-      <button className="botonRegistrar">MODIFICAR</button>
-      :
-      <button className="botonRegistrar">REGISTRAR</button>
-      }
+      {idProveedor.modificar ? (
+        <button className="botonRegistrar">MODIFICAR</button>
+      ) : (
+        <button className="botonRegistrar">REGISTRAR</button>
+      )}
     </form>
-  )
-}
-
-
+  );
+};
