@@ -16,6 +16,17 @@ export default function ModalEstadoVenta({
       `http://localhost:3000/confirmarVenta/${id}/${estado}`
     );
 
+    if (res.status === 200) {
+      const lista = await axios.get(
+        `http://localhost:3000/getMaterialesVentas/${id}`
+      );
+      const resp = await axios.put(
+        `http://localhost:3000/actualizarStock/`,
+        lista.data
+      );
+      console.log(resp);
+    }
+
     actualizarVenta();
     cerrarModal();
   };

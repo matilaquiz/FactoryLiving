@@ -9,6 +9,8 @@ import { LoginContext } from "../Context/LoginContext";
 export function PrincipalLogin() {
   const [usuario, setUsuario] = useState("");
   const [password, setPassword] = useState("");
+  const [mensajeError, setMensajeError] = useState("");
+
   const [listadoUsuario, setListadoUsuario] = useState([]);
   const { abrir, setAbrir } = useContext(LoginContext);
   const navigate = useNavigate();
@@ -30,55 +32,42 @@ export function PrincipalLogin() {
   const loginUsuario = (e) => {
     e.preventDefault();
 
-    const redirigir = () => {
-      if (abrir) {
+    const redirigir = (redirigir) => {
+      if (redirigir) {
         navigate("/Principal");
       }
     };
 
     if (listadoUsuario.length > 0) {
-      const usuarioEncontrado = listadoUsuario.some(
+      const usuarioEncontrado = listadoUsuario.find(
         (u) =>
           String(u.nombreUsuario) === String(usuario) &&
           String(u.password) === String(password)
       );
 
-      setAbrir(usuarioEncontrado);
-      redirigir();
-      sessionStorage.setItem(
-        "temporal",
-        JSON.stringify({ usuario: usuario, password: password })
-      );
+      if (usuarioEncontrado) {
+        sessionStorage.setItem(
+          "temporal",
+          JSON.stringify({
+            usuario: usuario,
+            password: password,
+            tipo: usuarioEncontrado.tipoUsuario,
+          })
+        );
+
+        setAbrir(usuarioEncontrado);
+        redirigir(!!usuarioEncontrado);
+      } else {
+        setMensajeError("Usuario o contraseña incorrecta."); // Muestra el mensaje de error
+      }
     }
   };
 
   return (
     <div className="pantallaCompleta">
       <div className="loginEstructura">
-        <div className="botones">
-          <Button
-            sx={{
-              width: "40%",
-              background: "gray",
-              height: "50px",
-              color: "white",
-            }}
-          >
-            Sigin in
-          </Button>
-          <Button
-            sx={{
-              width: "40%",
-              background: "gray",
-              height: "50px",
-              color: "white",
-            }}
-          >
-            Sigin up
-          </Button>
-        </div>
         <form action="" onSubmit={loginUsuario}>
-          <h2>Bienvenido</h2>
+          <h1>Bienvenido</h1>
           <TextField
             id="filled-basic"
             label="Usuario"
@@ -108,12 +97,9 @@ export function PrincipalLogin() {
           >
             LOGIN
           </Button>
-
-          {abrir == false ? (
-            <h4 style={{ color: "red" }}>usuario o contraseña incorrecto</h4>
-          ) : (
-            ""
-          )}
+          <h3 style={{ color: "red", textAlign: "center", marginTop: "10px" }}>
+            {mensajeError}
+          </h3>
         </form>
       </div>
     </div>

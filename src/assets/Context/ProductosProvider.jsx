@@ -9,7 +9,7 @@ export const ProductosProvider = ({ children }) => {
     const fetchProductos = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/traerProductos",
+          "http://localhost:3000/traerProductos"
         );
         console.log(response.data);
         setProductos(response.data);

@@ -115,7 +115,7 @@
 .Error {
   color: red;
   display: flex;
-  max-width: 150px;
+  max-width: 250px;
 }
 
 .elegirCliente {

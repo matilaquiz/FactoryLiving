@@ -13,7 +13,7 @@ export const ProductosVentas = () => {
       nombre={producto.Nombre}
       precio={producto.Precio}
       descripcion={producto.Descripcion}
-      img={producto.Imagen}
+      img={producto.nombreSillon}
     ></CardsProductos>
   ));
 };
