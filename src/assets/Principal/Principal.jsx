@@ -54,7 +54,7 @@ export const Principal = () => {
             />
             <span>Logout</span>
           </Box>
-          <h1>{datosTemporales.tipo.toUpperCase()}</h1>
+          <h1>{datosTemporales?.tipo?.toUpperCase() || "Cargando..."}</h1> {/* ACA OCURRIO EL ERROR */}
         </div>
 
         {/* Contenido principal */}

@@ -3,6 +3,7 @@ import { TablaStock } from "./TablaStock";
 import "../Estilos/stockEstilos.css";
 import "../Estilos/Menu.css";
 import { useState } from "react";
+import { InputsStock } from "./InputsStock";
 
 export const Stock = () => {
   const [isOpen, setIsOPen] = useState();
@@ -16,16 +17,18 @@ export const Stock = () => {
         <div className="menu-hambur" onClick={toggleMenu}>
           <img src="/src/Images/menu.png" />
         </div>
-        <h3>STOCK</h3>
+        <h3>GESTION DE STOCK</h3>
       </div>
-
+      
       <div className="Bodycentral">
         <div className={`Menu-principal ${isOpen ? "open" : ""}`}>
           <Menu />
         </div>
         <div className="Componente">
-          <h1 className="H1-Componente">CONTROL DE STOCK</h1>
           <TablaStock />
+        </div>
+        <div className="Form-Stock">
+          <InputsStock/>
         </div>
       </div>
       <div className="footer1">@copyright</div>

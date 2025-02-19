@@ -15,29 +15,25 @@
     display: flex;
     width: 100%;
     height: 100%;
-    justify-content: space-around;
 }
 
 .Componente{
-    width: 80%;
-    margin: 50px auto;
+    width: 55%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin: 10px auto;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-.H1-Componente{
-    margin: 10px 0px;
-    color: #ffff; 
-    user-select: none;
+
+.Form-Stock{
+    width: 30%;
+    margin: 10px auto;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 @media (max-width: 800px) {
     .Bodycentral {
       flex-direction: column;
     }
-
     .Componente{width: 100%;}
 }  
 /*-----------------------------------TABLA DE STOCK---------------------------------------------*/
