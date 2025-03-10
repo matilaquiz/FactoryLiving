@@ -395,6 +395,7 @@ export const TablaVenta = () => {
             </TableBody>
           </Table>
         </TableContainer>
+
         <p className="Error">{msjError}</p>
 
         <div className="elegirCliente">

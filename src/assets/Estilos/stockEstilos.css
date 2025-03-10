@@ -1,43 +1,56 @@
-*{
-    margin: 0px;
-    padding: 0px;
+* {
+  margin: 0px;
+  padding: 0px;
 }
-#root{
-    height: 100%;
-}
-
-.bodystock{
-    display: flex;
-    flex-wrap: wrap;
-    height: 100%;
-}
-.Bodycentral{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: space-around;
+#root {
+  height: 100%;
 }
 
-.Componente{
-    width: 80%;
-    margin: 50px auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.bodystock {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
 }
-.H1-Componente{
-    margin: 10px 0px;
-    color: #ffff; 
-    user-select: none;
+.Bodycentral {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-around;
+}
+
+.Componente {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.inputStock {
+  width: 30%;
+}
+.H1-Componente {
+  margin: 10px 0px;
+  color: #ffff;
+  user-select: none;
 }
 
 @media (max-width: 800px) {
-    .Bodycentral {
-      flex-direction: column;
-    }
+  .Bodycentral {
+    flex-direction: column;
+  }
 
-    .Componente{width: 100%;}
-}  
+  .Componente {
+    width: 100%;
+  }
+}
+.buscador {
+  display: flex;
+  background: #f4f2f1;
+  border-radius: 10px;
+  width: 70%;
+  align-self: baseline;
+}
 /*-----------------------------------TABLA DE STOCK---------------------------------------------*/

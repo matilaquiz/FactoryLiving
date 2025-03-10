@@ -37,17 +37,17 @@ export const GraficoTarta = () => {
         <GraficoVentasProvaider>
           <div className="Componente">
             <h1 className="H1-Componente">
+              GRÁFICO BARRAS (Stock de materia prima)
+            </h1>
+            <div className="Grafico">
+              <GraficoBarras />
+            </div>
+            <h1 className="H1-Componente">
               GRÁFICO LINEAL (Cantidad de materiales comprados por mes )
             </h1>
             <div className="Grafico">
               <LineasBasicas />
               <SelectorDateCompra></SelectorDateCompra>
-            </div>
-            <h1 className="H1-Componente">
-              GRÁFICO BARRAS (Stock de materia prima)
-            </h1>
-            <div className="Grafico">
-              <GraficoBarras />
             </div>
             <h1 className="H1-Componente">
               GRÁFICO LINEAL (Precio por mes de cada material)
@@ -58,21 +58,21 @@ export const GraficoTarta = () => {
                 <SelectorMaterial></SelectorMaterial>
               </div>
               <h1 className="H1-Componente">
-                GRÁFICO BARRAS (Porcentaje de aumento anual por material)
+                GRÁFICO BARRAS (Porcentaje de variación anual de precios)
               </h1>
               <div className="Grafico">
                 <GraficoTarta2></GraficoTarta2>
               </div>
             </GraficoMaterialesProvaider>
             <h1 className="H1-Componente">
-              GRÁFICO CIRCULAR (Productos mas vendidos por mes )
+              GRÁFICO CIRCULAR (Productos mas vendidos por mes)
             </h1>
             <div className="Grafico">
               <GraficoTartaVentas />
               <SelectorMesVentas></SelectorMesVentas>
             </div>
             <h1 className="H1-Componente">
-              GRÁFICO LINEAL (Productos mas vendidos por mes )
+              GRÁFICO LINEAL (Facturación anual)
             </h1>
             <div className="Grafico">
               <GraficoLinealVentas></GraficoLinealVentas>

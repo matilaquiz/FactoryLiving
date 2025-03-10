@@ -169,6 +169,27 @@ export function FormularioPresupuesto1() {
     }
   };
 
+  const [errorCantidadTipo, setErrorCantidadTipo] = useState(true);
+
+  const handleErrorCantidadTipo = (materialesSeleccionados) => {
+    if (
+      materialesSeleccionados.some(
+        (material) => !/^\d+$/.test(material.cantidad)
+      )
+    ) {
+      setErrorCantidadTipo(false);
+      return false;
+    } else {
+      setErrorCantidadTipo(true);
+      return true;
+    }
+  };
+
+  const errorCantidades = () => {
+    setErrorCantidad(true);
+    setErrorCantidadTipo(true);
+  };
+
   const [errorPrecio, setErrorPrecio] = useState(true);
   const handleErrorPrecio = (precio) => {
     if (!precio) {
@@ -178,6 +199,24 @@ export function FormularioPresupuesto1() {
       setErrorPrecio(true);
       return true;
     }
+  };
+
+  const [errorPrecioTipo, setErrorPrecioTipo] = useState(true);
+  const handleErrorPrecioTipo = (materialesSeleccionados) => {
+    if (
+      materialesSeleccionados.some((material) => !/^\d+$/.test(material.precio))
+    ) {
+      setErrorPrecioTipo(false);
+      return false;
+    } else {
+      setErrorPrecioTipo(true);
+      return true;
+    }
+  };
+
+  const errorPrecios = () => {
+    setErrorPrecio(true);
+    setErrorPrecioTipo(true);
   };
 
   const enviarMail = () => {
@@ -223,10 +262,19 @@ export function FormularioPresupuesto1() {
     const errorCantidad = handleErrorCantidad(
       materialesSeleccionados[materialesSeleccionados.length - 1].cantidad
     );
+    const errorCantidadTipo = handleErrorCantidadTipo(materialesSeleccionados);
     const errorPrecio = handleErrorPrecio(
       materialesSeleccionados[materialesSeleccionados.length - 1].precio
     );
-    if (errorCantidad && errorFecha && errorPrecio && errorProveedor) {
+    const errorPrecioTipo = handleErrorPrecioTipo(materialesSeleccionados);
+    if (
+      errorCantidad &&
+      errorFecha &&
+      errorPrecio &&
+      errorProveedor &&
+      errorCantidadTipo &&
+      errorPrecioTipo
+    ) {
       const pedido = {
         id: proveedor.IdProveedor,
         mail: proveedor.MailProveedor,
@@ -391,7 +439,7 @@ export function FormularioPresupuesto1() {
               }
               value={material.cantidad}
               onChange={(e) => cambiarcantidad(e, index)}
-              onFocus={() => setErrorCantidad(true)}
+              onFocus={errorCantidades}
               onBlur=""
               fullWidth
             />
@@ -406,7 +454,7 @@ export function FormularioPresupuesto1() {
               label={`precio por unidad/metro/kg`}
               value={material.precio}
               onChange={(e) => cambiarprecio(e, index)}
-              onFocus={() => setErrorPrecio(true)}
+              onFocus={errorPrecios}
               onBlur=""
               fullWidth
             />
@@ -420,12 +468,30 @@ export function FormularioPresupuesto1() {
             CARGAR CANTIDAD A COMPRAR
           </Alert>
         ) : null}
+
+        {!errorCantidadTipo ? (
+          <Alert
+            severity="error"
+            sx={{ textAlign: "end", height: "40px", width: "fit-content" }}
+          >
+            LA CANTIDAD DEBE SER UN NUMERO
+          </Alert>
+        ) : null}
         {!errorPrecio ? (
           <Alert
             severity="error"
             sx={{ textAlign: "end", height: "40px", width: "fit-content" }}
           >
             CARGAR PRECIO ACORDADO CON EL PROVEEDOR
+          </Alert>
+        ) : null}
+
+        {!errorPrecioTipo ? (
+          <Alert
+            severity="error"
+            sx={{ textAlign: "end", height: "40px", width: "fit-content" }}
+          >
+            LA PRECIO DEBE SER UN NUMERO
           </Alert>
         ) : null}
 
@@ -466,13 +532,13 @@ export function FormularioPresupuesto1() {
         </Button>
       </form>
       {modalOK ? (
-        <BotonNotificacion texto="Guarado con exito"></BotonNotificacion>
+        <BotonNotificacion texto="Guardado exitosamente"></BotonNotificacion>
       ) : (
         ""
       )}
 
       {mailEnviado ? (
-        <BotonNotificacion texto="el mail se envio exitosamente"></BotonNotificacion>
+        <BotonNotificacion texto="El mail se envio exitosamente"></BotonNotificacion>
       ) : (
         ""
       )}

@@ -18,7 +18,7 @@ export const Menu = () => {
               Inicio
             </a>
           </li>
-          {datosTemporales.tipo === "administracion" && (
+          {datosTemporales.tipo === "administración" && (
             <>
               <li>
                 <a href="/FormularioCliente/RegistroCliente">

@@ -27,9 +27,11 @@ export function FormularioPresupuesto2() {
   const [proveedor, setProveedor] = useState({});
   const [listaMateriasPrimas, setListaMateriasPrimas] = useState([]);
   const [modalMail, setModalMail] = useState(false);
+  const [modalConfirmacion, setModalConfirmacion] = useState(false);
   const [errorFecha, setErrorFecha] = useState(false);
   const [errorProveedor, setErrorProveedor] = useState(false);
   const [errorMaterial, setErrorMaterial] = useState(false);
+  const [errorCantidad, setErrorCantidad] = useState(false);
 
   useEffect(() => {
     const fetchProveedores = async () => {
@@ -155,7 +157,11 @@ export function FormularioPresupuesto2() {
         "l9uUpJ93K2YlnJGgb"
       )
       .then((response) => {
-        window.location.reload();
+        setModalConfirmacion(true);
+        setTimeout(() => {
+          setModalConfirmacion(false);
+          window.location.reload();
+        }, 3000);
       })
       .catch((error) => {
         console.warn(error);
@@ -190,6 +196,15 @@ export function FormularioPresupuesto2() {
       setErrorMaterial(true);
       return;
     }
+
+    if (
+      materialesSeleccionados.some(
+        (material) => !/^\d+$/.test(material.cantidad)
+      )
+    ) {
+      setErrorCantidad(true);
+      return;
+    }
     setModalMail(true);
   };
 
@@ -200,6 +215,11 @@ export function FormularioPresupuesto2() {
     cuit: proveedor.Identificador,
     materiasPrimas: materialesSeleccionados,
     fecha: stringFecha,
+  };
+
+  const error = () => {
+    setErrorMaterial(false);
+    setErrorCantidad(false);
   };
 
   return (
@@ -333,7 +353,7 @@ export function FormularioPresupuesto2() {
               value={material.cantidad}
               onChange={(e) => cambiarcantidad(e, index)}
               onBlur=""
-              onFocus={() => setErrorMaterial(false)}
+              onFocus={error}
               fullWidth
             />
           </div>
@@ -344,6 +364,14 @@ export function FormularioPresupuesto2() {
             sx={{ textAlign: "end", height: "40px", width: "fit-content" }}
           >
             CARGAR TIPO Y CANTIDAD DE MATERIA PRIMA
+          </Alert>
+        ) : null}
+        {errorCantidad ? (
+          <Alert
+            severity="error"
+            sx={{ textAlign: "end", height: "40px", width: "fit-content" }}
+          >
+            SOLO SE PERMITEN NUMEROS EN LA CANTIDAD
           </Alert>
         ) : null}
         <div className="botones">
@@ -430,6 +458,14 @@ export function FormularioPresupuesto2() {
 
             <CancelIcon onClick={enviarNo}></CancelIcon>
             <CheckCircleOutlineIcon onClick={enviarSi}></CheckCircleOutlineIcon>
+          </div>
+        </div>
+      )}
+
+      {modalConfirmacion && (
+        <div className="modal-overlay">
+          <div className="modal-content2">
+            <p>El pedido de presupuesto se ha enviado exitosamente</p>
           </div>
         </div>
       )}

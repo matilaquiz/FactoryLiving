@@ -60,7 +60,7 @@ export const Principal = () => {
         {/* Contenido principal */}
         <div className="principalcarta">
           {/* Si el usuario es admin, muestra todo */}
-          {datosTemporales.tipo === "administracion" && (
+          {datosTemporales.tipo === "administración" && (
             <>
               <div className="cartas-unidas">
                 <CartasEntrada

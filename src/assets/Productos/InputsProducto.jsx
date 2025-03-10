@@ -50,27 +50,6 @@ export const InputsProducto = () => {
   function handlePrecio(event) {
     setprecioProducto(event.target.value);
   }
-  function handleClavo(event) {
-    setclavoProducto(event.target.value);
-  }
-  function handleEstructura(event) {
-    setestructuraProducto(event.target.value);
-  }
-  function handleGomaEspuma(event) {
-    setGomaProducto(event.target.value);
-  }
-  function hanldeTipoPata(event) {
-    setTipoPata(event.target.value);
-  }
-  function hanldeTipoTela(event) {
-    setTipoTela(event.target.value);
-  }
-  function handleCantPatas(event) {
-    setCantidadPatas(event.target.value);
-  }
-  function handleCantTela(event) {
-    setCantidadTela(event.target.value);
-  }
 
   //---------------------------------Validar Descripcion-------------------------------------
 
@@ -78,9 +57,10 @@ export const InputsProducto = () => {
 
   function validarDescripcion() {
     if (expresiones.descripcion.test(descripcionProducto)) {
-      console.log("input valido");
+      return true;
     } else {
       setMensajeErrorDescripcion("Agregar descripcion");
+      return false;
     }
   }
 
@@ -93,11 +73,13 @@ export const InputsProducto = () => {
 
   function validarNombre() {
     if (expresiones.nombre.test(nombreProducto)) {
-      console.log("input valido");
+      return true;
     } else {
       setMensajeErrorNombre(
         "El Nombre del producto solo puede contener letras ,numeros y espacio."
       );
+
+      return false;
     }
   }
 
@@ -109,15 +91,28 @@ export const InputsProducto = () => {
 
   function validarPrecio() {
     if (expresiones.precio.test(precioProducto)) {
-      console.log("input valido");
+      return true;
     } else {
       setMensajeErrorPrecio("Ingresar el precio sin puntos ni comas");
+      return false;
     }
   }
 
   function limpiarPrecio() {
     setMensajeErrorPrecio("");
   }
+
+  //-------------------------------validar Imagen---------------------------------------//
+  const [MensajeErrorImg, setMensajeErrorImg] = useState();
+
+  const handleImg = () => {
+    if (imgSillon) {
+      return true;
+    } else {
+      setMensajeErrorImg("Seleccionar una imagen del producto");
+      return false;
+    }
+  };
 
   //--------------------trer de BD tipo de telas y patas-------------------//
   const [tiposPatas, setTiposPatas] = useState([]);
@@ -212,28 +207,34 @@ export const InputsProducto = () => {
       //   ],
       materiales: listaMP,
     };
-    console.log(producto);
 
-    const saveProducto = async () => {
-      const axiosData = idProducto.modificar
-        ? {
-            metodo: axios.put,
-            endpoint: "http://localhost:3000/cargarProducto/" + idProducto.id,
-          }
-        : {
-            metodo: axios.post,
-            endpoint: "http://localhost:3000/cargarProducto",
-          };
+    if (
+      validarNombre() &&
+      validarDescripcion() &&
+      validarPrecio() &&
+      handleImg()
+    ) {
+      const saveProducto = async () => {
+        const axiosData = idProducto.modificar
+          ? {
+              metodo: axios.put,
+              endpoint: "http://localhost:3000/cargarProducto/" + idProducto.id,
+            }
+          : {
+              metodo: axios.post,
+              endpoint: "http://localhost:3000/cargarProducto",
+            };
 
-      try {
-        const response = await axiosData.metodo(axiosData.endpoint, producto);
-        // setProductoCargado(response.data);
-        window.location.reload();
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    saveProducto();
+        try {
+          const response = await axiosData.metodo(axiosData.endpoint, producto);
+          // setProductoCargado(response.data);
+          window.location.reload();
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      saveProducto();
+    }
   };
 
   useEffect(() => {
@@ -270,35 +271,6 @@ export const InputsProducto = () => {
         console.log(lista);
 
         setListaMP(lista);
-        //setListaMateriales2(response.data)
-        // response.data.map((material) => {
-        //   if (material.IdMateriaPrima === 1) {
-        //     setclavoProducto(material.CantMp);
-        //   }
-
-        //   if (material.IdMateriaPrima === 2) {
-        //     setGomaProducto(material.CantMp);
-        //   }
-        //   if (material.IdMateriaPrima === 3) {
-        //     setestructuraProducto(material.CantMp);
-        //   }
-        //   if (material.IdMateriaPrima === 4) {
-        //     setTipoTela(material.IdMateriaPrima);
-        //     setCantidadTela(material.CantMp);
-        //   }
-        //   if (material.IdMateriaPrima === 5) {
-        //     setTipoTela(material.IdMateriaPrima);
-        //     setCantidadTela(material.CantMp);
-        //   }
-        //   if (material.IdMateriaPrima === 6) {
-        //     setTipoPata(material.IdMateriaPrima);
-        //     setCantidadPatas(material.CantMp);
-        //   }
-        //   if (material.IdMateriaPrima === 7) {
-        //     setTipoPata(material.IdMateriaPrima);
-        //     setCantidadPatas(material.CantMp);
-        //   }
-        // });
       } catch (error) {
         console.error(error);
       }
@@ -375,7 +347,6 @@ export const InputsProducto = () => {
               onChange={handleNombre}
               onBlur={validarNombre}
               onFocus={limpiarNombre}
-              required
               fullWidth
             />
             {<p className="mensajesError">{MensajeErrorNombre}</p>}
@@ -386,7 +357,6 @@ export const InputsProducto = () => {
               onChange={handleDescripcion}
               onBlur={validarDescripcion}
               onFocus={limpiarDescripcion}
-              required
               fullWidth
             />
             {<p className="mensajesError">{MensajeErrorDescripcion}</p>}
@@ -397,141 +367,25 @@ export const InputsProducto = () => {
               onChange={handlePrecio}
               onBlur={validarPrecio}
               onFocus={limpiarPrecio}
-              required
               fullWidth
             />
             {<p className="mensajesError">{MensajeErrorPrecio}</p>}
           </div>
         </div>
-        {/* <div className="partes-formu">
-          <p>Materia Prima</p>
-          <div>
-            <TextField
-              id="standard-basic"
-              label="Cant de Clavos"
-              value={clavoProducto}
-              onChange={handleClavo}
-              onBlur=""
-              onFocus=""
-              required
-              fullWidth
-            /> */}
-        {/* <p className="mensajesError">{MensajeErrorDNI}</p>
-          {/* <TextField
-              id="standard-basic"
-              label="Cant de Estructura de madera"
-              value={estructuraProducto}
-              onChange={handleEstructura}
-              onBlur=""
-              onFocus=""
-              required
-              fullWidth
-            /> */}
-        {/* <p className="mensajesError">{MensajeErrorApellido}</p> */}
-        {/* <TextField
-              id="standard-basic"
-              label="Cant de Goma espuma(Kg)"
-              value={GomaProducto}
-              onChange={handleGomaEspuma}
-              onBlur=""
-              onFocus=""
-              required
-              fullWidth
-            /> */}
 
-        {/* <p className="mensajesError">{MensajeErrorApellido}</p> */}
-
-        {/* <FormControl sx={{ my: 1, minWidth: 120 }} fullWidth>
-              <InputLabel id="demo-simple-select-helper-label">
-                Tipo de Pata
-              </InputLabel>
-              <Select
-                required
-                labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
-                value={TipoPata}
-                label="Tipo de Pata"
-                onChange={hanldeTipoPata}
-                fullWidth
-                disabled={idProducto.modificar ? true : false}
-              >
-                <MenuItem value="">
-                  <em>Seleccione un tipo de pata</em>
-                </MenuItem>
-                {tiposPatas.map((pata) => (
-                  <MenuItem
-                    key={pata.IdMateriaPrima}
-                    value={pata.IdMateriaPrima}
-                  >
-                    {pata.Nombre}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <TextField
-              id="standard-basic"
-              label="Cantidad de Patas"
-              value={cantidadDePatas}
-              onChange={handleCantPatas}
-              onBlur=""
-              onFocus=""
-              required
-              fullWidth
-            /> */}
-        {/* <p className="mensajesError">{MensajeErrorApellido}</p> */}
-
-        {/* <FormControl sx={{ my: 1, minWidth: 120 }} fullWidth>
-              <InputLabel id="demo-simple-select-helper-label">
-                Tipo de Tela
-              </InputLabel>
-              <Select
-                required
-                labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
-                value={TipoTela}
-                label="Tipo de Tela"
-                onChange={hanldeTipoTela}
-                fullWidth
-                disabled={idProducto.modificar ? true : false}
-              >
-                <MenuItem value="">
-                  <em>Seleccione una tela</em>
-                </MenuItem>
-                {tiposTelas.map((tela) => (
-                  <MenuItem
-                    key={tela.IdMateriaPrima}
-                    value={tela.IdMateriaPrima}
-                  >
-                    {tela.Nombre}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <TextField
-              id="standard-basic"
-              label="Cantidad de Tela(mts)"
-              value={cantidadDeTela}
-              onChange={handleCantTela}
-              onBlur=""
-              onFocus=""
-              required
-              fullWidth
-            /> */}
-        {/* <p className="mensajesError">{MensajeErrorApellido}</p> */}
-        {/* </div>
-        </div>*/}
         <div className="partes-formu">
           <FormControl sx={{ my: 1, minWidth: 120 }} fullWidth>
             <InputLabel id="demo-simple-select-helper-label">
               Imagen del producto
             </InputLabel>
             <Select
-              required
               labelId="demo-simple-select-helper-label"
               id="demo-simple-select-helper"
               value={imgSillon}
               label="Imagen Sillon"
               onChange={(e) => setiImgSillon(e.target.value)}
+              onBlur={() => handleImg()}
+              onFocus={() => setMensajeErrorImg("")}
               fullWidth
             >
               <MenuItem value="">
@@ -547,7 +401,9 @@ export const InputsProducto = () => {
               ))}
             </Select>
           </FormControl>
+          {<p className="mensajesError">{MensajeErrorImg}</p>}
         </div>
+
         <div className="partes-formu">
           <p>Materiales</p>
 
@@ -584,7 +440,7 @@ export const InputsProducto = () => {
               </FormControl>
               <TextField
                 id="standard-basic"
-                label="Cantidad de Patas"
+                label="Cantidad"
                 value={material.cantidad}
                 onChange={(event) => addCantidad(event, index)}
                 onBlur=""

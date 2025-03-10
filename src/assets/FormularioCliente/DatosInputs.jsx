@@ -120,13 +120,13 @@ export const DatosInputs = () => {
   const [clientes, setClientes] = useState();
   const onSubmit = (event) => {
     event.preventDefault();
-    validarDNI();
-    validarNombre();
-    validarApellido();
-    validarCalle();
-    validarTelefono();
-    validarEmail();
-    validarInstagaram();
+    // validarDNI();
+    // validarNombre();
+    // validarApellido();
+    // validarCalle();
+    // validarTelefono();
+    // validarEmail();
+    // validarInstagaram();
 
     let cliente = {
       Dni: dniCliente,
@@ -145,28 +145,39 @@ export const DatosInputs = () => {
 
     console.log(cliente);
 
-    const saveClient = async () => {
-      const axiosData = idCliente.modificar
-        ? {
-            method: axios.put,
-            endpoint: "http://localhost:3000/cargarCliente/" + idCliente.id,
-          }
-        : {
-            method: axios.post,
-            endpoint: "http://localhost:3000/cargarCliente",
-          };
+    if (
+      validarDNI() &&
+      validarNombre() &&
+      validarApellido() &&
+      validarCalle() &&
+      validarNumero() &&
+      validarTelefono() &&
+      validarEmail() &&
+      validarInstagaram()
+    ) {
+      const saveClient = async () => {
+        const axiosData = idCliente.modificar
+          ? {
+              method: axios.put,
+              endpoint: "http://localhost:3000/cargarCliente/" + idCliente.id,
+            }
+          : {
+              method: axios.post,
+              endpoint: "http://localhost:3000/cargarCliente",
+            };
 
-      try {
-        const response = await axiosData.method(axiosData.endpoint, cliente);
-        setClientes(response.data);
-        window.location.reload();
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    saveClient();
+        try {
+          const response = await axiosData.method(axiosData.endpoint, cliente);
+          setClientes(response.data);
+          window.location.reload();
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      saveClient();
 
-    console.log(clientes);
+      console.log(clientes);
+    }
   };
 
   //---------------------------------Validar DNI-------------------------------------
@@ -175,11 +186,12 @@ export const DatosInputs = () => {
 
   function validarDNI() {
     if (expresiones.dni.test(dniCliente)) {
-      console.log("input valido");
+      return true;
     } else {
       setMensajeErrorDNI(
         "El dni no lleva ni puntos mi letras y son 6 o 7 numeros "
       );
+      return false;
     }
   }
 
@@ -192,11 +204,12 @@ export const DatosInputs = () => {
 
   function validarNombre() {
     if (expresiones.nombre.test(nombreCliente)) {
-      console.log("input valido");
+      return true;
     } else {
       setMensajeErrorNombre(
         "El Nombre tiene que tener mas de tres letras y  solo puede contener letras y espacio entre palabras."
       );
+      return false;
     }
   }
 
@@ -208,11 +221,12 @@ export const DatosInputs = () => {
 
   function validarApellido() {
     if (expresiones.apellido.test(apellidoCliente)) {
-      console.log("input valido");
+      return true;
     } else {
       setMensajeErrorApellido(
         "solo puede contener letras y espacio entre palabras."
       );
+      return false;
     }
   }
 
@@ -225,10 +239,11 @@ export const DatosInputs = () => {
 
   function validarCalle() {
     if (expresiones.apellido.test(calleCliente)) {
-      console.log("input valido");
+      return true;
     } else {
       setMensajeErrorCalle("Escribir el nombre de la calle");
     }
+    return false;
   }
 
   function limpiarCalle() {
@@ -239,10 +254,11 @@ export const DatosInputs = () => {
 
   function validarNumero() {
     if (expresiones.domicilio.test(numero)) {
-      console.log("input valido");
+      return true;
     } else {
       setMensajeErrorNumero("Escribir la numeracion del domicilio");
     }
+    return false;
   }
 
   function limpiarNumero() {
@@ -253,10 +269,11 @@ export const DatosInputs = () => {
 
   function validarTelefono() {
     if (expresiones.telefono.test(telefonoCliente)) {
-      console.log("input valido");
+      return true;
     } else {
       setMensajeErrorTelefono("agregue el telefono");
     }
+    return false;
   }
 
   function limpiarTelefono() {
@@ -267,10 +284,11 @@ export const DatosInputs = () => {
 
   function validarEmail() {
     if (expresiones.correo.test(emailCliente)) {
-      console.log("input valido");
+      return true;
     } else {
       setMensajeErrorEmail("el mail tiene que tener @ y .");
     }
+    return false;
   }
 
   function limpiarEmail() {
@@ -282,12 +300,13 @@ export const DatosInputs = () => {
 
   function validarInstagaram() {
     if (!InstaCliente) {
-      return;
+      return true;
     } else {
       if (expresiones.instagram.test(InstaCliente)) {
-        console.log("input valido");
+        return true;
       } else {
         setMensajeErrorInstagram("el instagram tiene que tener @ ");
+        return false;
       }
     }
   }
@@ -369,6 +388,7 @@ export const DatosInputs = () => {
             required
             fullWidth
           />
+
           <p className="mensajesError">{MensajeErrorNombre}</p>
           <TextField
             id="standard-basic"
@@ -385,7 +405,7 @@ export const DatosInputs = () => {
       </div>
 
       <div className="partes-formu">
-        <p>Direccion</p>
+        <p>Dirección</p>
         <div>
           <TextField
             id="standard-basic"

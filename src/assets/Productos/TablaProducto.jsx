@@ -128,14 +128,15 @@ export const TablaProducto = () => {
                 <Tooltip title="eliminar" arrow>
                   <a
                     href="#"
-                    onClick={() =>
-                      confirmarEliminarProducto(
-                        producto.IdProducto,
-                        producto.Nombre
-                      )
-                    }
+
+                    // onClick={() =>
+                    //   confirmarEliminarProducto(
+                    //     producto.IdProducto,
+                    //     producto.Nombre
+                    //   )
+                    // }
                   >
-                    <DeleteForever sx={{ color: "red" }} />
+                    <DeleteForever sx={{ color: "gray" }} />
                   </a>
                 </Tooltip>
               </TableCell>

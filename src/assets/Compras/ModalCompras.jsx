@@ -184,14 +184,14 @@ export function ModalCompras() {
       </div>
       {abrirModalEstado.abrir && abrirModalEstado.estado == "completar" && (
         <ModalCambioEstado
-          texto="Deseas confirmar la venta "
+          texto="Deseas confirmar la compra "
           id={abrirModalEstado.id}
           actualizarCompras={fetchCompras}
         ></ModalCambioEstado>
       )}
       {abrirModalEstado.abrir && abrirModalEstado.estado == "cancelar" && (
         <ModalEstadoCancelar
-          texto="Deseas cancelar la venta "
+          texto="Deseas cancelar la compra "
           id={abrirModalEstado.id}
           actualizarCompras={fetchCompras}
         ></ModalEstadoCancelar>

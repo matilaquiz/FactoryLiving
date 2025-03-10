@@ -3,6 +3,8 @@ import { TablaStock } from "./TablaStock";
 import "../Estilos/stockEstilos.css";
 import "../Estilos/Menu.css";
 import { useState } from "react";
+import { InputsStock } from "./InputsStock ";
+import { MPProvider } from "../Context/MPProvider";
 
 export const Stock = () => {
   const [isOpen, setIsOPen] = useState();
@@ -23,10 +25,14 @@ export const Stock = () => {
         <div className={`Menu-principal ${isOpen ? "open" : ""}`}>
           <Menu />
         </div>
-        <div className="Componente">
-          <h1 className="H1-Componente">CONTROL DE STOCK</h1>
-          <TablaStock />
-        </div>
+        <MPProvider>
+          <div className="Componente">
+            <TablaStock />
+          </div>
+          <div className="inputStock">
+            <InputsStock></InputsStock>
+          </div>
+        </MPProvider>
       </div>
       <div className="footer1">@copyright</div>
     </div>

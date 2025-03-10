@@ -113,9 +113,13 @@
 }
 
 .Error {
-  color: red;
+  color: rgb(155, 63, 63);
   display: flex;
-  max-width: 250px;
+  max-width: 300px;
+  font-weight: bold;
+  font-size: 18px;
+  align-items: center;
+  letter-spacing: 0.6px;
 }
 
 .elegirCliente {
