@@ -18,7 +18,7 @@ export const Stock = () => {
         <div className="menu-hambur" onClick={toggleMenu}>
           <img src="/src/Images/menu.png" />
         </div>
-        <h3>STOCK</h3>
+        <h3>GESTION DE STOCK</h3>
       </div>
 
       <div className="Bodycentral">

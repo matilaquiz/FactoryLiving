@@ -20,13 +20,18 @@
   width: 80%;
 }
 
+.partes-formu p{
+    margin-bottom: 10px;
+    
+}
+
 .partes-formu div {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: left;
-  width: 100%;
-  margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin: 5px 0px;
 }
 
 .btnRegistrar {

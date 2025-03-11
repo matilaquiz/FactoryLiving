@@ -11,6 +11,7 @@
   flex-wrap: wrap;
   height: 100%;
 }
+<<<<<<< HEAD
 .Bodycentral {
   display: flex;
   width: 100%;
@@ -53,4 +54,31 @@
   width: 70%;
   align-self: baseline;
 }
+=======
+.Bodycentral{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.Componente{
+    width: 55%;
+    display: flex;
+    margin: 10px auto;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.Form-Stock{
+    width: 30%;
+    margin: 10px auto;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+@media (max-width: 800px) {
+    .Bodycentral {
+      flex-direction: column;
+    }
+    .Componente{width: 100%;}
+}  
+>>>>>>> e72bdf0cfa84773e8ee7739e853bbc1638c14bed
 /*-----------------------------------TABLA DE STOCK---------------------------------------------*/
